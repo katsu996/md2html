@@ -162,10 +162,10 @@ strict TypeScript、テスト、ESM/CJS、CLIを継続的に検証できる基�
 #### 必須テスト・確認
 
 ```bash
-npm install
-npm run typecheck
-npm test
-npm run build
+pnpm install
+pnpm run typecheck
+pnpm test
+pnpm run build
 git diff --check
 ```
 
@@ -488,11 +488,11 @@ CLIの公開契約と、ファイル誤上書きを防ぐパス規則をI/Oか�
 #### 必須コマンド
 
 ```bash
-npm run typecheck
-npm run lint
-npm test
-npm run test:coverage
-npm run build
+pnpm run typecheck
+pnpm run lint
+pnpm test
+pnpm run test:coverage
+pnpm run build
 git diff --check
 ```
 
@@ -529,9 +529,8 @@ git diff --check
 #### 必須コマンド
 
 ```bash
-npm run build
-npm run package:check
-npm pack --dry-run
+pnpm run build
+pnpm pack --dry-run
 ```
 
 #### 受入条件
@@ -562,14 +561,13 @@ Solが実装意図の推測に時間を使わず、リスクの高い差分か�
 #### 最終コマンド
 
 ```bash
-npm ci
-npm run typecheck
-npm run lint
-npm test
-npm run test:coverage
-npm run build
-npm run package:check
-npm pack --dry-run
+pnpm install --frozen-lockfile
+pnpm run typecheck
+pnpm run lint
+pnpm test
+pnpm run test:coverage
+pnpm run build
+pnpm pack --dry-run
 git diff --check
 git status --short
 ```

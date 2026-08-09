@@ -1,7 +1,17 @@
 {
-  "name": "md2html",
+  "name": "@katsu996/md2html",
   "version": "1.0.0",
+  "packageManager": "pnpm@11.20.0",
   "description": "Convert Markdown strings and files into self-contained styled HTML documents.",
+  "license": "MIT",
+  "author": "katsu996",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katsu996/md2html"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "exports": {
     ".": {
@@ -35,14 +45,13 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint .",
-    "package:check": "npm run build && node scripts/package-check.mjs",
-    "prepack": "npm run typecheck && npm test && npm run build"
+    "prepack": "pnpm run typecheck && pnpm test && pnpm run build"
   },
   "dependencies": {
     "marked": "^18.0.7"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.5",
+    "@arethetypeswrong/core": "^0.18.5",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.1.1",
     "@vitest/coverage-v8": "^4.1.10",

@@ -12,7 +12,9 @@ export default defineConfig([
     deps: { neverBundle: ["marked"] },
     sourcemap: true,
     clean: true,
-    minify: false
+    minify: false,
+    publint: { level: "error" },
+    attw: { profile: "node16", level: "error" }
   },
   {
     entry: { md2html: "src/cli.ts" },

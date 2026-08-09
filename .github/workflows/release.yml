@@ -1,0 +1,177 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version increment to apply
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: npm-release
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: 24.19.0
+  PNPM_VERSION: 11.20.0
+  PACKAGE_NAME: '@katsu996/md2html'
+
+jobs:
+  release:
+    name: Validate and publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Verify release target
+        run: |
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then
+            echo "Releases must be run from the main branch." >&2
+            exit 1
+          fi
+
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "The release checkout must be clean." >&2
+            exit 1
+          fi
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - name: Read npm CLI version
+        id: npm-version
+        run: echo "version=$(npm --version)" >> "$GITHUB_OUTPUT"
+
+      - name: Verify npm CLI
+        env:
+          NPM_VERSION: ${{ steps.npm-version.outputs.version }}
+        run: |
+          echo "Using npm ${NPM_VERSION}"
+          node --input-type=module -e '
+            const [major, minor, patch] = process.env.NPM_VERSION.split(".").map(Number);
+            const current = major * 1000000 + minor * 1000 + patch;
+            const required = 11 * 1000000 + 5 * 1000 + 1;
+            if (!Number.isFinite(current) || current < required) {
+              console.error(`npm ${process.env.NPM_VERSION} is too old for npm Trusted Publishing; npm 11.5.1 or newer is required.`);
+              process.exit(1);
+            }
+          '
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Bump package version without committing
+        run: npm version "${{ inputs.bump }}" --no-git-tag-version
+
+      - name: Read release version
+        id: release-version
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          tag="v${version}"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+          echo "Preparing ${PACKAGE_NAME}@${version} (${tag})"
+
+      - name: Check version conflicts
+        env:
+          RELEASE_TAG: ${{ steps.release-version.outputs.tag }}
+          RELEASE_VERSION: ${{ steps.release-version.outputs.version }}
+        run: |
+          if git ls-remote --exit-code --refs origin "refs/tags/${RELEASE_TAG}" >/dev/null 2>&1; then
+            echo "Git tag ${RELEASE_TAG} already exists." >&2
+            exit 1
+          fi
+
+          if npm view "${PACKAGE_NAME}@${RELEASE_VERSION}" version --registry=https://registry.npmjs.org >/dev/null 2>&1; then
+            echo "npm version ${PACKAGE_NAME}@${RELEASE_VERSION} already exists." >&2
+            exit 1
+          fi
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Test
+        run: pnpm test
+
+      - name: Test coverage
+        run: pnpm run test:coverage
+
+      - name: Build and validate package
+        run: pnpm run build
+
+      - name: Check package contents
+        run: pnpm pack --dry-run
+
+      - name: Create release tarball
+        id: package
+        run: |
+          package_directory="${RUNNER_TEMP}/md2html-package"
+          mkdir -p "${package_directory}"
+          pnpm pack --ignore-scripts --pack-destination "${package_directory}"
+          tarball="$(find "${package_directory}" -maxdepth 1 -type f -name '*.tgz' -print -quit)"
+          if [ -z "${tarball}" ]; then
+            echo "Release tarball was not created." >&2
+            exit 1
+          fi
+          echo "tarball=${tarball}" >> "$GITHUB_OUTPUT"
+
+      - name: Commit release version
+        env:
+          RELEASE_TAG: ${{ steps.release-version.outputs.tag }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git diff --cached --check
+          git commit -m "chore(release): ${RELEASE_TAG}"
+
+      - name: Create release tag
+        env:
+          RELEASE_TAG: ${{ steps.release-version.outputs.tag }}
+        run: git tag --annotate "${RELEASE_TAG}" --message "Release ${RELEASE_TAG}"
+
+      - name: Push release commit and tag
+        env:
+          RELEASE_TAG: ${{ steps.release-version.outputs.tag }}
+        run: |
+          git push origin HEAD:main
+          git push origin "${RELEASE_TAG}"
+
+      - name: Publish package to npm
+        env:
+          # Optional one-time bootstrap token. Remove NPM_TOKEN after configuring
+          # the npm Trusted Publisher; OIDC will then be used automatically.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_TARBALL: ${{ steps.package.outputs.tarball }}
+        run: npm publish "${RELEASE_TARBALL}" --access public
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.release-version.outputs.tag }}
+        run: gh release create "${RELEASE_TAG}" --verify-tag --generate-notes --title "${RELEASE_TAG}"

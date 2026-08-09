@@ -133,14 +133,13 @@ Markedは出力HTMLをサニタイズしないため、「markedを利用して�
 リポジトリの最終scriptを確認してから実行する。
 
 ```bash
-npm ci
-npm run typecheck
-npm run lint
-npm test
-npm run test:coverage
-npm run build
-npm run package:check
-npm pack --dry-run
+pnpm install --frozen-lockfile
+pnpm run typecheck
+pnpm run lint
+pnpm test
+pnpm run test:coverage
+pnpm run build
+pnpm pack --dry-run
 git diff --check
 git status --short
 ```
