@@ -7,7 +7,7 @@
   "author": "katsu996",
   "repository": {
     "type": "git",
-    "url": "https://github.com/katsu996/md2html"
+    "url": "https://github.com/katsu996/md2html.git"
   },
   "publishConfig": {
     "access": "public"
