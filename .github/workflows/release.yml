@@ -132,7 +132,7 @@ jobs:
         run: |
           package_directory="${RUNNER_TEMP}/md2html-package"
           mkdir -p "${package_directory}"
-          pnpm pack --ignore-scripts --pack-destination "${package_directory}"
+          pnpm pack --config.ignore-scripts=true --pack-destination "${package_directory}"
           tarball="$(find "${package_directory}" -maxdepth 1 -type f -name '*.tgz' -print -quit)"
           if [ -z "${tarball}" ]; then
             echo "Release tarball was not created." >&2
