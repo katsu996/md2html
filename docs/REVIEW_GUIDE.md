@@ -13,9 +13,8 @@ Solへは、次の依頼文をそのまま渡せる。
 ```text
 このリポジトリの実装レビューを行ってください。
 
-最初にdocs/REQUIREMENTS.md、docs/BASIC_DESIGN.md、
-docs/IMPLEMENTATION_TASKS.md、docs/IMPLEMENTATION_REPORT.mdを読み、
-reportの主張を信用するだけでなく実際の差分・コード・テスト・package成果物と照合してください。
+最初にdocs/REQUIREMENTS.md、docs/REVIEW_GUIDE.mdを読み、
+その内容を実際の差分・コード・テスト・package成果物と照合してください。
 
 レビューでは公開API互換性、raw HTMLとURL/CSS注入、HTML template、
 CLIの入力Markdown/CSS誤上書き、atomic write失敗時の保護、
@@ -31,28 +30,24 @@ ESM/CJSと型定義の解決を最優先してください。可能な範囲で�
 必須入力は次のとおり。
 
 - `docs/REQUIREMENTS.md`
-- `docs/BASIC_DESIGN.md`
-- `docs/IMPLEMENTATION_TASKS.md`
-- 記入済み `docs/IMPLEMENTATION_REPORT.md`
+- `docs/REVIEW_GUIDE.md`
 - 基準revisionからの全差分
 - `package.json` とlockfile
 - source、test、fixture
 - packされた成果物または再生成可能な環境
 
-`IMPLEMENTATION_REPORT.md` にプレースホルダー、未実行検証、設計差異の未記載がある場合は、それ自体を引継ぎ品質上の問題として扱う。
-
 ## 4. レビュー順序
 
 ### R-01 スコープと差分
 
-- working tree、基準revision、変更ファイルがreportと一致するか。
+- working tree、基準revision、変更ファイルがレビュー対象と一致するか。
 - 要件外機能、不要なdependency、生成物、秘密情報が混入していないか。
 - ユーザーの既存変更を消した形跡がないか。
-- 設計差異がコードとreportで追跡可能か。
+- 設計差異がコードと要件・実装で追跡可能か。
 
 ### R-02 公開API
 
-- export名、signature、既定値、戻り値が基本設計と一致するか。
+- export名、signature、既定値、戻り値が要件・設計と一致するか。
 - 要件の非チェーン例とチェーン例が動くか。
 - Builderが意図どおり可変で、自身を返すか。
 - `toString`, `String`, template literalが一致するか。
@@ -126,7 +121,6 @@ Markedは出力HTMLをサニタイズしないため、「markedを利用して�
 - OS/timing依存のflaky testがないか。
 - skip、only、TODO、説明のないlint/type抑制がないか。
 - coverage 90%目標が重要モジュールで満たされるか。
-- report記載のtest数、coverage、環境が実結果と一致するか。
 
 ## 5. 推奨検証コマンド
 
