@@ -164,11 +164,8 @@ jobs:
 
       - name: Publish package to npm
         env:
-          # Optional one-time bootstrap token. Remove NPM_TOKEN after configuring
-          # the npm Trusted Publisher; OIDC will then be used automatically.
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           RELEASE_TARBALL: ${{ steps.package.outputs.tarball }}
-        run: npm publish "${RELEASE_TARBALL}" --provenance --access public
+        run: npm publish "${RELEASE_TARBALL}" --access public
 
       - name: Create GitHub Release
         env:
