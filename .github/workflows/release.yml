@@ -23,7 +23,7 @@ concurrency:
 env:
   NODE_VERSION: 24.19.0
   PNPM_VERSION: 11.20.0
-  PACKAGE_NAME: '@katsu996/md2html'
+  PACKAGE_NAME: "@katsu996/md2html"
 
 jobs:
   release:
@@ -168,7 +168,7 @@ jobs:
           # the npm Trusted Publisher; OIDC will then be used automatically.
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           RELEASE_TARBALL: ${{ steps.package.outputs.tarball }}
-        run: npm publish "${RELEASE_TARBALL}" --access public
+        run: npm publish "${RELEASE_TARBALL}" --provenance --access public
 
       - name: Create GitHub Release
         env:
