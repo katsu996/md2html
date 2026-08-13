@@ -9,11 +9,17 @@ import {
   type FileHandle
 } from "node:fs/promises";
 import { basename, dirname, join } from "node:path";
-import { stdin as processStdin, stderr as processStderr, stdout as processStdout } from "node:process";
+import {
+  cwd as processCwd,
+  stdin as processStdin,
+  stderr as processStderr,
+  stdout as processStdout
+} from "node:process";
 
 import { convertMarkdown } from "../core/convert.js";
 import { Md2HtmlError } from "../core/errors.js";
 import { helpText, parseCliArguments, VERSION } from "./args.js";
+import { resolveCliConfiguration } from "./config.js";
 import { CliOperationError, CliUsageError } from "./errors.js";
 import { inputBasenameWithoutExtension, resolvePathPlan } from "./paths.js";
 
@@ -44,7 +50,11 @@ const processIo: CliIo = {
 };
 
 /** Runs the CLI without calling process.exit, returning its documented exit code. */
-export async function runCli(args: readonly string[], io: CliIo = processIo): Promise<number> {
+export async function runCli(
+  args: readonly string[],
+  io: CliIo = processIo,
+  workingDirectory = processCwd()
+): Promise<number> {
   try {
     const parsed = parseCliArguments(args);
     if (parsed.kind === "help") {
@@ -56,7 +66,8 @@ export async function runCli(args: readonly string[], io: CliIo = processIo): Pr
       return 0;
     }
 
-    const plan = await resolvePathPlan(parsed.value);
+    const effective = await resolveCliConfiguration(parsed.value, workingDirectory);
+    const plan = await resolvePathPlan(effective, workingDirectory);
     const markdown = plan.stdin
       ? await readUtf8FromStdin(io.stdin)
       : await readInputFile(plan.inputPath, plan.inputDisplayName);
@@ -65,11 +76,11 @@ export async function runCli(args: readonly string[], io: CliIo = processIo): Pr
       ? "Markdown Document"
       : inputBasenameWithoutExtension(plan.inputPath);
     const document = convertMarkdown(markdown, {
-      title: parsed.value.title,
-      lang: parsed.value.lang,
-      defaultCss: parsed.value.defaultCss,
+      title: effective.title,
+      lang: effective.lang,
+      defaultCss: effective.defaultCss,
       customCss,
-      rawHtml: parsed.value.allowHtml ? "allow" : "escape"
+      rawHtml: effective.allowHtml ? "allow" : "escape"
     }, fallbackTitle);
     const html = document.toString();
 
@@ -80,7 +91,7 @@ export async function runCli(args: readonly string[], io: CliIo = processIo): Pr
     if (plan.outputPath === undefined || plan.outputDisplayName === undefined) {
       throw new CliUsageError("An output destination could not be determined.");
     }
-    await writeFileAtomically(plan.outputPath, html, parsed.value.force, plan.outputDisplayName);
+    await writeFileAtomically(plan.outputPath, html, effective.force, plan.outputDisplayName);
     return 0;
   } catch (error) {
     const code = exitCodeForError(error);

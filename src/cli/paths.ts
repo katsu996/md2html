@@ -1,7 +1,7 @@
 import { realpath } from "node:fs/promises";
 import { basename, dirname, extname, join, resolve } from "node:path";
 
-import type { CliRunArguments } from "./args.js";
+import type { EffectiveCliRunArguments } from "./config.js";
 import { CliUsageError } from "./errors.js";
 
 export interface PathPlan {
@@ -16,7 +16,10 @@ export interface PathPlan {
 }
 
 /** Resolves CLI paths and rejects output aliases of protected input files. */
-export async function resolvePathPlan(args: CliRunArguments): Promise<PathPlan> {
+export async function resolvePathPlan(
+  args: EffectiveCliRunArguments,
+  workingDirectory = process.cwd()
+): Promise<PathPlan> {
   if (args.output !== undefined && args.stdout) {
     throw new CliUsageError("--output and --stdout cannot be used together.");
   }
@@ -26,9 +29,10 @@ export async function resolvePathPlan(args: CliRunArguments): Promise<PathPlan> 
     throw new CliUsageError("Standard input requires --stdout or --output.");
   }
 
-  const inputPath = stdin ? undefined : resolve(args.input);
-  const outputPath = determineOutputPath(args, inputPath);
-  const cssPaths = args.css.map((path) => resolve(path));
+  const baseDirectory = resolve(workingDirectory);
+  const inputPath = stdin ? undefined : resolve(baseDirectory, args.input);
+  const outputPath = determineOutputPath(args, inputPath, baseDirectory);
+  const cssPaths = args.css.map((path) => resolve(args.cssBaseDirectory, path));
 
   if (outputPath !== undefined) {
     const protectedPaths = [inputPath, ...cssPaths].filter(
@@ -38,6 +42,9 @@ export async function resolvePathPlan(args: CliRunArguments): Promise<PathPlan> 
       if (await pathsReferToSameFile(outputPath, protectedPath)) {
         throw new CliUsageError("Output path must not be the input Markdown or a CSS input file.");
       }
+    }
+    if (args.configPath !== undefined && await pathsReferToSameFile(outputPath, args.configPath)) {
+      throw new CliUsageError("Output path must not be the active configuration file.");
     }
   }
 
@@ -64,12 +71,16 @@ export function inputBasenameWithoutExtension(inputPath: string): string {
   return extension.length === 0 ? name : name.slice(0, -extension.length);
 }
 
-function determineOutputPath(args: CliRunArguments, inputPath: string | undefined): string | undefined {
+function determineOutputPath(
+  args: EffectiveCliRunArguments,
+  inputPath: string | undefined,
+  workingDirectory: string
+): string | undefined {
   if (args.stdout) {
     return undefined;
   }
   if (args.output !== undefined) {
-    return resolve(args.output);
+    return resolve(workingDirectory, args.output);
   }
   if (inputPath === undefined) {
     return undefined;

@@ -32,11 +32,19 @@ JavaScript / TypeScript で利用できる「Markdownを装飾済みHTMLに変�
   ```bash
   $ npx md2html input.md -o output.html --css ./custom.css
   ```
+- カスタムCSS、タイトル、言語、既定CSS、生HTMLの扱いは、JSON設定ファイルまたは`package.json`の`md2html`プロパティへ既定値として保存できること。
+- CLIを実行したディレクトリから親へ設定を探索し、CLIで明示した値は設定ファイルより優先すること。
 
 ### ③ スタイル（CSS）の適用ルール
 
 - **デフォルトCSS**: DESIGN.mdを元にCSSを設定する。
 - **カスタムCSSの上書き/追加**: ライブラリ・CLIともに、引数やメソッド経由でオリジナルのCSS文字列／ファイルを指定してスタイルを追加・上書きできること。
+
+### ④ カラーテーマの自動選択と手動切替
+
+- 既定CSSを含む生成HTMLの右上に、ライトモードとダークモードを切り替えるボタンを表示する。
+- 初期状態は自動選択とし、ブラウザが取得した端末のカラースキーム設定を初期表示に反映する。
+- 詳細要件と受け入れ条件は[THEME_SWITCHING_REQUIREMENTS.md](./THEME_SWITCHING_REQUIREMENTS.md)に定める。
 
 ---
 

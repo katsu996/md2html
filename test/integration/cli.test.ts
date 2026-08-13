@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { runCli, writeFileAtomically } from "../../src/cli/run.js";
+import { runCli as runCliWithConfig, writeFileAtomically } from "../../src/cli/run.js";
 
 const tempDirectories: string[] = [];
 
@@ -15,6 +15,13 @@ async function temporaryDirectory(): Promise<string> {
   const directory = await mkdtemp(join(tmpdir(), "md2html-cli-test-"));
   tempDirectories.push(directory);
   return directory;
+}
+
+async function runCli(
+  args: readonly string[],
+  io: Parameters<typeof runCliWithConfig>[1]
+): Promise<number> {
+  return runCliWithConfig([...args, "--no-config"], io);
 }
 
 function memoryIo(input = ""): {

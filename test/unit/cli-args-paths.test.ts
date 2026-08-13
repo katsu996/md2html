@@ -32,7 +32,20 @@ describe("CLI argument parsing", () => {
       kind: "run",
       value: {
         input: "input.md", output: "out.html", css: ["first.css", "second.css"], title: "T", lang: "ja",
-        defaultCss: false, allowHtml: true, stdout: true, force: true
+        defaultCss: false, allowHtml: true, stdout: true, force: true, config: undefined, searchConfig: true
+      }
+    });
+  });
+
+  it("keeps config-overridable values unset and parses config controls", () => {
+    expect(parseCliArguments([
+      "input.md", "--default-css", "--no-allow-html", "--config", "custom.json"
+    ])).toEqual({
+      kind: "run",
+      value: {
+        input: "input.md", output: undefined, css: undefined, title: undefined, lang: undefined,
+        defaultCss: true, allowHtml: false, stdout: false, force: false,
+        config: "custom.json", searchConfig: true
       }
     });
   });
@@ -49,7 +62,10 @@ describe("CLI argument parsing", () => {
     [[], "input Markdown"],
     [["one.md", "two.md"], "Only one input"],
     [["--unknown", "one.md"], "Unknown option"],
-    [["--output"], "argument missing"]
+    [["--output"], "argument missing"],
+    [["one.md", "--config", "a.json", "--no-config"], "cannot be used together"],
+    [["one.md", "--default-css", "--no-default-css"], "cannot be used together"],
+    [["one.md", "--allow-html", "--no-allow-html"], "cannot be used together"]
   ])("rejects invalid CLI syntax %#", (args, message) => {
     expect(() => parseCliArguments(args)).toThrow(message);
   });
@@ -67,7 +83,7 @@ describe("CLI path policy", () => {
   it("enforces stdin and output/stdout combinations", async () => {
     const base = {
       input: "-", output: undefined, css: [], title: undefined, lang: undefined, defaultCss: true,
-      allowHtml: false, stdout: false, force: false
+      allowHtml: false, stdout: false, force: false, cssBaseDirectory: process.cwd(), configPath: undefined
     };
     await expect(resolvePathPlan(base)).rejects.toThrow("Standard input requires");
     await expect(resolvePathPlan({ ...base, output: "out.html", stdout: true })).rejects.toThrow(
@@ -84,7 +100,8 @@ describe("CLI path policy", () => {
 
     const plan = await resolvePathPlan({
       input, output: join(directory, ".", "output.html"), css: [css], title: undefined, lang: undefined,
-      defaultCss: true, allowHtml: false, stdout: false, force: false
+      defaultCss: true, allowHtml: false, stdout: false, force: false,
+      cssBaseDirectory: directory, configPath: undefined
     });
     expect(plan.inputPath).toBe(resolve(input));
     expect(plan.outputPath).toBe(resolve(directory, "output.html"));
@@ -92,11 +109,12 @@ describe("CLI path policy", () => {
 
     await expect(resolvePathPlan({
       input, output: join(directory, "nested", "..", "input file.md"), css: [], title: undefined,
-      lang: undefined, defaultCss: true, allowHtml: false, stdout: false, force: true
+      lang: undefined, defaultCss: true, allowHtml: false, stdout: false, force: true,
+      cssBaseDirectory: directory, configPath: undefined
     })).rejects.toBeInstanceOf(CliUsageError);
     await expect(resolvePathPlan({
       input, output: css, css: [css], title: undefined, lang: undefined, defaultCss: true,
-      allowHtml: false, stdout: false, force: true
+      allowHtml: false, stdout: false, force: true, cssBaseDirectory: directory, configPath: undefined
     })).rejects.toThrow("must not be the input Markdown or a CSS input file");
   });
 
@@ -109,7 +127,8 @@ describe("CLI path policy", () => {
 
     await expect(resolvePathPlan({
       input, output: outputAlias, css: [], title: undefined, lang: undefined, defaultCss: true,
-      allowHtml: false, stdout: false, force: true
+      allowHtml: false, stdout: false, force: true,
+      cssBaseDirectory: directory, configPath: undefined
     })).rejects.toThrow("must not be the input Markdown");
     expect(await realpath(outputAlias)).toBe(await realpath(input));
   });

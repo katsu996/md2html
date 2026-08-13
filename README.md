@@ -73,13 +73,57 @@ cat input.md | md2html - --stdout > output.html
 | `--css <path>`         |             | UTF-8のCSSファイル。複数指定可 |
 | `--title <text>`       |             | HTMLタイトル                   |
 | `--lang <tag>`         |             | 文書言語                       |
+| `--default-css`        |             | 設定にかかわらず既定CSSを使用  |
 | `--no-default-css`     |             | 既定CSSを省略                  |
 | `--allow-html`         |             | Markdown中の生HTMLを許可       |
+| `--no-allow-html`      |             | 設定にかかわらず生HTMLをエスケープ |
+| `--config <path>`      |             | 指定したJSON設定を使用         |
+| `--no-config`          |             | 設定ファイルの自動探索を無効化 |
 | `--stdout`             |             | HTMLを標準出力へ出力           |
 | `--force`              | `-f`        | 既存の出力ファイルを置換       |
 | `--help` / `--version` | `-h` / `-v` | ヘルプ / バージョン            |
 
-stdinでは`--stdout`または`--output`が必須です。ファイル入力では出力先を省略すると、拡張子を`.html`へ変更した同じディレクトリのファイルが選ばれます。既存出力は`--force`なしでは変更しません。入力Markdownまたは`--css`で渡したファイルと同じ出力先は、`--force`を指定しても拒否します。
+stdinでは`--stdout`または`--output`が必須です。ファイル入力では出力先を省略すると、拡張子を`.html`へ変更した同じディレクトリのファイルが選ばれます。既存出力は`--force`なしでは変更しません。入力Markdown、`--css`で渡したファイル、または実際に読み込んだ設定ファイルと同じ出力先は、`--force`を指定しても拒否します。
+
+### CLI設定ファイル
+
+毎回同じ変換オプションを渡す代わりに、次のいずれかへJSON設定を置けます。
+
+- `package.json`の`md2html`プロパティ
+- `.md2htmlrc`
+- `.md2htmlrc.json`
+- `md2html.config.json`
+
+例えば`md2html.config.json`は次のように記述します。
+
+```json
+{
+  "css": ["./styles/article.css", "./styles/print.css"],
+  "title": "Project documentation",
+  "lang": "ja",
+  "defaultCss": true,
+  "allowHtml": false
+}
+```
+
+`css`は1つの文字列でも文字列配列でも指定できます。相対CSSパスは設定ファイルがあるディレクトリを基準に解決されます。
+
+新しいファイルを作りたくない場合は、既存の`package.json`へ同じ内容を追加できます。
+
+```json
+{
+  "name": "example-project",
+  "md2html": {
+    "css": "./styles/article.css",
+    "lang": "ja",
+    "defaultCss": false
+  }
+}
+```
+
+設定はCLIを実行したカレントディレクトリから親ディレクトリへ探索します。各ディレクトリでは`package.json`、`.md2htmlrc`、`.md2htmlrc.json`、`md2html.config.json`の順に確認し、最初に見つかった設定だけを使用します。`package.json`に`md2html`プロパティがなければ探索を継続します。
+
+優先順位は「CLIオプション > 読み込んだ設定 > 組み込み既定値」です。CLIで1つ以上の`--css`を渡した場合は設定側の`css`配列全体を置き換えます。特定ファイルを使う場合は`--config <path>`、一時的に設定を無視する場合は`--no-config`を指定してください。出力先、標準出力、既存ファイル置換のような実行単位の操作は、意図しない書き込みを避けるため設定項目には含めていません。
 
 ## 安全性
 
@@ -88,7 +132,7 @@ stdinでは`--stdout`または`--output`が必須です。ファイル入力で�
 - `javascript:`、`vbscript:`、`data:`、`file:`および難読化されたスキームはリンク化せず、可読なテキストへ縮退します。
 - title、lang、style要素の終端文字列は文脈別に検証またはエスケープします。
 
-`--allow-html`または`rawHtml: "allow"`は、信頼できるMarkdown専用です。このモードはHTMLをサニタイズせず、`script`要素、イベント属性、危険URLを含む生HTMLをそのまま許可します。信頼できない入力には使用しないでください。
+`--allow-html`、CLI設定の`allowHtml: true`、またはライブラリの`rawHtml: "allow"`は、信頼できるMarkdown専用です。このモードはHTMLをサニタイズせず、`script`要素、イベント属性、危険URLを含む生HTMLをそのまま許可します。信頼できない入力には使用しないでください。
 
 ## 開発
 
