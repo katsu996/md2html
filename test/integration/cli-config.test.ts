@@ -26,7 +26,7 @@ function memoryIo(): {
   let stdout = "";
   let stderr = "";
   async function* stdin(): AsyncGenerator<never> {
-    return;
+    yield* [];
   }
   return {
     io: {
