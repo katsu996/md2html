@@ -1,5 +1,7 @@
 # md2html
 
+[![Codecov](https://codecov.io/gh/katsu996/md2html/graph/badge.svg)](https://app.codecov.io/gh/katsu996/md2html)
+
 Markdown文字列または1つのMarkdownファイルを、既定スタイル込みの自己完結したHTML文書へ変換するTypeScriptライブラリとCLIです。生成HTMLは外部CDN、Webフォント、JavaScriptへ依存しません。
 
 ## 対応環境

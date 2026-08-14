@@ -2,8 +2,6 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
   pull_request:
 
 permissions:
@@ -51,11 +49,53 @@ jobs:
       - name: Test
         run: pnpm test
 
-      - name: Test coverage
-        run: pnpm run test:coverage
 
       - name: Build and validate package
         run: pnpm run build
 
       - name: Check package contents
         run: pnpm pack --dry-run
+
+  coverage:
+    name: Coverage (Node 24.19.0)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.20.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.19.0
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Test with coverage
+        run: pnpm run test:coverage
+      - name: Write coverage summary
+        run: pnpm run coverage:summary | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Upload coverage reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-reports-node-24
+          path: coverage/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Upload coverage to Codecov
+        if: success()
+        continue-on-error: true
+        uses: codecov/codecov-action@v5
+        with:
+          files: coverage/lcov.info
+          flags: unit
+          name: node-24
+          fail_ci_if_error: false
+          verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
