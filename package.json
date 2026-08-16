@@ -2,15 +2,13 @@
   "name": "@katsu996/md2html",
   "version": "0.0.3",
   "description": "Convert Markdown strings and files into self-contained styled HTML documents.",
-  "license": "MIT",
-  "author": "katsu996",
   "repository": {
     "type": "git",
     "url": "https://github.com/katsu996/md2html.git"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+  "license": "MIT",
+  "author": "katsu996",
+  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
@@ -32,18 +30,6 @@
     "README.md",
     "LICENSE"
   ],
-  "sideEffects": false,
-  "engines": {
-    "node": ">=22"
-  },
-  "devEngines": {
-    "runtime": {
-      "name": "node",
-      "version": ">=24.19.0",
-      "onFail": "download"
-    }
-  },
-  "packageManager": "pnpm@11.21.0",
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
@@ -69,5 +55,19 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.65.0",
     "vitest": "^4.1.10"
+  },
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.19.0",
+      "onFail": "download"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
