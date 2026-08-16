@@ -13,29 +13,21 @@ concurrency:
 
 jobs:
   quality:
-    name: Quality (Node ${{ matrix.node-version }})
+    name: Quality (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        node-version:
-          - 22.18.0
-          - 24.19.0
+        node: [22, 24]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - uses: pnpm/setup@v2
         with:
-          version: 11.20.0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: pnpm
+          runtime: node@${{ matrix.node }}
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -49,7 +41,6 @@ jobs:
       - name: Test
         run: pnpm test
 
-
       - name: Build and validate package
         run: pnpm run build
 
@@ -57,36 +48,36 @@ jobs:
         run: pnpm pack --dry-run
 
   coverage:
-    name: Coverage (Node 24.19.0)
+    name: Coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+
+      - uses: pnpm/setup@v2
         with:
-          version: 11.20.0
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24.19.0
-          cache: pnpm
+          cache: true
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
       - name: Test with coverage
         run: pnpm run test:coverage
+
       - name: Write coverage summary
         run: pnpm run coverage:summary | tee -a "$GITHUB_STEP_SUMMARY"
+
       - name: Upload coverage reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-reports-node-24
+          name: coverage-reports
           path: coverage/
           if-no-files-found: warn
           retention-days: 14
+
       - name: Upload coverage to Codecov
         if: success()
         continue-on-error: true
@@ -94,7 +85,7 @@ jobs:
         with:
           files: coverage/lcov.info
           flags: unit
-          name: node-24
+          name: codecov-umbrella
           fail_ci_if_error: false
           verbose: true
         env:

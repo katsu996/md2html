@@ -6,7 +6,7 @@ Markdown文字列または1つのMarkdownファイルを、既定スタイル込
 
 ## 対応環境
 
-- Node.js `>=22.18.0`
+- Node.js `>=24.19.0`
 - ESM、CJS、およびES2022対応ブラウザバンドラー向けのライブラリ出力
 
 公開パッケージ名は`@katsu996/md2html`です。公開後は次の形式で導入できます。
@@ -69,21 +69,21 @@ md2html input.md -o output.html --css ./custom.css --title "My document" --lang 
 cat input.md | md2html - --stdout > output.html
 ```
 
-| option                 | short       | 内容                           |
-| ---------------------- | ----------- | ------------------------------ |
-| `--output <path>`      | `-o`        | 出力HTMLファイル               |
-| `--css <path>`         |             | UTF-8のCSSファイル。複数指定可 |
-| `--title <text>`       |             | HTMLタイトル                   |
-| `--lang <tag>`         |             | 文書言語                       |
-| `--default-css`        |             | 設定にかかわらず既定CSSを使用  |
-| `--no-default-css`     |             | 既定CSSを省略                  |
-| `--allow-html`         |             | Markdown中の生HTMLを許可       |
+| option                 | short       | 内容                               |
+| ---------------------- | ----------- | ---------------------------------- |
+| `--output <path>`      | `-o`        | 出力HTMLファイル                   |
+| `--css <path>`         |             | UTF-8のCSSファイル。複数指定可     |
+| `--title <text>`       |             | HTMLタイトル                       |
+| `--lang <tag>`         |             | 文書言語                           |
+| `--default-css`        |             | 設定にかかわらず既定CSSを使用      |
+| `--no-default-css`     |             | 既定CSSを省略                      |
+| `--allow-html`         |             | Markdown中の生HTMLを許可           |
 | `--no-allow-html`      |             | 設定にかかわらず生HTMLをエスケープ |
-| `--config <path>`      |             | 指定したJSON設定を使用         |
-| `--no-config`          |             | 設定ファイルの自動探索を無効化 |
-| `--stdout`             |             | HTMLを標準出力へ出力           |
-| `--force`              | `-f`        | 既存の出力ファイルを置換       |
-| `--help` / `--version` | `-h` / `-v` | ヘルプ / バージョン            |
+| `--config <path>`      |             | 指定したJSON設定を使用             |
+| `--no-config`          |             | 設定ファイルの自動探索を無効化     |
+| `--stdout`             |             | HTMLを標準出力へ出力               |
+| `--force`              | `-f`        | 既存の出力ファイルを置換           |
+| `--help` / `--version` | `-h` / `-v` | ヘルプ / バージョン                |
 
 stdinでは`--stdout`または`--output`が必須です。ファイル入力では出力先を省略すると、拡張子を`.html`へ変更した同じディレクトリのファイルが選ばれます。既存出力は`--force`なしでは変更しません。入力Markdown、`--css`で渡したファイル、または実際に読み込んだ設定ファイルと同じ出力先は、`--force`を指定しても拒否します。
 

@@ -21,8 +21,6 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  NODE_VERSION: 24.19.0
-  PNPM_VERSION: 11.20.0
   PACKAGE_NAME: "@katsu996/md2html"
 
 jobs:
@@ -32,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout main
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -48,17 +46,10 @@ jobs:
             exit 1
           fi
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - uses: pnpm/setup@v2
         with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://registry.npmjs.org
-          cache: pnpm
+          runtime: node@${{ matrix.node }}
+          cache: true
 
       - name: Read npm CLI version
         id: npm-version

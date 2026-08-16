@@ -1,7 +1,6 @@
 {
   "name": "@katsu996/md2html",
   "version": "0.0.3",
-  "packageManager": "pnpm@11.20.0",
   "description": "Convert Markdown strings and files into self-contained styled HTML documents.",
   "license": "MIT",
   "author": "katsu996",
@@ -35,8 +34,16 @@
   ],
   "sideEffects": false,
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=22"
   },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.19.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@11.21.0",
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
