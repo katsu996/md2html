@@ -2,7 +2,7 @@
 
 [![Codecov](https://codecov.io/gh/katsu996/md2html/graph/badge.svg)](https://app.codecov.io/gh/katsu996/md2html)
 
-Markdown文字列または1つのMarkdownファイルを、既定スタイル込みの自己完結したHTML文書へ変換するTypeScriptライブラリとCLIです。生成HTMLは外部CDN、Webフォント、JavaScriptへ依存しません。
+Markdown文字列または1つのMarkdownファイルを、既定スタイル込みの自己完結したHTML文書へ変換するTypeScriptライブラリとCLIです。生成HTMLは外部CSS、外部JavaScript、Webフォントへ依存しません。既定CSS付きのHTMLにはライト／ダークテーマ切替のための固定インラインJavaScriptを含みますが、JavaScriptが無効な環境でも端末設定に従うテーマ表示はCSSだけで機能します。
 
 ## 対応環境
 
@@ -134,7 +134,18 @@ stdinでは`--stdout`または`--output`が必須です。ファイル入力で�
 - `javascript:`、`vbscript:`、`data:`、`file:`および難読化されたスキームはリンク化せず、可読なテキストへ縮退します。
 - title、lang、style要素の終端文字列は文脈別に検証またはエスケープします。
 
-`--allow-html`、CLI設定の`allowHtml: true`、またはライブラリの`rawHtml: "allow"`は、信頼できるMarkdown専用です。このモードはHTMLをサニタイズせず、`script`要素、イベント属性、危険URLを含む生HTMLをそのまま許可します。信頼できない入力には使用しないでください。
+## ライト／ダークテーマ切替
+
+既定CSS付きの生成HTMLには、画面右上にライト／ダークテーマ切替ボタンが含まれます。初期表示は端末の`prefers-color-scheme`に従い、ボタンでライトとダークを切り替えられます。
+
+- 手動選択はそのページを開いている間だけ有効で、再読み込みすると自動選択へ戻ります。
+- 端末設定の保存や追跡は行いません。CookieやWeb Storageは使用しません。
+- `defaultCss: false`またはCLIの`--no-default-css`では、テーマ切替ボタンと制御スクリプトも出力されません。
+- 印刷時は常にライト系で、切替ボタンは印刷されません。
+- カスタムCSSから`data-md2html-theme`、`.md2html-theme-toggle`、`--md2html-*`変数を使って表示を上書きできます。
+- Markdown中の画像自体の色は変更しません。
+
+制御スクリプトは入力MarkdownやCSSをコードへ補間せず、外部通信、Cookie、Web Storageを使用しません。詳細は[カラーテーマ切替機能 要件定義書](docs/THEME_SWITCHING_REQUIREMENTS.md)を参照してください。
 
 ## 開発
 

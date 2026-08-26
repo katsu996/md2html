@@ -85,7 +85,7 @@ describe("CLI execution", () => {
     ], result.io)).toBe(0);
     const html = await readFile(output, "utf8");
     expect(html).toContain("<title>Custom</title>");
-    expect(html).toContain('<html lang="ja">');
+    expect(html).toContain('<html lang="ja" data-md2html-theme="auto">');
     expect(html.indexOf("green")).toBeLessThan(html.indexOf("blue"));
   });
 
