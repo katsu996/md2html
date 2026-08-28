@@ -2,7 +2,7 @@
 
 [![Codecov](https://codecov.io/gh/katsu996/md2html/graph/badge.svg)](https://app.codecov.io/gh/katsu996/md2html)
 
-Markdown文字列または1つのMarkdownファイルを、既定スタイル込みの自己完結したHTML文書へ変換するTypeScriptライブラリとCLIです。生成HTMLは外部CDN、Webフォント、JavaScriptへ依存しません。
+Markdown文字列または1つのMarkdownファイルを、既定スタイル込みの自己完結したHTML文書へ変換するTypeScriptライブラリとCLIです。生成HTMLは外部CSS、外部JavaScript、Webフォントへ依存しません。既定CSS付きのHTMLにはライト／ダークテーマ切替のための固定インラインJavaScriptを含みますが、JavaScriptが無効な環境でも端末設定に従うテーマ表示はCSSだけで機能します。
 
 ## 対応環境
 
@@ -52,6 +52,46 @@ const html = convertMdToHtml("# Hello")
 
 `DEFAULT_CSS`、`HtmlDocument`、`Md2HtmlError`もexportされます。ライブラリで発生する安定エラーコードは`INVALID_ARGUMENT`、`INVALID_OPTION`、`MARKDOWN_PARSE_FAILED`、`HTML_BUILD_FAILED`です。
 
+`convertMarkdownFile()`と`generateIndex()`は、さらに次の安定エラーコードを返します。
+
+| コード | 発生条件 |
+| ------ | -------- |
+| `FILE_READ_FAILED` | 入力Markdownファイルの読み込みに失敗 |
+| `FILE_WRITE_FAILED` | 出力HTML・目次ファイルの書き込みに失敗。既存出力が`force`なしで存在する場合も含む |
+| `INDEX_GENERATION_FAILED` | 目次生成時のフォルダ読み取り（`readdir`）に失敗 |
+
+### `convertMarkdownFile(inputPath, options)`
+
+MarkdownファイルをHTMLファイルへ変換するNode.js向けAPIです。
+
+| option      | 既定値                  | 内容                                                    |
+| ----------- | ----------------------- | -------------------------------------------------------- |
+| `output`    | 入力と同フォルダの`.html` | 出力先HTMLパス                                          |
+| `force`     | `false`                 | 既存出力HTMLの上書き許可（目次には適用されない）          |
+| `index`     | `false`                 | 変換成功後に出力先フォルダの目次（`index.html`）を更新    |
+| `siteTitle` | `目次`                  | 目次ページのタイトル・見出し（`index: true`時に有効）     |
+
+`index`を有効にした出力HTMLには「目次へ戻る」リンクが追加されます。`ConvertOptions`（`title`、`lang`、`defaultCss`、`customCss`等）も指定でき、`lang`・`defaultCss`・`customCss`は目次ページへも引き継がれます。
+
+### `generateIndex(folderPath, options)`
+
+既存HTMLだけを対象に、目次（`index.html`）を作成・更新します。Markdown変換も既存HTMLの書き換えも行いません。
+
+```ts
+const result = await generateIndex("./public", { siteTitle: "資料一覧" });
+console.log(result.indexPath);  // ./public/index.html
+console.log(result.entries);    // ファイル名・href・作成日時の一覧（昇順）
+```
+
+| option       | 既定値  | 内容                                     |
+| ------------ | ------- | ------------------------------------------ |
+| `siteTitle`  | `目次`  | 目次ページのタイトル・見出し              |
+| `lang`       | `und`   | 目次ページの言語タグ                      |
+| `defaultCss` | `true`  | 既定CSS（テーマ切替含む）の適用           |
+| `customCss`  | `[]`    | 追加CSS                                   |
+
+目次は出力先フォルダ直下に実在する`.html`（`index.html`自身を除く）をファイル名昇順で掲載し、エントリにはリンクとローカル時刻の作成日時（`YYYY-MM-DD HH:mm`）を表示します。手作業で作成したHTMLや対応するMarkdownを持たないHTMLも掲載対象です。詳細は[目次機能の要件定義](docs/INDEX_REQUIREMENTS.md)と[詳細設計](docs/INDEX_DESIGN.md)を参照してください。
+
 ## CLI
 
 ```text
@@ -67,6 +107,9 @@ md2html input.md -o output.html --css ./custom.css --title "My document" --lang 
 
 # stdinからstdoutへ出力
 cat input.md | md2html - --stdout > output.html
+
+# 変換後に出力先フォルダの目次（index.html）を作成・更新
+md2html docs/report.md --index --site-title 資料一覧
 ```
 
 | option                 | short       | 内容                               |
@@ -82,6 +125,8 @@ cat input.md | md2html - --stdout > output.html
 | `--config <path>`      |             | 指定したJSON設定を使用             |
 | `--no-config`          |             | 設定ファイルの自動探索を無効化     |
 | `--stdout`             |             | HTMLを標準出力へ出力               |
+| `--index`              |             | 変換成功後に出力先フォルダの目次（`index.html`）を作成・更新 |
+| `--site-title <text>`  |             | 目次ページのタイトル・見出し（既定: 目次） |
 | `--force`              | `-f`        | 既存の出力ファイルを置換           |
 | `--help` / `--version` | `-h` / `-v` | ヘルプ / バージョン                |
 
@@ -130,11 +175,23 @@ stdinでは`--stdout`または`--output`が必須です。ファイル入力で�
 ## 安全性
 
 - 既定ではMarkdown中の生HTMLをHTML文字参照へエスケープします。
+- `--allow-html`、`allowHtml: true`、`rawHtml: "allow"`はMarkdown中の生HTMLを**サニタイズせず**そのまま出力します。信頼できるMarkdown専用のオプションであり、信頼されない入力では有効化しないでください。
 - linkは`http`、`https`、`mailto`、`tel`、相対URL、fragmentだけを許可します。imageは`http`、`https`、相対URLだけを許可します。
 - `javascript:`、`vbscript:`、`data:`、`file:`および難読化されたスキームはリンク化せず、可読なテキストへ縮退します。
 - title、lang、style要素の終端文字列は文脈別に検証またはエスケープします。
 
-`--allow-html`、CLI設定の`allowHtml: true`、またはライブラリの`rawHtml: "allow"`は、信頼できるMarkdown専用です。このモードはHTMLをサニタイズせず、`script`要素、イベント属性、危険URLを含む生HTMLをそのまま許可します。信頼できない入力には使用しないでください。
+## ライト／ダークテーマ切替
+
+既定CSS付きの生成HTMLには、画面右上にライト／ダークテーマ切替ボタンが含まれます。初期表示は端末の`prefers-color-scheme`に従い、ボタンでライトとダークを切り替えられます。
+
+- 手動選択はそのページを開いている間だけ有効で、再読み込みすると自動選択へ戻ります。
+- 端末設定の保存や追跡は行いません。CookieやWeb Storageは使用しません。
+- `defaultCss: false`またはCLIの`--no-default-css`では、テーマ切替ボタンと制御スクリプトも出力されません。
+- 印刷時は常にライト系で、切替ボタンは印刷されません。
+- カスタムCSSから`data-md2html-theme`、`.md2html-theme-toggle`、`--md2html-*`変数を使って表示を上書きできます。
+- Markdown中の画像自体の色は変更しません。
+
+制御スクリプトは入力MarkdownやCSSをコードへ補間せず、外部通信、Cookie、Web Storageを使用しません。詳細は[カラーテーマ切替機能 要件定義書](docs/THEME_SWITCHING_REQUIREMENTS.md)を参照してください。
 
 ## 開発
 

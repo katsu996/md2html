@@ -2,6 +2,7 @@ import { Md2HtmlError } from "./errors.js";
 import type {
   ConvertOptions,
   NormalizedConvertOptions,
+  NormalizedIndexPageOptions,
   RawHtmlMode
 } from "./types.js";
 
@@ -39,6 +40,24 @@ export function normalizeConvertOptions(options: unknown): NormalizedConvertOpti
   const breaks = validateOptionalBoolean(input.breaks, "breaks", false);
 
   return { title, lang, defaultCss, customCss, rawHtml, gfm, breaks };
+}
+
+export function normalizeIndexPageOptions(options: unknown): NormalizedIndexPageOptions {
+  if (options === undefined) {
+    return { siteTitle: undefined, lang: "und", defaultCss: true, customCss: [] };
+  }
+
+  if (options === null || typeof options !== "object" || Array.isArray(options)) {
+    throw new Md2HtmlError("INVALID_OPTION", "Index page options must be an object.");
+  }
+
+  const input = options as Record<string, unknown>;
+  return {
+    siteTitle: validateOptionalString(input.siteTitle, "siteTitle"),
+    lang: validateLanguage(input.lang),
+    defaultCss: validateOptionalBoolean(input.defaultCss, "defaultCss", true),
+    customCss: validateCustomCss(input.customCss)
+  };
 }
 
 export function validateDocumentTitle(value: unknown): string {
@@ -110,6 +129,8 @@ function validateOptionalBoolean(value: unknown, name: string, fallback: boolean
   }
   return value;
 }
+
+export { validateOptionalBoolean, validateOptionalString };
 
 function validateCustomCss(value: unknown): string[] {
   if (value === undefined) {

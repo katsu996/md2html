@@ -32,6 +32,8 @@ export interface EffectiveCliRunArguments {
   lang: string | undefined;
   defaultCss: boolean;
   allowHtml: boolean;
+  index: boolean;
+  siteTitle: string | undefined;
   stdout: boolean;
   force: boolean;
   configPath: string | undefined;
@@ -60,6 +62,8 @@ export async function resolveCliConfiguration(
     lang: args.lang ?? config?.lang,
     defaultCss: args.defaultCss ?? config?.defaultCss ?? true,
     allowHtml: args.allowHtml ?? config?.allowHtml ?? false,
+    index: args.index,
+    siteTitle: args.siteTitle,
     stdout: args.stdout,
     force: args.force,
     configPath: loaded?.path

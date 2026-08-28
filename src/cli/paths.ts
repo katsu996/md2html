@@ -1,6 +1,7 @@
 import { realpath } from "node:fs/promises";
-import { basename, dirname, extname, join, resolve } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 
+import { defaultOutputPath } from "../utils/paths.js";
 import type { EffectiveCliRunArguments } from "./config.js";
 import { CliUsageError } from "./errors.js";
 
@@ -58,17 +59,6 @@ export async function resolvePathPlan(
     stdin,
     stdout: args.stdout
   };
-}
-
-export function defaultOutputPath(inputPath: string): string {
-  const extension = extname(inputPath);
-  return extension.length === 0 ? `${inputPath}.html` : `${inputPath.slice(0, -extension.length)}.html`;
-}
-
-export function inputBasenameWithoutExtension(inputPath: string): string {
-  const name = basename(inputPath);
-  const extension = extname(name);
-  return extension.length === 0 ? name : name.slice(0, -extension.length);
 }
 
 function determineOutputPath(

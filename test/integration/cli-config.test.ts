@@ -91,7 +91,7 @@ describe("CLI configuration", () => {
       "--default-css", "--no-allow-html"
     ], overridden.io, directory)).toBe(0);
     expect(overridden.stdout()).toContain("<title>CLI title</title>");
-    expect(overridden.stdout()).toContain('<html lang="ja">');
+    expect(overridden.stdout()).toContain('<html lang="ja" data-md2html-theme="auto">');
     expect(overridden.stdout()).toContain(".override { color: blue; }");
     expect(overridden.stdout()).not.toContain(".configured { color: red; }");
     expect(overridden.stdout()).toContain(DEFAULT_CSS);
@@ -100,7 +100,7 @@ describe("CLI configuration", () => {
     const disabled = memoryIo();
     expect(await runCli(["input.md", "--stdout", "--no-config"], disabled.io, directory)).toBe(0);
     expect(disabled.stdout()).toContain("<title>Candidate</title>");
-    expect(disabled.stdout()).toContain('<html lang="und">');
+    expect(disabled.stdout()).toContain('<html lang="und" data-md2html-theme="auto">');
     expect(disabled.stdout()).not.toContain(".configured { color: red; }");
   });
 

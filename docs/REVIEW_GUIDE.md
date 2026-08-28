@@ -13,7 +13,7 @@ Solへは、次の依頼文をそのまま渡せる。
 ```text
 このリポジトリの実装レビューを行ってください。
 
-最初にdocs/REQUIREMENTS.md、docs/REVIEW_GUIDE.mdを読み、
+最初にdocs/REQUIREMENTS.md、docs/REVIEW_GUIDE.md、docs/THEME_SWITCHING_REQUIREMENTS.mdを読み、
 その内容を実際の差分・コード・テスト・package成果物と照合してください。
 
 レビューでは公開API互換性、raw HTMLとURL/CSS注入、HTML template、
@@ -110,7 +110,20 @@ Markedは出力HTMLをサニタイズしないため、「markedを利用して�
 - table/code/image/long URLでページ全体が横overflowしないか。
 - mobile media queryとprint CSSが機能するか。
 - 外部CDN、Webフォント、scriptへ依存しないか。
-- desktop/mobile/printの視覚確認記録が信頼できるか。
+
+### R-07a テーマ切替
+
+- theme属性、meta、button、article、scriptの順序が親設計 #9 と一致するか。
+- defaultCss無効時にテーマ機能（属性、meta、button、script）と制御CSS（テーマ変数定義・テーマ切替ボタンスタイルを含む）が完全に省略されるか。
+- 固定スクリプトへ入力値（Markdown、title、lang、customCss）を補間していないか。
+- 外部通信、storage、Cookie、動的コード実行APIがないか。
+- 自動追従、手動固定、再読み込み時の自動復帰が状態モデルどおりか。
+- JavaScript無効時のCSS自動テーマとbutton非表示が保たれるか。
+- CSS変数、手動ライト、手動ダーク、自動ダークのカスケードが正しいか。
+- 320px幅、44×44、safe area、focus-visibleが確保されているか。
+- 全既定要素、画像非加工、印刷ライト固定が守られているか。
+- ライト／ダーク×desktop／mobile／printの視覚確認が記録されているか。
+- 決定性、CSS適用順、coverage 90%の維持が満たされるか。
 
 ### R-08 テスト品質
 

@@ -1,4 +1,4 @@
-import { access, mkdtemp, open, readFile, readdir, rm, unlink, writeFile } from "node:fs/promises";
+import { access, mkdir, mkdtemp, open, readFile, readdir, rm, unlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -85,7 +85,7 @@ describe("CLI execution", () => {
     ], result.io)).toBe(0);
     const html = await readFile(output, "utf8");
     expect(html).toContain("<title>Custom</title>");
-    expect(html).toContain('<html lang="ja">');
+    expect(html).toContain('<html lang="ja" data-md2html-theme="auto">');
     expect(html.indexOf("green")).toBeLessThan(html.indexOf("blue"));
   });
 
@@ -133,7 +133,6 @@ describe("CLI execution", () => {
     expect(invalidLang.stdout()).toBe("");
     expect(invalidLang.stderr()).toContain("lang option");
   });
-
   it("returns documented error codes and protects existing input, CSS, and output files", async () => {
     const directory = await temporaryDirectory();
     const input = join(directory, "input.md");
@@ -243,5 +242,102 @@ describe("CLI execution", () => {
     })).toBe(1);
     expect(stdout).toBe("");
     expect(stderr).toContain("Cannot read standard input");
+  });
+});
+
+describe("CLI index generation", () => {
+  it("creates the index beside the output and adds the back link to the converted HTML", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "report.md");
+    await Promise.all([
+      writeFile(input, "# Report", "utf8"),
+      writeFile(join(directory, "manual.html"), "<html>hand written</html>", "utf8")
+    ]);
+
+    const result = memoryIo();
+    expect(await runCli([input, "--index", "--site-title", "資料一覧"], result.io)).toBe(0);
+
+    const indexHtml = await readFile(join(directory, "index.html"), "utf8");
+    expect(indexHtml).toContain("<h1>資料一覧</h1>");
+    expect(indexHtml).toContain('<a href="manual.html">manual.html</a>');
+    expect(indexHtml).toContain('<a href="report.html">report.html</a>');
+
+    const outputHtml = await readFile(join(directory, "report.html"), "utf8");
+    expect(outputHtml).toContain('<nav class="md2html-index-back"><a href="index.html">目次へ戻る</a></nav>');
+    const manualHtml = await readFile(join(directory, "manual.html"), "utf8");
+    expect(manualHtml).not.toContain("md2html-index-back");
+  });
+
+  it("overwrites an existing index and reflects later deletions", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "a.md");
+    await Promise.all([
+      writeFile(input, "# A", "utf8"),
+      writeFile(join(directory, "index.html"), "outdated", "utf8")
+    ]);
+
+    expect(await runCli([input, "--index"], memoryIo().io)).toBe(0);
+    const first = await readFile(join(directory, "index.html"), "utf8");
+    expect(first).toContain('<a href="a.html">a.html</a>');
+    expect(first).not.toContain("outdated");
+
+    await rm(join(directory, "a.html"));
+    const secondInput = join(directory, "b.md");
+    await writeFile(secondInput, "# B", "utf8");
+    expect(await runCli([secondInput, "--index"], memoryIo().io)).toBe(0);
+    const second = await readFile(join(directory, "index.html"), "utf8");
+    expect(second).not.toContain('<a href="a.html">');
+    expect(second).toContain('<a href="b.html">b.html</a>');
+  });
+
+  it("updates the --output folder index and leaves the input folder alone", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "report.md");
+    const output = join(directory, "public", "report.html");
+    await mkdir(join(directory, "public"), { recursive: true });
+    await writeFile(input, "# Report", "utf8");
+
+    expect(await runCli([input, "--output", output, "--index"], memoryIo().io)).toBe(0);
+    await expect(readFile(join(directory, "index.html"), "utf8")).rejects.toMatchObject({ code: "ENOENT" });
+    expect(await readFile(join(directory, "public", "index.html"), "utf8")).toContain(
+      '<a href="report.html">report.html</a>'
+    );
+  });
+
+  it("does not update the index when the conversion fails", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "a.md");
+    const existing = join(directory, "b.html");
+    await Promise.all([
+      writeFile(input, "# A", "utf8"),
+      writeFile(existing, "<html></html>", "utf8")
+    ]);
+    expect(await runCli([input, "--index"], memoryIo().io)).toBe(0);
+    const indexBefore = await readFile(join(directory, "index.html"), "utf8");
+
+    const failing = memoryIo();
+    expect(await runCli([join(directory, "missing.md"), "--index"], failing.io)).toBe(1);
+    expect(await readFile(join(directory, "index.html"), "utf8")).toBe(indexBefore);
+  });
+
+  it("rejects --index with --stdout", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "a.md");
+    await writeFile(input, "# A", "utf8");
+
+    const result = memoryIo();
+    expect(await runCli([input, "--stdout", "--index"], result.io)).toBe(2);
+    expect(result.stderr()).toContain("--index cannot be used with --stdout");
+    await expect(readFile(join(directory, "index.html"), "utf8")).rejects.toMatchObject({ code: "ENOENT" });
+  });
+  it("rejects an output that --index generation would overwrite", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "index.md");
+    await writeFile(input, "# Index", "utf8");
+
+    const result = memoryIo();
+    expect(await runCli([input, "--index"], result.io)).toBe(2);
+    expect(result.stderr()).toContain("--output cannot be index.html when --index is enabled");
+    await expect(readFile(join(directory, "index.html"), "utf8")).rejects.toMatchObject({ code: "ENOENT" });
   });
 });

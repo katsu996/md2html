@@ -9,11 +9,12 @@ export function convertMdToHtml(markdown: string, options?: Readonly<ConvertOpti
   return convertMarkdown(markdown, options, "Markdown Document");
 }
 
-/** @internal Shared conversion use-case used by the Node.js CLI. */
+/** @internal Shared conversion use-case used by the Node.js CLI and file conversion API. */
 export function convertMarkdown(
   markdown: unknown,
   options: unknown,
-  fallbackTitle: string
+  fallbackTitle: string,
+  backLink = false
 ): HtmlDocument {
   const normalizedMarkdown = normalizeMarkdown(markdown);
   const normalizedOptions = normalizeConvertOptions(options);
@@ -27,7 +28,8 @@ export function convertMarkdown(
       normalizedOptions.lang,
       normalizedOptions.defaultCss,
       normalizedOptions.customCss,
-      fallbackTitle
+      fallbackTitle,
+      backLink
     );
   } catch (error) {
     if (error instanceof Md2HtmlError) {

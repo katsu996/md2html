@@ -45,6 +45,8 @@ JavaScript / TypeScript で利用できる「Markdownを装飾済みHTMLに変�
 - 既定CSSを含む生成HTMLの右上に、ライトモードとダークモードを切り替えるボタンを表示する。
 - 初期状態は自動選択とし、ブラウザが取得した端末のカラースキーム設定を初期表示に反映する。
 - 詳細要件と受け入れ条件は[THEME_SWITCHING_REQUIREMENTS.md](./THEME_SWITCHING_REQUIREMENTS.md)に定める。
+- 生成済みHTMLの目次（`index.html`）を作成・更新する機能。`--index`フラグと`generateIndex()`公開APIから利用できる。
+  詳細要件と受け入れ条件は[INDEX_REQUIREMENTS.md](./INDEX_REQUIREMENTS.md)に定める。
 
 ---
 
