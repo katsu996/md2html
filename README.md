@@ -52,6 +52,14 @@ const html = convertMdToHtml("# Hello")
 
 `DEFAULT_CSS`、`HtmlDocument`、`Md2HtmlError`もexportされます。ライブラリで発生する安定エラーコードは`INVALID_ARGUMENT`、`INVALID_OPTION`、`MARKDOWN_PARSE_FAILED`、`HTML_BUILD_FAILED`です。
 
+`convertMarkdownFile()`と`generateIndex()`は、さらに次の安定エラーコードを返します。
+
+| コード | 発生条件 |
+| ------ | -------- |
+| `FILE_READ_FAILED` | 入力Markdownファイルの読み込みに失敗 |
+| `FILE_WRITE_FAILED` | 出力HTML・目次ファイルの書き込みに失敗。既存出力が`force`なしで存在する場合も含む |
+| `INDEX_GENERATION_FAILED` | 目次生成時のフォルダ読み取り（`readdir`）に失敗 |
+
 ### `convertMarkdownFile(inputPath, options)`
 
 MarkdownファイルをHTMLファイルへ変換するNode.js向けAPIです。
@@ -167,6 +175,7 @@ stdinでは`--stdout`または`--output`が必須です。ファイル入力で�
 ## 安全性
 
 - 既定ではMarkdown中の生HTMLをHTML文字参照へエスケープします。
+- `--allow-html`、`allowHtml: true`、`rawHtml: "allow"`はMarkdown中の生HTMLを**サニタイズせず**そのまま出力します。信頼できるMarkdown専用のオプションであり、信頼されない入力では有効化しないでください。
 - linkは`http`、`https`、`mailto`、`tel`、相対URL、fragmentだけを許可します。imageは`http`、`https`、相対URLだけを許可します。
 - `javascript:`、`vbscript:`、`data:`、`file:`および難読化されたスキームはリンク化せず、可読なテキストへ縮退します。
 - title、lang、style要素の終端文字列は文脈別に検証またはエスケープします。

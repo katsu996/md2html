@@ -5,7 +5,7 @@ import {
   stderr as processStderr,
   stdout as processStdout
 } from "node:process";
-import { dirname } from "node:path";
+import { dirname, join } from "node:path";
 
 import { convertMarkdown } from "../core/convert.js";
 import { Md2HtmlError } from "../core/errors.js";
@@ -55,6 +55,10 @@ export async function runCli(
     const plan = await resolvePathPlan(effective, workingDirectory);
     if (effective.index && plan.stdout) {
       throw new CliUsageError("--index cannot be used with --stdout.");
+    }
+    if (effective.index && plan.outputPath !== undefined
+      && plan.outputPath === join(dirname(plan.outputPath), "index.html")) {
+      throw new CliUsageError("--output cannot be index.html when --index is enabled; the index page would overwrite the converted HTML.");
     }
     const markdown = plan.stdin
       ? await readUtf8FromStdin(io.stdin)

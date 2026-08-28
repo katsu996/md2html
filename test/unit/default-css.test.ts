@@ -2,6 +2,13 @@ import { describe, expect, it } from "vitest";
 
 import { DEFAULT_CSS } from "../../src/index.js";
 
+/** Extracts the flat declaration block opened by the given selector. */
+function declarationBlock(selector: string): string {
+  const start = DEFAULT_CSS.indexOf(`${selector} {`);
+  expect(start).toBeGreaterThanOrEqual(0);
+  return DEFAULT_CSS.slice(start, DEFAULT_CSS.indexOf("}", start));
+}
+
 describe("DEFAULT_CSS", () => {
   it("is a self-contained article stylesheet with responsive and print rules", () => {
     expect(DEFAULT_CSS.length).toBeGreaterThan(1000);
@@ -17,8 +24,8 @@ describe("DEFAULT_CSS", () => {
     expect(DEFAULT_CSS).toContain("@media print");
   });
 
-  it("defines every light and dark theme variable", () => {
-    for (const variable of [
+  it("defines every theme variable in its own light, manual dark, and auto dark block", () => {
+    const variables = [
       "--md2html-canvas",
       "--md2html-surface",
       "--md2html-ink",
@@ -33,8 +40,20 @@ describe("DEFAULT_CSS", () => {
       "--md2html-control-text",
       "--md2html-article-shadow",
       "--md2html-control-shadow"
-    ]) {
-      expect(DEFAULT_CSS).toContain(`${variable}:`);
+    ];
+    const light = declarationBlock(":root");
+    const manualDark = declarationBlock('html[data-md2html-theme="dark"]');
+    const autoDark = declarationBlock('html[data-md2html-theme="auto"]');
+
+    for (const variable of variables) {
+      expect(light).toContain(`${variable}:`);
+      expect(manualDark).toContain(`${variable}:`);
+      expect(autoDark).toContain(`${variable}:`);
+    }
+
+    for (const variable of variables) {
+      const pattern = new RegExp(`${variable}:\\s*([^;]+);`);
+      expect(pattern.exec(autoDark)?.[1]).toBe(pattern.exec(manualDark)?.[1]);
     }
   });
 

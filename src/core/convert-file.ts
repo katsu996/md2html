@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { dirname } from "node:path";
+import { dirname, join } from "node:path";
 
 import { writeFileAtomically } from "../utils/atomic-write.js";
 import { defaultOutputPath, inputBasenameWithoutExtension } from "../utils/paths.js";
@@ -42,6 +42,12 @@ export async function convertMarkdownFile(
   );
 
   const outputPath = fileOptions.output ?? defaultOutputPath(inputPath);
+  if (fileOptions.index && outputPath === join(dirname(outputPath), "index.html")) {
+    throw new Md2HtmlError(
+      "INVALID_OPTION",
+      "output must not be index.html when index is enabled; the index page would overwrite the converted HTML."
+    );
+  }
   try {
     await writeFileAtomically({
       outputPath,

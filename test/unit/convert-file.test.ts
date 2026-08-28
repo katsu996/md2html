@@ -49,7 +49,25 @@ describe("convertMarkdownFile", () => {
     expect(await readFile(output, "utf8")).toContain("<h1>Input</h1>");
   });
 
-  it("adds the back-to-index link only when index is enabled and generates the index", async () => {
+  it("rejects an output that the index generation would overwrite", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "input.md");
+    await writeFile(input, "# Input", "utf8");
+
+    await expect(convertMarkdownFile(input, {
+      output: join(directory, "index.html"), index: true
+    })).rejects.toMatchObject({ code: "INVALID_OPTION" });
+
+    const indexInput = join(directory, "index.md");
+    await writeFile(indexInput, "# Index", "utf8");
+    await expect(convertMarkdownFile(indexInput, { index: true })).rejects.toMatchObject({
+      code: "INVALID_OPTION"
+    });
+
+    await expect(readFile(join(directory, "index.html"), "utf8")).rejects.toMatchObject({ code: "ENOENT" });
+  });
+
+  it("propagates lang, defaultCss, and customCss to the index page", async () => {
     const directory = await temporaryDirectory();
     const input = join(directory, "report.md");
     await writeFile(input, "# Report", "utf8");

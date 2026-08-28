@@ -9,7 +9,7 @@
 
 ## 1. モジュール構成
 
-```
+```text
 src/
   core/
     index-page.ts        (新規) 目次収集・目次HTML生成
@@ -132,6 +132,7 @@ export async function convertMarkdownFile(
 4. `writeFileAtomically(output, html, force)`。既存ファイルが存在し `force: false` なら `FILE_WRITE_FAILED`（メッセージは既存CLIの「already exists; use --force」と同趣旨）。
 5. 書き込み成功後かつ `index: true` のときのみ、`generateIndex(dirname(output), { siteTitle, lang, defaultCss, customCss })` を実行する。変換・書き込みが失敗した時点で例外のため目次は更新されない（FR-02）。
 6. `index` ページへは `lang`・`defaultCss`・`customCss` を伝播し、出力HTMLと整合させる（検討事項3）。
+7. `index: true` のとき `output` が `join(dirname(output), "index.html")` と一致する場合は `INVALID_OPTION`（目次生成が出力HTML自身を上書きするため）。CLIも同一の不変条件を使用エラー（exit 2）として適用する。
 
 ## 3. 目次の収集規則（検討事項4・7の解決）
 
@@ -142,13 +143,13 @@ export async function convertMarkdownFile(
 | 規則 | 設計 |
 | --- | --- |
 | 対象 | `readdir(dir, { withFileTypes: true })` で得た直接の子のうち `dirent.isFile() === true` かつ拡張子が `.html`（**大小文字を区別しない**: `/\.html$/i`） |
-| 除外1 | ファイル名が `index.html` と**完全一致（小文字固定）**のもの=目次自身 |
+| 除外1 | 生成先 `index.html` と実ファイルとして同一なもの。名前の完全一致に加え、`realpath` 解決による実ファイル同一性で判定する。大文字小文字を区別しない環境では `INDEX.html` も同一ファイルとして除外し、区別する環境では別ファイルとして掲載する |
 | 除外2 | シンボリックリンク（`dirent.isFile()` が `false` になるため自然に除外。安全側の選択） |
 | サブフォルダ | 走査しない（`readdir` が直接の子のみを返すため構造的に保証される） |
 | 隠しファイル | `.` で始まる名前も実在HTMLなら掲載する |
 | stat失敗 | エントリ自体は掲載する（実在する限り掲載が要件）。`createdAt` を `undefined` にする |
 
-境界条件: 大文字小文字を区別するファイルシステムでは `INDEX.html` は `index.html` と別ファイルとして**掲載対象**になる。Windows（NTFS等の大文字小文字非保持FS）では生成される `index.html` が `INDEX.html` を上書きする。目次ファイル名は常に小文字 `index.html` 固定とする。
+境界条件: 目次自身の除外は、名前の完全一致に加えて `realpath(join(folderPath, "index.html"))` が解決できた場合に限り各候補の `realpath` と比較して同一なら除外する。これにより大文字小文字を非保持とする環境（Windows NTFS等）では `INDEX.html` など大小文字違いの候補も実ファイルとして同一になるため除外され、大文字小文字を区別する環境では `INDEX.html` は別ファイルとして**掲載対象**のままになる。目次ファイル名は常に小文字 `index.html` 固定とする。
 
 ### 3.2 順序
 
@@ -224,7 +225,7 @@ export async function convertMarkdownFile(
 - ペアオプション（`--no-index` 等）は設けない。設定ファイルキー（`CONFIG_KEYS`）にも追加**しない**（明示的フラグとしてCLIのみ。将来拡張）。
 - ヘルプ（`helpText()`）追記:
 
-```
+```text
   --index            Generate or update index.html in the output folder after conversion.
   --site-title <t>   Title for the generated index page (default: 目次).
 ```

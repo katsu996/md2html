@@ -1,5 +1,5 @@
 import type { Dirent } from "node:fs";
-import { readdir, stat } from "node:fs/promises";
+import { readdir, realpath, stat } from "node:fs/promises";
 import { join } from "node:path";
 
 import { writeFileAtomically } from "../utils/atomic-write.js";
@@ -70,13 +70,23 @@ export async function collectIndexEntries(folderPath: string): Promise<IndexPage
     );
   }
 
+  const indexPath = join(folderPath, INDEX_FILE_NAME);
+  // On case-insensitive filesystems a differently cased candidate (e.g. INDEX.html)
+  // is the same real file as the index to be written; realpath identity detects it
+  // without lowercasing names. On case-sensitive filesystems it stays listed.
+  const indexRealPath = await resolveRealPath(indexPath);
+
   const entries: IndexPageEntry[] = [];
   for (const dirent of dirents) {
     const fileName = dirent.name;
     if (!dirent.isFile() || !HTML_EXTENSION.test(fileName) || fileName === INDEX_FILE_NAME) {
       continue;
     }
-    const createdAt = await readCreationTime(join(folderPath, fileName));
+    const candidatePath = join(folderPath, fileName);
+    if (indexRealPath !== undefined && (await resolveRealPath(candidatePath)) === indexRealPath) {
+      continue;
+    }
+    const createdAt = await readCreationTime(candidatePath);
     entries.push({
       fileName,
       href: encodeURIComponent(fileName),
@@ -133,6 +143,14 @@ async function readCreationTime(path: string): Promise<Date | undefined> {
 
 function formatLocalTimestamp(date: Date, separator = " "): string {
   return `${pad(date.getFullYear())}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}${separator}${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
+async function resolveRealPath(path: string): Promise<string | undefined> {
+  try {
+    return await realpath(path);
+  } catch {
+    return undefined;
+  }
 }
 
 function pad(value: number): string {

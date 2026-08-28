@@ -105,7 +105,7 @@ function createSandbox(options: SandboxOptions): Sandbox {
     document: {
       documentElement: root,
       getElementById(id: string) {
-        return id === "md2html-theme-toggle" ? button : null;
+        return id === "md2html-theme-toggle" && options.ボタンあり !== false ? button : null;
       }
     },
     window: windowObject
@@ -257,6 +257,11 @@ describe("テーマ制御スクリプトの状態遷移", () => {
       ボタンあり: false
     });
     expect(() => noButton.実行()).not.toThrow();
+    expect(noButton.ボタン.hidden).toBe(true);
+
+    expect(() => noButton.押下()).not.toThrow();
+    expect(noButton.選択モード()).toBe("auto");
+    expect(noButton.matchMedia呼出()).toEqual([]);
 
     const noLight = createSandbox({
       初期モード: "auto",

@@ -133,7 +133,6 @@ describe("CLI execution", () => {
     expect(invalidLang.stdout()).toBe("");
     expect(invalidLang.stderr()).toContain("lang option");
   });
-
   it("returns documented error codes and protects existing input, CSS, and output files", async () => {
     const directory = await temporaryDirectory();
     const input = join(directory, "input.md");
@@ -329,6 +328,16 @@ describe("CLI index generation", () => {
     const result = memoryIo();
     expect(await runCli([input, "--stdout", "--index"], result.io)).toBe(2);
     expect(result.stderr()).toContain("--index cannot be used with --stdout");
+    await expect(readFile(join(directory, "index.html"), "utf8")).rejects.toMatchObject({ code: "ENOENT" });
+  });
+  it("rejects an output that --index generation would overwrite", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "index.md");
+    await writeFile(input, "# Index", "utf8");
+
+    const result = memoryIo();
+    expect(await runCli([input, "--index"], result.io)).toBe(2);
+    expect(result.stderr()).toContain("--output cannot be index.html when --index is enabled");
     await expect(readFile(join(directory, "index.html"), "utf8")).rejects.toMatchObject({ code: "ENOENT" });
   });
 });

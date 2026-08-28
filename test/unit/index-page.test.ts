@@ -71,6 +71,17 @@ describe("index entry collection", () => {
     expect(entries[1]?.href).toBe(encodeURIComponent("日本語 page#1.html"));
   });
 
+  it("keeps a differently cased INDEX.html on a case-sensitive filesystem", async () => {
+    const directory = await temporaryDirectory();
+    await Promise.all([
+      writeFile(join(directory, "a.html"), "<html></html>", "utf8"),
+      writeFile(join(directory, "INDEX.html"), "<html></html>", "utf8")
+    ]);
+
+    const entries = await collectIndexEntries(directory);
+    expect(entries.map((candidate) => candidate.fileName)).toEqual(["INDEX.html", "a.html"]);
+  });
+
   it("formats creation timestamps", async () => {
     const directory = await temporaryDirectory();
     await writeFile(join(directory, "dated.html"), "<html></html>", "utf8");

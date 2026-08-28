@@ -114,7 +114,7 @@ Markedは出力HTMLをサニタイズしないため、「markedを利用して�
 ### R-07a テーマ切替
 
 - theme属性、meta、button、article、scriptの順序が親設計 #9 と一致するか。
-- defaultCss無効時にテーマ機能（属性、meta、button、script）が完全に省略されるか。
+- defaultCss無効時にテーマ機能（属性、meta、button、script）と制御CSS（テーマ変数定義・テーマ切替ボタンスタイルを含む）が完全に省略されるか。
 - 固定スクリプトへ入力値（Markdown、title、lang、customCss）を補間していないか。
 - 外部通信、storage、Cookie、動的コード実行APIがないか。
 - 自動追従、手動固定、再読み込み時の自動復帰が状態モデルどおりか。
