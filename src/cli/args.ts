@@ -12,6 +12,8 @@ export interface CliRunArguments {
   lang: string | undefined;
   defaultCss: boolean | undefined;
   allowHtml: boolean | undefined;
+  index: boolean;
+  siteTitle: string | undefined;
   stdout: boolean;
   force: boolean;
   config: string | undefined;
@@ -32,6 +34,8 @@ const OPTION_CONFIG = {
   "no-default-css": { type: "boolean" },
   "allow-html": { type: "boolean" },
   "no-allow-html": { type: "boolean" },
+  index: { type: "boolean" },
+  "site-title": { type: "string" },
   config: { type: "string" },
   "no-config": { type: "boolean" },
   stdout: { type: "boolean" },
@@ -97,6 +101,8 @@ export function parseCliArguments(args: readonly string[]): ParsedCliArguments {
         "--no-allow-html"
       ),
       stdout: parsed.values.stdout === true,
+      index: parsed.values.index === true,
+      siteTitle: optionalString(parsed.values["site-title"], "--site-title"),
       force: parsed.values.force === true,
       config,
       searchConfig: parsed.values["no-config"] !== true
@@ -121,6 +127,8 @@ Options:
       --config <path>     Use this JSON configuration file.
       --no-config         Do not search for a configuration file.
       --stdout            Write HTML to standard output instead of a file.
+      --index             Generate or update index.html in the output folder after conversion.
+      --site-title <text> Set the index page title (default: 目次).
   -f, --force             Replace output; never an input, CSS, or active config file.
   -h, --help              Show this help message.
   -v, --version           Show the version.

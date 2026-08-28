@@ -13,6 +13,7 @@ interface HtmlDocumentInitialState {
   defaultCss: boolean;
   customCss: readonly string[];
   fallbackTitle: string;
+  backLink: boolean;
 }
 
 /** A mutable, chainable representation of a rendered HTML document. */
@@ -24,6 +25,7 @@ export class HtmlDocument {
   #lang: string;
   #defaultCss: boolean;
   readonly #customCss: string[];
+  readonly #backLink: boolean;
 
   private constructor(
     bodyHtml: string,
@@ -37,6 +39,7 @@ export class HtmlDocument {
     this.#lang = initialState.lang;
     this.#defaultCss = initialState.defaultCss;
     this.#customCss = [...initialState.customCss];
+    this.#backLink = initialState.backLink;
   }
 
   /** @internal Creates a document from a single rendered Markdown token stream. */
@@ -47,14 +50,16 @@ export class HtmlDocument {
     lang: string,
     defaultCss: boolean,
     customCss: readonly string[],
-    fallbackTitle: string
+    fallbackTitle: string,
+    backLink = false
   ): HtmlDocument {
     return new HtmlDocument(bodyHtml, titleCandidate, {
       title,
       lang,
       defaultCss,
       customCss,
-      fallbackTitle
+      fallbackTitle,
+      backLink
     });
   }
 
@@ -84,7 +89,8 @@ export class HtmlDocument {
       title: this.#title ?? (this.#titleCandidate || this.#fallbackTitle),
       lang: this.#lang,
       defaultCss: this.#defaultCss ? DEFAULT_CSS : undefined,
-      customCss: this.#customCss
+      customCss: this.#customCss,
+      backLink: this.#backLink
     });
   }
 

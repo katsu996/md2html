@@ -7,6 +7,8 @@ export interface HtmlTemplateInput {
   lang: string;
   defaultCss: string | undefined;
   customCss: readonly string[];
+  /** Renders the "back to index" navigation before the article. */
+  backLink?: boolean;
 }
 
 export function buildHtmlDocument(input: HtmlTemplateInput): string {
@@ -35,8 +37,13 @@ export function buildHtmlDocument(input: HtmlTemplateInput): string {
     ? `<html lang="${escapeHtmlAttribute(input.lang)}" data-md2html-theme="auto">`
     : `<html lang="${escapeHtmlAttribute(input.lang)}">`;
 
+  const backLinkHtml = input.backLink === true
+    ? `  <nav class="md2html-index-back"><a href="index.html">目次へ戻る</a></nav>`
+    : undefined;
+
   const bodyParts = [
     themeEnabled ? THEME_TOGGLE_HTML : undefined,
+    backLinkHtml,
     "  <article class=\"md2html\">",
     input.bodyHtml.length === 0 ? "" : input.bodyHtml.trimEnd(),
     "  </article>",

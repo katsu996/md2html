@@ -52,6 +52,38 @@ const html = convertMdToHtml("# Hello")
 
 `DEFAULT_CSS`、`HtmlDocument`、`Md2HtmlError`もexportされます。ライブラリで発生する安定エラーコードは`INVALID_ARGUMENT`、`INVALID_OPTION`、`MARKDOWN_PARSE_FAILED`、`HTML_BUILD_FAILED`です。
 
+### `convertMarkdownFile(inputPath, options)`
+
+MarkdownファイルをHTMLファイルへ変換するNode.js向けAPIです。
+
+| option      | 既定値                  | 内容                                                    |
+| ----------- | ----------------------- | -------------------------------------------------------- |
+| `output`    | 入力と同フォルダの`.html` | 出力先HTMLパス                                          |
+| `force`     | `false`                 | 既存出力HTMLの上書き許可（目次には適用されない）          |
+| `index`     | `false`                 | 変換成功後に出力先フォルダの目次（`index.html`）を更新    |
+| `siteTitle` | `目次`                  | 目次ページのタイトル・見出し（`index: true`時に有効）     |
+
+`index`を有効にした出力HTMLには「目次へ戻る」リンクが追加されます。`ConvertOptions`（`title`、`lang`、`defaultCss`、`customCss`等）も指定でき、`lang`・`defaultCss`・`customCss`は目次ページへも引き継がれます。
+
+### `generateIndex(folderPath, options)`
+
+既存HTMLだけを対象に、目次（`index.html`）を作成・更新します。Markdown変換も既存HTMLの書き換えも行いません。
+
+```ts
+const result = await generateIndex("./public", { siteTitle: "資料一覧" });
+console.log(result.indexPath);  // ./public/index.html
+console.log(result.entries);    // ファイル名・href・作成日時の一覧（昇順）
+```
+
+| option       | 既定値  | 内容                                     |
+| ------------ | ------- | ------------------------------------------ |
+| `siteTitle`  | `目次`  | 目次ページのタイトル・見出し              |
+| `lang`       | `und`   | 目次ページの言語タグ                      |
+| `defaultCss` | `true`  | 既定CSS（テーマ切替含む）の適用           |
+| `customCss`  | `[]`    | 追加CSS                                   |
+
+目次は出力先フォルダ直下に実在する`.html`（`index.html`自身を除く）をファイル名昇順で掲載し、エントリにはリンクとローカル時刻の作成日時（`YYYY-MM-DD HH:mm`）を表示します。手作業で作成したHTMLや対応するMarkdownを持たないHTMLも掲載対象です。詳細は[目次機能の要件定義](docs/INDEX_REQUIREMENTS.md)と[詳細設計](docs/INDEX_DESIGN.md)を参照してください。
+
 ## CLI
 
 ```text
@@ -67,6 +99,9 @@ md2html input.md -o output.html --css ./custom.css --title "My document" --lang 
 
 # stdinからstdoutへ出力
 cat input.md | md2html - --stdout > output.html
+
+# 変換後に出力先フォルダの目次（index.html）を作成・更新
+md2html docs/report.md --index --site-title 資料一覧
 ```
 
 | option                 | short       | 内容                               |
@@ -82,6 +117,8 @@ cat input.md | md2html - --stdout > output.html
 | `--config <path>`      |             | 指定したJSON設定を使用             |
 | `--no-config`          |             | 設定ファイルの自動探索を無効化     |
 | `--stdout`             |             | HTMLを標準出力へ出力               |
+| `--index`              |             | 変換成功後に出力先フォルダの目次（`index.html`）を作成・更新 |
+| `--site-title <text>`  |             | 目次ページのタイトル・見出し（既定: 目次） |
 | `--force`              | `-f`        | 既存の出力ファイルを置換           |
 | `--help` / `--version` | `-h` / `-v` | ヘルプ / バージョン                |
 

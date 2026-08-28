@@ -1,27 +1,22 @@
-import { randomBytes } from "node:crypto";
-import {
-  access,
-  link,
-  open,
-  readFile,
-  rename,
-  unlink,
-  type FileHandle
-} from "node:fs/promises";
-import { basename, dirname, join } from "node:path";
+import { readFile } from "node:fs/promises";
 import {
   cwd as processCwd,
   stdin as processStdin,
   stderr as processStderr,
   stdout as processStdout
 } from "node:process";
+import { dirname } from "node:path";
 
 import { convertMarkdown } from "../core/convert.js";
 import { Md2HtmlError } from "../core/errors.js";
-import { helpText, parseCliArguments, VERSION } from "./args.js";
+import { generateIndex } from "../core/index-page.js";
+import { writeFileAtomically as writeFileAtomicallyCommon, type AtomicWriteOperations, atomicWriteOperations } from "../utils/atomic-write.js";
+import { inputBasenameWithoutExtension } from "../utils/paths.js";
+import type { IndexPageOptions } from "../core/types.js";
 import { resolveCliConfiguration } from "./config.js";
 import { CliOperationError, CliUsageError } from "./errors.js";
-import { inputBasenameWithoutExtension, resolvePathPlan } from "./paths.js";
+import { resolvePathPlan } from "./paths.js";
+import { helpText, parseCliArguments, VERSION } from "./args.js";
 
 interface WritableOutput {
   write(chunk: string): boolean;
@@ -32,16 +27,6 @@ interface CliIo {
   stdout: WritableOutput;
   stderr: WritableOutput;
 }
-
-interface AtomicWriteOperations {
-  access(path: string): Promise<void>;
-  open(path: string, flags: string, mode: number): Promise<FileHandle>;
-  link(existingPath: string, newPath: string): Promise<void>;
-  rename(oldPath: string, newPath: string): Promise<void>;
-  unlink(path: string): Promise<void>;
-}
-
-const atomicWriteOperations: AtomicWriteOperations = { access, open, link, rename, unlink };
 
 const processIo: CliIo = {
   stdin: processStdin,
@@ -68,6 +53,9 @@ export async function runCli(
 
     const effective = await resolveCliConfiguration(parsed.value, workingDirectory);
     const plan = await resolvePathPlan(effective, workingDirectory);
+    if (effective.index && plan.stdout) {
+      throw new CliUsageError("--index cannot be used with --stdout.");
+    }
     const markdown = plan.stdin
       ? await readUtf8FromStdin(io.stdin)
       : await readInputFile(plan.inputPath, plan.inputDisplayName);
@@ -81,7 +69,7 @@ export async function runCli(
       defaultCss: effective.defaultCss,
       customCss,
       rawHtml: effective.allowHtml ? "allow" : "escape"
-    }, fallbackTitle);
+    }, fallbackTitle, effective.index);
     const html = document.toString();
 
     if (plan.stdout) {
@@ -92,6 +80,15 @@ export async function runCli(
       throw new CliUsageError("An output destination could not be determined.");
     }
     await writeFileAtomically(plan.outputPath, html, effective.force, plan.outputDisplayName);
+    if (effective.index && plan.outputPath !== undefined) {
+      const indexOptions: IndexPageOptions = {
+        ...(effective.siteTitle === undefined ? undefined : { siteTitle: effective.siteTitle }),
+        ...(effective.lang === undefined ? undefined : { lang: effective.lang }),
+        defaultCss: effective.defaultCss,
+        customCss
+      };
+      await generateIndex(dirname(plan.outputPath), indexOptions);
+    }
     return 0;
   } catch (error) {
     const code = exitCodeForError(error);
@@ -110,39 +107,14 @@ export async function writeFileAtomically(
   displayName = outputPath,
   operations: AtomicWriteOperations = atomicWriteOperations
 ): Promise<void> {
-  if (!force && await fileExists(outputPath, operations)) {
-    throw new CliOperationError(`Output file already exists: ${displayName}`);
-  }
-
-  const tempPath = join(
-    dirname(outputPath),
-    `.${basename(outputPath)}.${randomBytes(12).toString("hex")}.md2html-tmp`
-  );
-
-  let tempCreated = false;
-  try {
-    const handle = await operations.open(tempPath, "wx", 0o600);
-    tempCreated = true;
-    try {
-      await handle.writeFile(content, "utf8");
-    } finally {
-      await handle.close();
-    }
-
-    if (force) {
-      await operations.rename(tempPath, outputPath);
-    } else {
-      await operations.link(tempPath, outputPath);
-      await operations.unlink(tempPath);
-    }
-    tempCreated = false;
-  } catch (error) {
-    throw new CliOperationError(`Cannot write output file: ${displayName}`, error);
-  } finally {
-    if (tempCreated) {
-      await operations.unlink(tempPath).catch(() => undefined);
-    }
-  }
+  await writeFileAtomicallyCommon({
+    outputPath,
+    content,
+    force,
+    displayName,
+    operations,
+    createError: (message, cause) => new CliOperationError(message, cause)
+  });
 }
 
 async function readInputFile(path: string | undefined, displayName: string): Promise<string> {
@@ -181,18 +153,6 @@ async function readUtf8FromStdin(input: AsyncIterable<unknown>): Promise<string>
   }
 }
 
-async function fileExists(path: string, operations: Pick<AtomicWriteOperations, "access">): Promise<boolean> {
-  try {
-    await operations.access(path);
-    return true;
-  } catch (error) {
-    if (isNodeErrorWithCode(error, "ENOENT")) {
-      return false;
-    }
-    throw new CliOperationError(`Cannot access output file: ${path}`, error);
-  }
-}
-
 function exitCodeForError(error: unknown): 1 | 2 {
   if (error instanceof CliUsageError || error instanceof Md2HtmlError && error.code === "INVALID_OPTION") {
     return 2;
@@ -205,8 +165,4 @@ function errorMessage(error: unknown): string {
     return error.message;
   }
   return "Unexpected failure.";
-}
-
-function isNodeErrorWithCode(error: unknown, code: string): error is NodeJS.ErrnoException {
-  return typeof error === "object" && error !== null && "code" in error && error.code === code;
 }

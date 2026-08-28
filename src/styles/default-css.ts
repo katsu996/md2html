@@ -368,6 +368,25 @@ body {
   }
 }
 
+.md2html-index-back {
+  margin: 0 0 16px;
+}
+
+.md2html-index {
+  margin: 16px 0;
+  padding-left: 28px;
+}
+
+.md2html-index time {
+  display: block;
+  color: var(--md2html-muted, #615d59);
+  font-size: 0.875em;
+}
+
+.md2html-index-empty {
+  color: var(--md2html-muted, #615d59);
+}
+
 @media print {
   html[data-md2html-theme] {
     color-scheme: light;
