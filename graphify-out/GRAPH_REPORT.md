@@ -4,29 +4,29 @@
 - Corpus is ~23,327 words - fits in a single context window. You may not need a graph.
 
 ## Summary
-- 439 nodes · 755 edges · 23 communities
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.85)
-- Token cost: 15,000 input · 8,000 output
+- 438 nodes · 751 edges · 23 communities
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.83)
+- Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
-- CLI Argument Parsing
-- Core Conversion API
-- Package Configuration
-- Index Design & Requirements
-- HTML Template & Theme
-- HTML Document & Default CSS
-- TypeScript Configuration
-- Dev Dependencies
-- Notion Design System
-- Coverage Summary Script
-- Review Guide & Theme Req
+- Core Conversion
+- CLI Interface
+- Package Metadata
+- Design Documentation
+- HTML Template & Markdown Rendering
+- TypeScript Config & References
+- Dev Dependencies & Tooling
+- CLI Config Loading
+- Design System Components
+- Coverage Scripts
+- Review Guide Documentation
 - CI/CD Workflows
 - README Documentation
-- Atomic File Writing
+- Atomic Write Utilities
 - Theme Switching Requirements
 - Theme Control Tests
 - Theme Visual Verification
-- CSS Accessibility & Bugs
+- Theme Accessibility & Bugs
 - Test Fixtures & Verification
 - Codecov Configuration
 
@@ -43,16 +43,16 @@
 10. `convertMarkdown()` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `public API design for index page` --semantically_similar_to--> `public API design - convertMdToHtml, convertMarkdownFile, generateIndex`  [INFERRED] [semantically similar]
-  docs/INDEX_DESIGN.md → /home/aspirprojects/02-public/md2html/docs/INDEX_REQUIREMENTS.md
-- `generateIndex function` --semantically_similar_to--> `public API design - convertMdToHtml, convertMarkdownFile, generateIndex`  [INFERRED] [semantically similar]
-  docs/INDEX_DESIGN.md → /home/aspirprojects/02-public/md2html/docs/INDEX_REQUIREMENTS.md
-- `convertMarkdownFile function` --semantically_similar_to--> `public API design - convertMdToHtml, convertMarkdownFile, generateIndex`  [INFERRED] [semantically similar]
-  docs/INDEX_DESIGN.md → /home/aspirprojects/02-public/md2html/docs/INDEX_REQUIREMENTS.md
 - `Recommended Verification Commands` --references--> `Test Fixture Article`  [INFERRED]
   docs/REVIEW_GUIDE.md → test/fixtures/article.md
 - `Target Commit and Environment` --references--> `Test Fixture Article`  [EXTRACTED]
   docs/THEME_VISUAL_VERIFICATION.md → test/fixtures/article.md
+- `runCli()` --calls--> `runCli()`  [EXTRACTED]
+  test/integration/cli.test.ts → src/cli/run.ts
+- `Typecheck Step` --conceptually_related_to--> `Release Workflow`  [INFERRED]
+  .github/workflows/ci.yml → .github/workflows/release.yml
+- `Lint Step` --conceptually_related_to--> `Release Workflow`  [INFERRED]
+  .github/workflows/ci.yml → .github/workflows/release.yml
 
 ## Import Cycles
 - None detected.
@@ -62,7 +62,6 @@
 - **Notion Design System Core** — design_md_notion_blue, design_md_canvas_soft, design_md_notioninter, design_md_sticker_palette [INFERRED 0.85]
 - **md2html Core API** — readme_md_convert_md_to_html, readme_md_html_document, readme_md_convert_markdown_file, readme_md_generate_index [INFERRED 0.85]
 - **Index Page Generation Feature Design** — docs_index_design_module_structure, docs_index_design_public_api, docs_index_design_collection_rules, docs_index_design_html_structure, docs_index_design_back_link, docs_index_design_cli_options, docs_index_design_test_design [EXTRACTED 1.00]
-- **Index Page Requirements** — docs_index_requirements_purpose, docs_index_requirements_basic_principles, docs_index_requirements_terminology, docs_index_requirements_scope, docs_index_requirements_functional_requirements, docs_index_requirements_cli_spec, docs_index_requirements_public_api, docs_index_requirements_acceptance_criteria [EXTRACTED 1.00]
 - **Project Core Requirements** — docs_requirements_overview, docs_requirements_library_usage, docs_requirements_cli_usage, docs_requirements_css_rules, docs_requirements_theme_switching, docs_requirements_tech_stack [EXTRACTED 1.00]
 - **Review Guide Review Steps R-01 through R-08** — docs_review_guide_r01_scope_diff, docs_review_guide_r02_public_api, docs_review_guide_r03_html_conversion, docs_review_guide_r04_security, docs_review_guide_r05_cli_file_protection, docs_review_guide_r06_package_type_resolution, docs_review_guide_r07_css_accessibility, docs_review_guide_r07a_theme_switching, docs_review_guide_r08_test_quality [EXTRACTED 1.00]
 - **Theme Switching Functional Requirements FR-01 to FR-15** — docs_theme_switching_requirements_fr, docs_theme_switching_requirements_html_contract, docs_theme_switching_requirements_dom_hooks, docs_theme_switching_requirements_ui_accessibility, docs_theme_switching_requirements_css_cascade, docs_theme_switching_requirements_color_tokens [EXTRACTED 1.00]
@@ -70,47 +69,47 @@
 
 ## Communities (23 total, 0 thin omitted)
 
-### Community 0 - "CLI Argument Parsing"
-Cohesion: 0.06
-Nodes (53): booleanOverride(), CliRunArguments, errorMessage(), helpText(), OPTION_CONFIG, optionalString(), optionalStringArray(), parseCliArguments() (+45 more)
+### Community 0 - "Core Conversion"
+Cohesion: 0.07
+Nodes (47): convertMarkdown(), convertMdToHtml(), convertMarkdownFile(), ValidatedFileOptions, validateFileOptions(), Md2HtmlError, HtmlDocument, HtmlDocumentInitialState (+39 more)
 
-### Community 1 - "Core Conversion API"
-Cohesion: 0.09
-Nodes (44): convertMarkdown(), convertMdToHtml(), convertMarkdownFile(), ValidatedFileOptions, validateFileOptions(), Md2HtmlError, buildIndexPageHtml(), collectIndexEntries() (+36 more)
+### Community 1 - "CLI Interface"
+Cohesion: 0.07
+Nodes (38): booleanOverride(), CliRunArguments, errorMessage(), helpText(), OPTION_CONFIG, optionalString(), optionalStringArray(), parseCliArguments() (+30 more)
 
-### Community 2 - "Package Configuration"
+### Community 2 - "Package Metadata"
 Cohesion: 0.05
 Nodes (40): marked, author, bin, md2html, dependencies, marked, description, devEngines (+32 more)
 
-### Community 3 - "Index Design & Requirements"
-Cohesion: 0.07
-Nodes (36): back link (目次へ戻る) implementation, CLI options --index and --site-title, index collection rules, convertMarkdownFile function, ConvertMarkdownFileOptions type, ConvertMarkdownFileResult type, createdAt and createdAtText handling, Md2HtmlErrorCode extensions (+28 more)
+### Community 3 - "Design Documentation"
+Cohesion: 0.06
+Nodes (35): back link (目次へ戻る) implementation, CLI options --index and --site-title, index collection rules, convertMarkdownFile function, ConvertMarkdownFileOptions type, ConvertMarkdownFileResult type, createdAt and createdAtText handling, Md2HtmlErrorCode extensions (+27 more)
 
-### Community 4 - "HTML Template & Theme"
-Cohesion: 0.15
-Nodes (22): buildHtmlDocument(), HtmlTemplateInput, MarkdownRenderResult, plainTextFromTokens(), renderMarkdown(), THEME_CONTROL_SCRIPT, THEME_TOGGLE_HTML, NormalizedConvertOptions (+14 more)
+### Community 4 - "HTML Template & Markdown Rendering"
+Cohesion: 0.14
+Nodes (23): buildHtmlDocument(), HtmlTemplateInput, indexBodyHtml(), MarkdownRenderResult, plainTextFromTokens(), renderMarkdown(), THEME_CONTROL_SCRIPT, THEME_TOGGLE_HTML (+15 more)
 
-### Community 5 - "HTML Document & Default CSS"
-Cohesion: 0.11
-Nodes (8): HtmlDocument, HtmlDocumentInitialState, validateDefaultCssEnabled(), validateDocumentCss(), validateDocumentTitle(), DEFAULT_CSS, memoryIo(), tempDirectories
-
-### Community 6 - "TypeScript Configuration"
+### Community 5 - "TypeScript Config & References"
 Cohesion: 0.09
 Nodes (21): DOM, ES2022, node, src/**/*.ts, test/**/*.ts, *.ts, compilerOptions, exactOptionalPropertyTypes (+13 more)
 
-### Community 7 - "Dev Dependencies"
+### Community 6 - "Dev Dependencies & Tooling"
 Cohesion: 0.10
 Nodes (21): @arethetypeswrong/core, eslint, @eslint/js, devDependencies, @arethetypeswrong/core, eslint, @eslint/js, publint (+13 more)
 
-### Community 8 - "Notion Design System"
+### Community 7 - "CLI Config Loading"
+Cohesion: 0.24
+Nodes (19): CONFIG_FILE_NAMES, CONFIG_KEYS, isNodeErrorWithCode(), isRecord(), LoadedCliConfig, loadedConfig(), loadExplicitConfig(), loadPackageConfig() (+11 more)
+
+### Community 8 - "Design System Components"
 Cohesion: 0.13
 Nodes (19): Primary Button (Pill CTA), Secondary Button, Warm Paper Canvas (#f6f5f4), Color System, Component Library, Display 1 (64px, 700, -2.125px tracking), Design Do's and Don'ts, Elevation System (+11 more)
 
-### Community 9 - "Coverage Summary Script"
+### Community 9 - "Coverage Scripts"
 Cohesion: 0.13
 Nodes (11): formatMetric(), header, ignoredDirectories, markdown, metricNames, overallMetrics, reports, rootDirectory (+3 more)
 
-### Community 10 - "Review Guide & Theme Req"
+### Community 10 - "Review Guide Documentation"
 Cohesion: 0.14
 Nodes (15): Implementation Review Guide, Final Review Output Structure, Finding Format, R-01 Scope and Diff, R-02 Public API, R-03 HTML Conversion and Determinism, R-04 Security, R-05 CLI and File Protection (+7 more)
 
@@ -122,7 +121,7 @@ Nodes (13): Build Step, CI Workflow, Codecov Upload, Coverage Job, Lint Step, pn
 Cohesion: 0.25
 Nodes (11): CLI Tool, CLI Config File, convertMarkdownFile Function, convertMdToHtml Function, Default CSS, generateIndex Function, GFM Support, HtmlDocument Class (+3 more)
 
-### Community 13 - "Atomic File Writing"
+### Community 13 - "Atomic Write Utilities"
 Cohesion: 0.29
 Nodes (5): AtomicWriteOperations, AtomicWriteRequest, fileExists(), isNodeErrorWithCode(), writeFileAtomically()
 
@@ -138,7 +137,7 @@ Nodes (5): createButton(), createSandbox(), FakeIcon, Sandbox, SandboxOptions
 Cohesion: 0.22
 Nodes (9): Acceptance Criteria, CSS Cascade Order, Verification Policy, Theme Visual Verification Record, Overall Judgment: Pass, Initial Display and Layout Confirmations, Required Matrix 12 Rows Results, Target Commit and Environment (+1 more)
 
-### Community 17 - "CSS Accessibility & Bugs"
+### Community 17 - "Theme Accessibility & Bugs"
 Cohesion: 0.25
 Nodes (8): R-07 CSS and Accessibility, Public DOM Hooks, Generated HTML Contract, UI/Accessibility Requirements UI-01 to UI-09, Accessibility Confirmations, Bug: Dark Icon Not Hidden in Light Mode, Bug: Icon Not Syncing After Manual Switch, Bugs Found and Fixed During Verification
 
@@ -151,23 +150,23 @@ Cohesion: 0.67
 Nodes (3): codecov comment layout, codecov coverage configuration, unit test flags
 
 ## Knowledge Gaps
-- **166 isolated node(s):** `name`, `version`, `description`, `type`, `url` (+161 more)
+- **168 isolated node(s):** `name`, `version`, `description`, `type`, `url` (+163 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `HtmlDocument` connect `HTML Document & Default CSS` to `Core Conversion API`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
-- **Why does `Md2HtmlError` connect `Core Conversion API` to `CLI Argument Parsing`, `HTML Template & Theme`?**
+- **Why does `Md2HtmlError` connect `Core Conversion` to `CLI Interface`, `HTML Template & Markdown Rendering`?**
   _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Why does `devDependencies` connect `Dev Dependencies` to `Package Configuration`?**
+- **Why does `devDependencies` connect `Dev Dependencies & Tooling` to `Package Metadata`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `description` to the rest of the system?**
-  _166 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `CLI Argument Parsing` be split into smaller, more focused modules?**
-  _Cohesion score 0.06095481670929241 - nodes in this community are weakly interconnected._
-- **Should `Core Conversion API` be split into smaller, more focused modules?**
-  _Cohesion score 0.0898995240613432 - nodes in this community are weakly interconnected._
-- **Should `Package Configuration` be split into smaller, more focused modules?**
+  _168 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Core Conversion` be split into smaller, more focused modules?**
+  _Cohesion score 0.07087719298245614 - nodes in this community are weakly interconnected._
+- **Should `CLI Interface` be split into smaller, more focused modules?**
+  _Cohesion score 0.06578947368421052 - nodes in this community are weakly interconnected._
+- **Should `Package Metadata` be split into smaller, more focused modules?**
   _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
+- **Should `Design Documentation` be split into smaller, more focused modules?**
+  _Cohesion score 0.06218487394957983 - nodes in this community are weakly interconnected._

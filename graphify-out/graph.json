@@ -35,24 +35,6 @@
         "source_file": "docs/INDEX_DESIGN.md"
       },
       {
-        "id": "index_page_requirements",
-        "label": "Index Page Requirements",
-        "nodes": [
-          "docs_index_requirements_purpose",
-          "docs_index_requirements_basic_principles",
-          "docs_index_requirements_terminology",
-          "docs_index_requirements_scope",
-          "docs_index_requirements_functional_requirements",
-          "docs_index_requirements_cli_spec",
-          "docs_index_requirements_public_api",
-          "docs_index_requirements_acceptance_criteria"
-        ],
-        "relation": "form",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "docs/INDEX_REQUIREMENTS.md"
-      },
-      {
         "id": "project_core_requirements",
         "label": "Project Core Requirements",
         "nodes": [
@@ -151,136 +133,6 @@
   },
   "nodes": [
     {
-      "label": "CliRunArguments",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L7",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_args_clirunarguments",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "clirunarguments"
-    },
-    {
-      "label": "ParsedCliArguments",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L23",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_args_parsedcliarguments",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "parsedcliarguments"
-    },
-    {
-      "label": "EffectiveCliRunArguments",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L26",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_config_effectiveclirunarguments",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "effectiveclirunarguments"
-    },
-    {
-      "label": "LoadedCliConfig",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L19",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_config_loadedcliconfig",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "loadedcliconfig"
-    },
-    {
-      "label": "NormalizedCliConfig",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L11",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_config_normalizedcliconfig",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "normalizedcliconfig"
-    },
-    {
-      "label": "CliOperationError",
-      "file_type": "code",
-      "source_file": "src/cli/errors.ts",
-      "source_location": "L9",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_errors_clioperationerror",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "clioperationerror"
-    },
-    {
-      "label": "CliUsageError",
-      "file_type": "code",
-      "source_file": "src/cli/errors.ts",
-      "source_location": "L1",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_errors_cliusageerror",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "cliusageerror"
-    },
-    {
-      "label": "PathPlan",
-      "file_type": "code",
-      "source_file": "src/cli/paths.ts",
-      "source_location": "L8",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_paths_pathplan",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "pathplan"
-    },
-    {
-      "label": "CliIo",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L25",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_run_cliio",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "cliio"
-    },
-    {
-      "label": "WritableOutput",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L21",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_cli_run_writableoutput",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "writableoutput"
-    },
-    {
       "label": "ValidatedFileOptions",
       "file_type": "code",
       "source_file": "src/core/convert-file.ts",
@@ -289,8 +141,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_convert_file_validatedfileoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "validatedfileoptions"
     },
     {
@@ -302,9 +154,35 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_errors_md2htmlerror",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "md2htmlerror"
+    },
+    {
+      "label": "HtmlDocument",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L20",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "htmldocument"
+    },
+    {
+      "label": "HtmlDocumentInitialState",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L10",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocumentinitialstate",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "htmldocumentinitialstate"
     },
     {
       "label": "ConvertMarkdownFileOptions",
@@ -315,8 +193,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_convertmarkdownfileoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convertmarkdownfileoptions"
     },
     {
@@ -328,8 +206,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_convertmarkdownfileresult",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convertmarkdownfileresult"
     },
     {
@@ -341,8 +219,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_convertoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convertoptions"
     },
     {
@@ -354,8 +232,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_generateindexresult",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "generateindexresult"
     },
     {
@@ -367,8 +245,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_indexpageentry",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "indexpageentry"
     },
     {
@@ -380,8 +258,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_indexpageoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "indexpageoptions"
     },
     {
@@ -393,8 +271,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_md2htmlerrorcode",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "md2htmlerrorcode"
     },
     {
@@ -406,8 +284,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_normalizedindexpageoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "normalizedindexpageoptions"
     },
     {
@@ -419,9 +297,113 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_core_types_rawhtmlmode",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "rawhtmlmode"
+    },
+    {
+      "label": "CliRunArguments",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L7",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_cli_args_clirunarguments",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "clirunarguments"
+    },
+    {
+      "label": "ParsedCliArguments",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L23",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_cli_args_parsedcliarguments",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "parsedcliarguments"
+    },
+    {
+      "label": "EffectiveCliRunArguments",
+      "file_type": "code",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L26",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_cli_config_effectiveclirunarguments",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "effectiveclirunarguments"
+    },
+    {
+      "label": "CliOperationError",
+      "file_type": "code",
+      "source_file": "src/cli/errors.ts",
+      "source_location": "L9",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_cli_errors_clioperationerror",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "clioperationerror"
+    },
+    {
+      "label": "CliUsageError",
+      "file_type": "code",
+      "source_file": "src/cli/errors.ts",
+      "source_location": "L1",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_cli_errors_cliusageerror",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "cliusageerror"
+    },
+    {
+      "label": "PathPlan",
+      "file_type": "code",
+      "source_file": "src/cli/paths.ts",
+      "source_location": "L8",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_cli_paths_pathplan",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "pathplan"
+    },
+    {
+      "label": "CliIo",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L25",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_cli_run_cliio",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "cliio"
+    },
+    {
+      "label": "WritableOutput",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L21",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_cli_run_writableoutput",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "writableoutput"
     },
     {
       "label": "AtomicWriteOperations",
@@ -433,7 +415,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_atomicwriteoperations",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": "atomicwriteoperations"
     },
     {
@@ -446,7 +428,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_atomicwriterequest",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": "atomicwriterequest"
     },
     {
@@ -498,7 +480,7 @@
       "_origin": "ast",
       "id": "src_core_html_template_htmltemplateinput",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "htmltemplateinput"
     },
     {
@@ -511,7 +493,7 @@
       "_origin": "ast",
       "id": "src_core_markdown_renderer_markdownrenderresult",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "markdownrenderresult"
     },
     {
@@ -524,562 +506,34 @@
       "_origin": "ast",
       "id": "src_core_types_normalizedconvertoptions",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "normalizedconvertoptions"
     },
     {
-      "label": "HtmlDocument",
+      "label": "LoadedCliConfig",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L20",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L19",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "htmldocument"
+      "id": "src_cli_config_loadedcliconfig",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "loadedcliconfig"
     },
     {
-      "label": "HtmlDocumentInitialState",
+      "label": "NormalizedCliConfig",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L10",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L11",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocumentinitialstate",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "htmldocumentinitialstate"
-    },
-    {
-      "label": "booleanOverride()",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L162",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_args_booleanoverride",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "booleanoverride()"
-    },
-    {
-      "label": "errorMessage()",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L141",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_args_errormessage",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "errormessage()"
-    },
-    {
-      "label": "helpText()",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L113",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_args_helptext",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "helptext()"
-    },
-    {
-      "label": "optionalString()",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L145",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_args_optionalstring",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "optionalstring()"
-    },
-    {
-      "label": "optionalStringArray()",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L152",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_args_optionalstringarray",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "optionalstringarray()"
-    },
-    {
-      "label": "parseCliArguments()",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L47",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_args_parsecliarguments",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "parsecliarguments()"
-    },
-    {
-      "label": "isNodeErrorWithCode()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L230",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_isnodeerrorwithcode",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "isnodeerrorwithcode()"
-    },
-    {
-      "label": "isRecord()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L226",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_isrecord",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "isrecord()"
-    },
-    {
-      "label": "loadedConfig()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L132",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_loadedconfig",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "loadedconfig()"
-    },
-    {
-      "label": "loadExplicitConfig()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L98",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_loadexplicitconfig",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "loadexplicitconfig()"
-    },
-    {
-      "label": "loadPackageConfig()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L111",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_loadpackageconfig",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "loadpackageconfig()"
-    },
-    {
-      "label": "normalizeConfig()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L163",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_normalizeconfig",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "normalizeconfig()"
-    },
-    {
-      "label": "optionalBoolean()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L216",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_optionalboolean",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "optionalboolean()"
-    },
-    {
-      "label": "optionalCssPaths()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L183",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_optionalcsspaths",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "optionalcsspaths()"
-    },
-    {
-      "label": "optionalLanguage()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L206",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_optionallanguage",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "optionallanguage()"
-    },
-    {
-      "label": "optionalString()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L196",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_optionalstring",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "optionalstring()"
-    },
-    {
-      "label": "parseJson()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L155",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_parsejson",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "parsejson()"
-    },
-    {
-      "label": "readOptionalConfigFile()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L144",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_readoptionalconfigfile",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "readoptionalconfigfile()"
-    },
-    {
-      "label": "readRequiredConfigFile()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L136",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_readrequiredconfigfile",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "readrequiredconfigfile()"
-    },
-    {
-      "label": "resolveCliConfiguration()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L43",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_resolvecliconfiguration",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "resolvecliconfiguration()"
-    },
-    {
-      "label": "searchForConfig()",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L73",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_config_searchforconfig",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "searchforconfig()"
-    },
-    {
-      "label": ".constructor()",
-      "file_type": "code",
-      "source_file": "src/cli/errors.ts",
-      "source_location": "L12",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_errors_clioperationerror_constructor",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": ".constructor()"
-    },
-    {
-      "label": ".constructor()",
-      "file_type": "code",
-      "source_file": "src/cli/errors.ts",
-      "source_location": "L4",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_errors_cliusageerror_constructor",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": ".constructor()"
-    },
-    {
-      "label": "canonicalPath()",
-      "file_type": "code",
-      "source_file": "src/cli/paths.ts",
-      "source_location": "L92",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_paths_canonicalpath",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "canonicalpath()"
-    },
-    {
-      "label": "determineOutputPath()",
-      "file_type": "code",
-      "source_file": "src/cli/paths.ts",
-      "source_location": "L64",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_paths_determineoutputpath",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "determineoutputpath()"
-    },
-    {
-      "label": "isMissingPathError()",
-      "file_type": "code",
-      "source_file": "src/cli/paths.ts",
-      "source_location": "L114",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_paths_ismissingpatherror",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "ismissingpatherror()"
-    },
-    {
-      "label": "isNodeErrorWithCode()",
-      "file_type": "code",
-      "source_file": "src/cli/paths.ts",
-      "source_location": "L118",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_paths_isnodeerrorwithcode",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "isnodeerrorwithcode()"
-    },
-    {
-      "label": "pathsReferToSameFile()",
-      "file_type": "code",
-      "source_file": "src/cli/paths.ts",
-      "source_location": "L81",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_paths_pathsrefertosamefile",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "pathsrefertosamefile()"
-    },
-    {
-      "label": "resolvePathPlan()",
-      "file_type": "code",
-      "source_file": "src/cli/paths.ts",
-      "source_location": "L20",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_paths_resolvepathplan",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "resolvepathplan()"
-    },
-    {
-      "label": "errorMessage()",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L167",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_run_errormessage",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "errormessage()"
-    },
-    {
-      "label": "exitCodeForError()",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L160",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_run_exitcodeforerror",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "exitcodeforerror()"
-    },
-    {
-      "label": "readCssFiles()",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L135",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_run_readcssfiles",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "readcssfiles()"
-    },
-    {
-      "label": "readInputFile()",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L124",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_run_readinputfile",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "readinputfile()"
-    },
-    {
-      "label": "readUtf8FromStdin()",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L148",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_run_readutf8fromstdin",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "readutf8fromstdin()"
-    },
-    {
-      "label": "runCli()",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L38",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_run_runcli",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "runcli()"
-    },
-    {
-      "label": ".write()",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L22",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_run_writableoutput_write",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": ".write()"
-    },
-    {
-      "label": "writeFileAtomically()",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L107",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_cli_run_writefileatomically",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "writefileatomically()"
-    },
-    {
-      "label": "memoryIo()",
-      "file_type": "code",
-      "source_file": "test/integration/cli.test.ts",
-      "source_location": "L27",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "test_integration_cli_test_memoryio",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "memoryio()"
-    },
-    {
-      "label": "stdin()",
-      "file_type": "code",
-      "source_file": "test/integration/cli.test.ts",
-      "source_location": "L34",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "test_integration_cli_test_memoryio_stdin",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "stdin()"
-    },
-    {
-      "label": "runCli()",
-      "file_type": "code",
-      "source_file": "test/integration/cli.test.ts",
-      "source_location": "L20",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "test_integration_cli_test_runcli",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "runcli()"
-    },
-    {
-      "label": "[Symbol.asyncIterator]()",
-      "file_type": "code",
-      "source_file": "test/integration/cli.test.ts",
-      "source_location": "L230",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "test_integration_cli_test_symbol_asynciterator",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "[symbol.asynciterator]()"
-    },
-    {
-      "label": "temporaryDirectory()",
-      "file_type": "code",
-      "source_file": "test/integration/cli.test.ts",
-      "source_location": "L14",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "test_integration_cli_test_temporarydirectory",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "temporarydirectory()"
-    },
-    {
-      "label": "textStdin()",
-      "file_type": "code",
-      "source_file": "test/integration/cli.test.ts",
-      "source_location": "L117",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "test_integration_cli_test_textstdin",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "textstdin()"
-    },
-    {
-      "label": "temporaryDirectory()",
-      "file_type": "code",
-      "source_file": "test/unit/cli-args-paths.test.ts",
-      "source_location": "L20",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "test_unit_cli_args_paths_test_temporarydirectory",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "temporarydirectory()"
+      "id": "src_cli_config_normalizedcliconfig",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "normalizedcliconfig"
     },
     {
       "label": "convertMarkdown()",
@@ -1089,8 +543,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_convert_convertmarkdown",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convertmarkdown()"
     },
     {
@@ -1101,8 +555,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_convert_convertmdtohtml",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convertmdtohtml()"
     },
     {
@@ -1113,8 +567,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_convert_file_convertmarkdownfile",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convertmarkdownfile()"
     },
     {
@@ -1125,8 +579,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_convert_file_validatefileoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "validatefileoptions()"
     },
     {
@@ -1137,9 +591,105 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_errors_md2htmlerror_constructor",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": ".constructor()"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L30",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument_constructor",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".customCss()",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L76",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument_customcss",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": ".customcss()"
+    },
+    {
+      "label": ".fromRenderedMarkdown()",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L46",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument_fromrenderedmarkdown",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": ".fromrenderedmarkdown()"
+    },
+    {
+      "label": ".lang()",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L71",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument_lang",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": ".lang()"
+    },
+    {
+      "label": ".[Symbol.toPrimitive]()",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L97",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument_symbol_toprimitive",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": ".[symbol.toprimitive]()"
+    },
+    {
+      "label": ".title()",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L66",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument_title",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": ".title()"
+    },
+    {
+      "label": ".toString()",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L86",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument_tostring",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": ".tostring()"
+    },
+    {
+      "label": ".useDefaultCss()",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L81",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_html_document_htmldocument_usedefaultcss",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": ".usedefaultcss()"
     },
     {
       "label": "buildIndexPageHtml()",
@@ -1149,8 +699,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_index_page_buildindexpagehtml",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "buildindexpagehtml()"
     },
     {
@@ -1161,8 +711,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_index_page_collectindexentries",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "collectindexentries()"
     },
     {
@@ -1173,8 +723,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_index_page_formatlocaltimestamp",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "formatlocaltimestamp()"
     },
     {
@@ -1185,21 +735,9 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_index_page_generateindex",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "generateindex()"
-    },
-    {
-      "label": "indexBodyHtml()",
-      "file_type": "code",
-      "source_file": "src/core/index-page.ts",
-      "source_location": "L120",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_core_index_page_indexbodyhtml",
-      "community": 1,
-      "community_name": "Core Conversion API",
-      "norm_label": "indexbodyhtml()"
     },
     {
       "label": "pad()",
@@ -1209,8 +747,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_index_page_pad",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "pad()"
     },
     {
@@ -1221,8 +759,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_index_page_readcreationtime",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "readcreationtime()"
     },
     {
@@ -1233,8 +771,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_index_page_resolverealpath",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "resolverealpath()"
     },
     {
@@ -1245,8 +783,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_defaultoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "defaultoptions()"
     },
     {
@@ -1257,8 +795,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_normalizeconvertoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "normalizeconvertoptions()"
     },
     {
@@ -1269,8 +807,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_normalizeindexpageoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "normalizeindexpageoptions()"
     },
     {
@@ -1281,8 +819,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_normalizemarkdown",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "normalizemarkdown()"
     },
     {
@@ -1293,9 +831,33 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_validatecustomcss",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "validatecustomcss()"
+    },
+    {
+      "label": "validateDefaultCssEnabled()",
+      "file_type": "code",
+      "source_file": "src/core/normalize.ts",
+      "source_location": "L81",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_normalize_validatedefaultcssenabled",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "validatedefaultcssenabled()"
+    },
+    {
+      "label": "validateDocumentCss()",
+      "file_type": "code",
+      "source_file": "src/core/normalize.ts",
+      "source_location": "L74",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_normalize_validatedocumentcss",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "validatedocumentcss()"
     },
     {
       "label": "validateDocumentLang()",
@@ -1305,9 +867,21 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_validatedocumentlang",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "validatedocumentlang()"
+    },
+    {
+      "label": "validateDocumentTitle()",
+      "file_type": "code",
+      "source_file": "src/core/normalize.ts",
+      "source_location": "L63",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_normalize_validatedocumenttitle",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "validatedocumenttitle()"
     },
     {
       "label": "validateLanguage()",
@@ -1317,8 +891,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_validatelanguage",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "validatelanguage()"
     },
     {
@@ -1329,8 +903,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_validateoptionalboolean",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "validateoptionalboolean()"
     },
     {
@@ -1341,8 +915,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_validateoptionalstring",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "validateoptionalstring()"
     },
     {
@@ -1353,9 +927,321 @@
       "_callable": true,
       "_origin": "ast",
       "id": "src_core_normalize_validaterawhtml",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "validaterawhtml()"
+    },
+    {
+      "label": "temporaryDirectory()",
+      "file_type": "code",
+      "source_file": "test/unit/convert-file.test.ts",
+      "source_location": "L14",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_unit_convert_file_test_temporarydirectory",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "temporarydirectory()"
+    },
+    {
+      "label": "declarationBlock()",
+      "file_type": "code",
+      "source_file": "test/unit/default-css.test.ts",
+      "source_location": "L6",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_unit_default_css_test_declarationblock",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "declarationblock()"
+    },
+    {
+      "label": "entry()",
+      "file_type": "code",
+      "source_file": "test/unit/index-page.test.ts",
+      "source_location": "L26",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_unit_index_page_test_entry",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "entry()"
+    },
+    {
+      "label": "temporaryDirectory()",
+      "file_type": "code",
+      "source_file": "test/unit/index-page.test.ts",
+      "source_location": "L16",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_unit_index_page_test_temporarydirectory",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "temporarydirectory()"
+    },
+    {
+      "label": "booleanOverride()",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L162",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_args_booleanoverride",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "booleanoverride()"
+    },
+    {
+      "label": "errorMessage()",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L141",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_args_errormessage",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "errormessage()"
+    },
+    {
+      "label": "helpText()",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L113",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_args_helptext",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "helptext()"
+    },
+    {
+      "label": "optionalString()",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L145",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_args_optionalstring",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "optionalstring()"
+    },
+    {
+      "label": "optionalStringArray()",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L152",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_args_optionalstringarray",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "optionalstringarray()"
+    },
+    {
+      "label": "parseCliArguments()",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L47",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_args_parsecliarguments",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "parsecliarguments()"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/cli/errors.ts",
+      "source_location": "L12",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_errors_clioperationerror_constructor",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/cli/errors.ts",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_errors_cliusageerror_constructor",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": "canonicalPath()",
+      "file_type": "code",
+      "source_file": "src/cli/paths.ts",
+      "source_location": "L92",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_paths_canonicalpath",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "canonicalpath()"
+    },
+    {
+      "label": "determineOutputPath()",
+      "file_type": "code",
+      "source_file": "src/cli/paths.ts",
+      "source_location": "L64",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_paths_determineoutputpath",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "determineoutputpath()"
+    },
+    {
+      "label": "isMissingPathError()",
+      "file_type": "code",
+      "source_file": "src/cli/paths.ts",
+      "source_location": "L114",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_paths_ismissingpatherror",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "ismissingpatherror()"
+    },
+    {
+      "label": "isNodeErrorWithCode()",
+      "file_type": "code",
+      "source_file": "src/cli/paths.ts",
+      "source_location": "L118",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_paths_isnodeerrorwithcode",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "isnodeerrorwithcode()"
+    },
+    {
+      "label": "pathsReferToSameFile()",
+      "file_type": "code",
+      "source_file": "src/cli/paths.ts",
+      "source_location": "L81",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_paths_pathsrefertosamefile",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "pathsrefertosamefile()"
+    },
+    {
+      "label": "resolvePathPlan()",
+      "file_type": "code",
+      "source_file": "src/cli/paths.ts",
+      "source_location": "L20",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_paths_resolvepathplan",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "resolvepathplan()"
+    },
+    {
+      "label": "errorMessage()",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L167",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_run_errormessage",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "errormessage()"
+    },
+    {
+      "label": "exitCodeForError()",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L160",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_run_exitcodeforerror",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "exitcodeforerror()"
+    },
+    {
+      "label": "readCssFiles()",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L135",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_run_readcssfiles",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "readcssfiles()"
+    },
+    {
+      "label": "readInputFile()",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L124",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_run_readinputfile",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "readinputfile()"
+    },
+    {
+      "label": "readUtf8FromStdin()",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L148",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_run_readutf8fromstdin",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "readutf8fromstdin()"
+    },
+    {
+      "label": "runCli()",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L38",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_run_runcli",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "runcli()"
+    },
+    {
+      "label": ".write()",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L22",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_run_writableoutput_write",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": ".write()"
+    },
+    {
+      "label": "writeFileAtomically()",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L107",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_cli_run_writefileatomically",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "writefileatomically()"
     },
     {
       "label": "defaultOutputPath()",
@@ -1366,7 +1252,7 @@
       "_origin": "ast",
       "id": "src_utils_paths_defaultoutputpath",
       "community": 1,
-      "community_name": "Core Conversion API",
+      "community_name": "CLI Interface",
       "norm_label": "defaultoutputpath()"
     },
     {
@@ -1378,43 +1264,127 @@
       "_origin": "ast",
       "id": "src_utils_paths_inputbasenamewithoutextension",
       "community": 1,
-      "community_name": "Core Conversion API",
+      "community_name": "CLI Interface",
       "norm_label": "inputbasenamewithoutextension()"
     },
     {
-      "label": "temporaryDirectory()",
+      "label": "memoryIo()",
       "file_type": "code",
-      "source_file": "test/unit/convert-file.test.ts",
-      "source_location": "L14",
+      "source_file": "test/integration/cli-config.test.ts",
+      "source_location": "L21",
       "_callable": true,
       "_origin": "ast",
-      "id": "test_unit_convert_file_test_temporarydirectory",
+      "id": "test_integration_cli_config_test_memoryio",
       "community": 1,
-      "community_name": "Core Conversion API",
+      "community_name": "CLI Interface",
+      "norm_label": "memoryio()"
+    },
+    {
+      "label": "stdin()",
+      "file_type": "code",
+      "source_file": "test/integration/cli-config.test.ts",
+      "source_location": "L28",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_integration_cli_config_test_memoryio_stdin",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "stdin()"
+    },
+    {
+      "label": "temporaryDirectory()",
+      "file_type": "code",
+      "source_file": "test/integration/cli-config.test.ts",
+      "source_location": "L15",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_integration_cli_config_test_temporarydirectory",
+      "community": 1,
+      "community_name": "CLI Interface",
       "norm_label": "temporarydirectory()"
     },
     {
-      "label": "entry()",
+      "label": "memoryIo()",
       "file_type": "code",
-      "source_file": "test/unit/index-page.test.ts",
-      "source_location": "L26",
+      "source_file": "test/integration/cli.test.ts",
+      "source_location": "L27",
       "_callable": true,
       "_origin": "ast",
-      "id": "test_unit_index_page_test_entry",
+      "id": "test_integration_cli_test_memoryio",
       "community": 1,
-      "community_name": "Core Conversion API",
-      "norm_label": "entry()"
+      "community_name": "CLI Interface",
+      "norm_label": "memoryio()"
+    },
+    {
+      "label": "stdin()",
+      "file_type": "code",
+      "source_file": "test/integration/cli.test.ts",
+      "source_location": "L34",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_integration_cli_test_memoryio_stdin",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "stdin()"
+    },
+    {
+      "label": "runCli()",
+      "file_type": "code",
+      "source_file": "test/integration/cli.test.ts",
+      "source_location": "L20",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_integration_cli_test_runcli",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "runcli()"
+    },
+    {
+      "label": "[Symbol.asyncIterator]()",
+      "file_type": "code",
+      "source_file": "test/integration/cli.test.ts",
+      "source_location": "L230",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_integration_cli_test_symbol_asynciterator",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "[symbol.asynciterator]()"
     },
     {
       "label": "temporaryDirectory()",
       "file_type": "code",
-      "source_file": "test/unit/index-page.test.ts",
-      "source_location": "L16",
+      "source_file": "test/integration/cli.test.ts",
+      "source_location": "L14",
       "_callable": true,
       "_origin": "ast",
-      "id": "test_unit_index_page_test_temporarydirectory",
+      "id": "test_integration_cli_test_temporarydirectory",
       "community": 1,
-      "community_name": "Core Conversion API",
+      "community_name": "CLI Interface",
+      "norm_label": "temporarydirectory()"
+    },
+    {
+      "label": "textStdin()",
+      "file_type": "code",
+      "source_file": "test/integration/cli.test.ts",
+      "source_location": "L117",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_integration_cli_test_textstdin",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "textstdin()"
+    },
+    {
+      "label": "temporaryDirectory()",
+      "file_type": "code",
+      "source_file": "test/unit/cli-args-paths.test.ts",
+      "source_location": "L20",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "test_unit_cli_args_paths_test_temporarydirectory",
+      "community": 1,
+      "community_name": "CLI Interface",
       "norm_label": "temporarydirectory()"
     },
     {
@@ -1426,7 +1396,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_atomicwriteoperations_access",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": ".access()"
     },
     {
@@ -1438,7 +1408,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_atomicwriteoperations_link",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": ".link()"
     },
     {
@@ -1450,7 +1420,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_atomicwriteoperations_open",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": ".open()"
     },
     {
@@ -1462,7 +1432,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_atomicwriteoperations_rename",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": ".rename()"
     },
     {
@@ -1474,7 +1444,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_atomicwriteoperations_unlink",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": ".unlink()"
     },
     {
@@ -1486,7 +1456,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_fileexists",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": "fileexists()"
     },
     {
@@ -1498,7 +1468,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_isnodeerrorwithcode",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": "isnodeerrorwithcode()"
     },
     {
@@ -1510,7 +1480,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write_writefileatomically",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": "writefileatomically()"
     },
     {
@@ -1594,8 +1564,20 @@
       "_origin": "ast",
       "id": "src_core_html_template_buildhtmldocument",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "buildhtmldocument()"
+    },
+    {
+      "label": "indexBodyHtml()",
+      "file_type": "code",
+      "source_file": "src/core/index-page.ts",
+      "source_location": "L120",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_core_index_page_indexbodyhtml",
+      "community": 4,
+      "community_name": "HTML Template & Markdown Rendering",
+      "norm_label": "indexbodyhtml()"
     },
     {
       "label": "plainTextFromTokens()",
@@ -1606,7 +1588,7 @@
       "_origin": "ast",
       "id": "src_core_markdown_renderer_plaintextfromtokens",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "plaintextfromtokens()"
     },
     {
@@ -1618,7 +1600,7 @@
       "_origin": "ast",
       "id": "src_core_markdown_renderer_rendermarkdown",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "rendermarkdown()"
     },
     {
@@ -1630,7 +1612,7 @@
       "_origin": "ast",
       "id": "src_utils_escape_escapehtmlattribute",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "escapehtmlattribute()"
     },
     {
@@ -1642,7 +1624,7 @@
       "_origin": "ast",
       "id": "src_utils_escape_escapehtmltext",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "escapehtmltext()"
     },
     {
@@ -1654,7 +1636,7 @@
       "_origin": "ast",
       "id": "src_utils_escape_escapestylerawtext",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "escapestylerawtext()"
     },
     {
@@ -1666,7 +1648,7 @@
       "_origin": "ast",
       "id": "src_utils_url_containswhitespaceorcontrol",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "containswhitespaceorcontrol()"
     },
     {
@@ -1678,7 +1660,7 @@
       "_origin": "ast",
       "id": "src_utils_url_decodehtmlentities",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "decodehtmlentities()"
     },
     {
@@ -1690,7 +1672,7 @@
       "_origin": "ast",
       "id": "src_utils_url_decodepercentencoded",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "decodepercentencoded()"
     },
     {
@@ -1702,7 +1684,7 @@
       "_origin": "ast",
       "id": "src_utils_url_isallowedimageurl",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "isallowedimageurl()"
     },
     {
@@ -1714,7 +1696,7 @@
       "_origin": "ast",
       "id": "src_utils_url_isallowedlinkurl",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "isallowedlinkurl()"
     },
     {
@@ -1726,7 +1708,7 @@
       "_origin": "ast",
       "id": "src_utils_url_isallowedurl",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "isallowedurl()"
     },
     {
@@ -1738,7 +1720,7 @@
       "_origin": "ast",
       "id": "src_utils_url_iswhitespaceorcontrol",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "iswhitespaceorcontrol()"
     },
     {
@@ -1750,188 +1732,188 @@
       "_origin": "ast",
       "id": "src_utils_url_normalizeurlforschemecheck",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "normalizeurlforschemecheck()"
     },
     {
-      "label": ".constructor()",
+      "label": "isNodeErrorWithCode()",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L30",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L230",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument_constructor",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": ".constructor()"
+      "id": "src_cli_config_isnodeerrorwithcode",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "isnodeerrorwithcode()"
     },
     {
-      "label": ".customCss()",
+      "label": "isRecord()",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L76",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L226",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument_customcss",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": ".customcss()"
+      "id": "src_cli_config_isrecord",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "isrecord()"
     },
     {
-      "label": ".fromRenderedMarkdown()",
+      "label": "loadedConfig()",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L46",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L132",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument_fromrenderedmarkdown",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": ".fromrenderedmarkdown()"
+      "id": "src_cli_config_loadedconfig",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "loadedconfig()"
     },
     {
-      "label": ".lang()",
+      "label": "loadExplicitConfig()",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L71",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L98",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument_lang",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": ".lang()"
+      "id": "src_cli_config_loadexplicitconfig",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "loadexplicitconfig()"
     },
     {
-      "label": ".[Symbol.toPrimitive]()",
+      "label": "loadPackageConfig()",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L97",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L111",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument_symbol_toprimitive",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": ".[symbol.toprimitive]()"
+      "id": "src_cli_config_loadpackageconfig",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "loadpackageconfig()"
     },
     {
-      "label": ".title()",
+      "label": "normalizeConfig()",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L66",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L163",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument_title",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": ".title()"
+      "id": "src_cli_config_normalizeconfig",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "normalizeconfig()"
     },
     {
-      "label": ".toString()",
+      "label": "optionalBoolean()",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L86",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L216",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument_tostring",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": ".tostring()"
+      "id": "src_cli_config_optionalboolean",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "optionalboolean()"
     },
     {
-      "label": ".useDefaultCss()",
+      "label": "optionalCssPaths()",
       "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L81",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L183",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_html_document_htmldocument_usedefaultcss",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": ".usedefaultcss()"
+      "id": "src_cli_config_optionalcsspaths",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "optionalcsspaths()"
     },
     {
-      "label": "validateDefaultCssEnabled()",
+      "label": "optionalLanguage()",
       "file_type": "code",
-      "source_file": "src/core/normalize.ts",
-      "source_location": "L81",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L206",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_normalize_validatedefaultcssenabled",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "validatedefaultcssenabled()"
+      "id": "src_cli_config_optionallanguage",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "optionallanguage()"
     },
     {
-      "label": "validateDocumentCss()",
+      "label": "optionalString()",
       "file_type": "code",
-      "source_file": "src/core/normalize.ts",
-      "source_location": "L74",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L196",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_normalize_validatedocumentcss",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "validatedocumentcss()"
+      "id": "src_cli_config_optionalstring",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "optionalstring()"
     },
     {
-      "label": "validateDocumentTitle()",
+      "label": "parseJson()",
       "file_type": "code",
-      "source_file": "src/core/normalize.ts",
-      "source_location": "L63",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L155",
       "_callable": true,
       "_origin": "ast",
-      "id": "src_core_normalize_validatedocumenttitle",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "validatedocumenttitle()"
+      "id": "src_cli_config_parsejson",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "parsejson()"
     },
     {
-      "label": "memoryIo()",
+      "label": "readOptionalConfigFile()",
       "file_type": "code",
-      "source_file": "test/integration/cli-config.test.ts",
-      "source_location": "L21",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L144",
       "_callable": true,
       "_origin": "ast",
-      "id": "test_integration_cli_config_test_memoryio",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "memoryio()"
+      "id": "src_cli_config_readoptionalconfigfile",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "readoptionalconfigfile()"
     },
     {
-      "label": "stdin()",
+      "label": "readRequiredConfigFile()",
       "file_type": "code",
-      "source_file": "test/integration/cli-config.test.ts",
-      "source_location": "L28",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L136",
       "_callable": true,
       "_origin": "ast",
-      "id": "test_integration_cli_config_test_memoryio_stdin",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "stdin()"
+      "id": "src_cli_config_readrequiredconfigfile",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "readrequiredconfigfile()"
     },
     {
-      "label": "temporaryDirectory()",
+      "label": "resolveCliConfiguration()",
       "file_type": "code",
-      "source_file": "test/integration/cli-config.test.ts",
-      "source_location": "L15",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L43",
       "_callable": true,
       "_origin": "ast",
-      "id": "test_integration_cli_config_test_temporarydirectory",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "temporarydirectory()"
+      "id": "src_cli_config_resolvecliconfiguration",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "resolvecliconfiguration()"
     },
     {
-      "label": "declarationBlock()",
+      "label": "searchForConfig()",
       "file_type": "code",
-      "source_file": "test/unit/default-css.test.ts",
-      "source_location": "L6",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L73",
       "_callable": true,
       "_origin": "ast",
-      "id": "test_unit_default_css_test_declarationblock",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "declarationblock()"
+      "id": "src_cli_config_searchforconfig",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "searchforconfig()"
     },
     {
       "label": "combineMetrics()",
@@ -1942,7 +1924,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_combinemetrics",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "combinemetrics()"
     },
     {
@@ -1954,7 +1936,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_findcoveragesummaries",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "findcoveragesummaries()"
     },
     {
@@ -1966,7 +1948,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_formatmetric",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "formatmetric()"
     },
     {
@@ -1978,7 +1960,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_packagelabel",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "packagelabel()"
     },
     {
@@ -1990,173 +1972,8 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_tometrics",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "tometrics()"
-    },
-    {
-      "label": "cli.ts",
-      "file_type": "code",
-      "source_file": "src/cli.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_cli",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "cli.ts"
-    },
-    {
-      "label": "args.ts",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_cli_args",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "args.ts"
-    },
-    {
-      "label": "OPTION_CONFIG",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L28",
-      "_origin": "ast",
-      "id": "src_cli_args_option_config",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "option_config"
-    },
-    {
-      "label": "VERSION",
-      "file_type": "code",
-      "source_file": "src/cli/args.ts",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "src_cli_args_version",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "version"
-    },
-    {
-      "label": "config.ts",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_cli_config",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "config.ts"
-    },
-    {
-      "label": "CONFIG_FILE_NAMES",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "src_cli_config_config_file_names",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "config_file_names"
-    },
-    {
-      "label": "CONFIG_KEYS",
-      "file_type": "code",
-      "source_file": "src/cli/config.ts",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "src_cli_config_config_keys",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "config_keys"
-    },
-    {
-      "label": "cli/errors.ts",
-      "file_type": "code",
-      "source_file": "src/cli/errors.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_cli_errors",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "cli/errors.ts"
-    },
-    {
-      "label": "cli/paths.ts",
-      "file_type": "code",
-      "source_file": "src/cli/paths.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_cli_paths",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "cli/paths.ts"
-    },
-    {
-      "label": "run.ts",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_cli_run",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "run.ts"
-    },
-    {
-      "label": "processIo",
-      "file_type": "code",
-      "source_file": "src/cli/run.ts",
-      "source_location": "L31",
-      "_origin": "ast",
-      "id": "src_cli_run_processio",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "processio"
-    },
-    {
-      "label": "cli.test.ts",
-      "file_type": "code",
-      "source_file": "test/integration/cli.test.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_integration_cli_test",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "cli.test.ts"
-    },
-    {
-      "label": "tempDirectories",
-      "file_type": "code",
-      "source_file": "test/integration/cli.test.ts",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "test_integration_cli_test_tempdirectories",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "tempdirectories"
-    },
-    {
-      "label": "cli-args-paths.test.ts",
-      "file_type": "code",
-      "source_file": "test/unit/cli-args-paths.test.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_unit_cli_args_paths_test",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "cli-args-paths.test.ts"
-    },
-    {
-      "label": "tempDirectories",
-      "file_type": "code",
-      "source_file": "test/unit/cli-args-paths.test.ts",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "test_unit_cli_args_paths_test_tempdirectories",
-      "community": 0,
-      "community_name": "CLI Argument Parsing",
-      "norm_label": "tempdirectories"
     },
     {
       "label": "convert.ts",
@@ -2165,8 +1982,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_core_convert",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convert.ts"
     },
     {
@@ -2176,8 +1993,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_core_convert_file",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convert-file.ts"
     },
     {
@@ -2187,9 +2004,20 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_core_errors",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "core/errors.ts"
+    },
+    {
+      "label": "html-document.ts",
+      "file_type": "code",
+      "source_file": "src/core/html-document.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_core_html_document",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "html-document.ts"
     },
     {
       "label": "index-page.ts",
@@ -2198,8 +2026,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_core_index_page",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "index-page.ts"
     },
     {
@@ -2209,8 +2037,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_core_normalize",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "normalize.ts"
     },
     {
@@ -2220,8 +2048,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_core_normalize_leading_markdown_noise",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "leading_markdown_noise"
     },
     {
@@ -2231,8 +2059,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_core_types",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "types.ts"
     },
     {
@@ -2242,20 +2070,31 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_index",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "index.ts"
     },
     {
-      "label": "utils/paths.ts",
+      "label": "default-css.ts",
       "file_type": "code",
-      "source_file": "src/utils/paths.ts",
+      "source_file": "src/styles/default-css.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_utils_paths",
-      "community": 1,
-      "community_name": "Core Conversion API",
-      "norm_label": "utils/paths.ts"
+      "id": "src_styles_default_css",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "default-css.ts"
+    },
+    {
+      "label": "DEFAULT_CSS",
+      "file_type": "code",
+      "source_file": "src/styles/default-css.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_styles_default_css_default_css",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "default_css"
     },
     {
       "label": "type-usage.ts",
@@ -2264,8 +2103,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "test_fixtures_type_usage",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "type-usage.ts"
     },
     {
@@ -2275,8 +2114,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "test_fixtures_type_usage_document",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "document"
     },
     {
@@ -2286,8 +2125,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "test_fixtures_type_usage_error",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "error"
     },
     {
@@ -2297,8 +2136,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "test_fixtures_type_usage_html",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "html"
     },
     {
@@ -2308,8 +2147,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "test_fixtures_type_usage_options",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "options"
     },
     {
@@ -2319,8 +2158,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "test_integration_api_test",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "api.test.ts"
     },
     {
@@ -2330,8 +2169,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "test_unit_convert_errors_test",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convert-errors.test.ts"
     },
     {
@@ -2341,8 +2180,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "test_unit_convert_errors_test_mockedrenderer",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "mockedrenderer"
     },
     {
@@ -2352,8 +2191,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "test_unit_convert_file_test",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "convert-file.test.ts"
     },
     {
@@ -2363,9 +2202,20 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "test_unit_convert_file_test_tempdirectories",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "tempdirectories"
+    },
+    {
+      "label": "default-css.test.ts",
+      "file_type": "code",
+      "source_file": "test/unit/default-css.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "test_unit_default_css_test",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "default-css.test.ts"
     },
     {
       "label": "document.test.ts",
@@ -2374,8 +2224,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "test_unit_document_test",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "document.test.ts"
     },
     {
@@ -2385,8 +2235,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "test_unit_index_page_test",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "index-page.test.ts"
     },
     {
@@ -2396,8 +2246,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "test_unit_index_page_test_defaultindexoptions",
-      "community": 1,
-      "community_name": "Core Conversion API",
+      "community": 0,
+      "community_name": "Core Conversion",
       "norm_label": "defaultindexoptions"
     },
     {
@@ -2407,8 +2257,173 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "test_unit_index_page_test_tempdirectories",
+      "community": 0,
+      "community_name": "Core Conversion",
+      "norm_label": "tempdirectories"
+    },
+    {
+      "label": "cli.ts",
+      "file_type": "code",
+      "source_file": "src/cli.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_cli",
       "community": 1,
-      "community_name": "Core Conversion API",
+      "community_name": "CLI Interface",
+      "norm_label": "cli.ts"
+    },
+    {
+      "label": "args.ts",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_cli_args",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "args.ts"
+    },
+    {
+      "label": "OPTION_CONFIG",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "src_cli_args_option_config",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "option_config"
+    },
+    {
+      "label": "VERSION",
+      "file_type": "code",
+      "source_file": "src/cli/args.ts",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "src_cli_args_version",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "version"
+    },
+    {
+      "label": "cli/errors.ts",
+      "file_type": "code",
+      "source_file": "src/cli/errors.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_cli_errors",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "cli/errors.ts"
+    },
+    {
+      "label": "cli/paths.ts",
+      "file_type": "code",
+      "source_file": "src/cli/paths.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_cli_paths",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "cli/paths.ts"
+    },
+    {
+      "label": "run.ts",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_cli_run",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "run.ts"
+    },
+    {
+      "label": "processIo",
+      "file_type": "code",
+      "source_file": "src/cli/run.ts",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "src_cli_run_processio",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "processio"
+    },
+    {
+      "label": "utils/paths.ts",
+      "file_type": "code",
+      "source_file": "src/utils/paths.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_utils_paths",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "utils/paths.ts"
+    },
+    {
+      "label": "cli-config.test.ts",
+      "file_type": "code",
+      "source_file": "test/integration/cli-config.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "test_integration_cli_config_test",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "cli-config.test.ts"
+    },
+    {
+      "label": "tempDirectories",
+      "file_type": "code",
+      "source_file": "test/integration/cli-config.test.ts",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "test_integration_cli_config_test_tempdirectories",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "tempdirectories"
+    },
+    {
+      "label": "cli.test.ts",
+      "file_type": "code",
+      "source_file": "test/integration/cli.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "test_integration_cli_test",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "cli.test.ts"
+    },
+    {
+      "label": "tempDirectories",
+      "file_type": "code",
+      "source_file": "test/integration/cli.test.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "test_integration_cli_test_tempdirectories",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "tempdirectories"
+    },
+    {
+      "label": "cli-args-paths.test.ts",
+      "file_type": "code",
+      "source_file": "test/unit/cli-args-paths.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "test_unit_cli_args_paths_test",
+      "community": 1,
+      "community_name": "CLI Interface",
+      "norm_label": "cli-args-paths.test.ts"
+    },
+    {
+      "label": "tempDirectories",
+      "file_type": "code",
+      "source_file": "test/unit/cli-args-paths.test.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "test_unit_cli_args_paths_test_tempdirectories",
+      "community": 1,
+      "community_name": "CLI Interface",
       "norm_label": "tempdirectories"
     },
     {
@@ -2419,7 +2434,7 @@
       "_origin": "ast",
       "id": "src_utils_atomic_write",
       "community": 13,
-      "community_name": "Atomic File Writing",
+      "community_name": "Atomic Write Utilities",
       "norm_label": "atomic-write.ts"
     },
     {
@@ -2441,7 +2456,7 @@
       "_origin": "ast",
       "id": "package",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "package.json"
     },
     {
@@ -2452,7 +2467,7 @@
       "_origin": "ast",
       "id": "package_author",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "author"
     },
     {
@@ -2463,7 +2478,7 @@
       "_origin": "ast",
       "id": "package_bin",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "bin"
     },
     {
@@ -2474,7 +2489,7 @@
       "_origin": "ast",
       "id": "package_bin_md2html",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "md2html"
     },
     {
@@ -2485,7 +2500,7 @@
       "_origin": "ast",
       "id": "package_dependencies",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "dependencies"
     },
     {
@@ -2496,7 +2511,7 @@
       "_origin": "ast",
       "id": "package_dependencies_marked",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "marked"
     },
     {
@@ -2507,7 +2522,7 @@
       "_origin": "ast",
       "id": "package_description",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "description"
     },
     {
@@ -2518,7 +2533,7 @@
       "_origin": "ast",
       "id": "package_devengines",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "devengines"
     },
     {
@@ -2529,7 +2544,7 @@
       "_origin": "ast",
       "id": "package_devengines_runtime",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "runtime"
     },
     {
@@ -2540,7 +2555,7 @@
       "_origin": "ast",
       "id": "package_engines",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "engines"
     },
     {
@@ -2551,7 +2566,7 @@
       "_origin": "ast",
       "id": "package_engines_node",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "node"
     },
     {
@@ -2562,7 +2577,7 @@
       "_origin": "ast",
       "id": "package_exports",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "exports"
     },
     {
@@ -2573,7 +2588,7 @@
       "_origin": "ast",
       "id": "package_files",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "files"
     },
     {
@@ -2584,7 +2599,7 @@
       "_origin": "ast",
       "id": "package_license",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "license"
     },
     {
@@ -2595,7 +2610,7 @@
       "_origin": "ast",
       "id": "package_name",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "name"
     },
     {
@@ -2606,7 +2621,7 @@
       "_origin": "ast",
       "id": "package_packagemanager",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "packagemanager"
     },
     {
@@ -2617,7 +2632,7 @@
       "_origin": "ast",
       "id": "package_publishconfig",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "publishconfig"
     },
     {
@@ -2628,7 +2643,7 @@
       "_origin": "ast",
       "id": "package_publishconfig_access",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "access"
     },
     {
@@ -2639,7 +2654,7 @@
       "_origin": "ast",
       "id": "package_repository",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "repository"
     },
     {
@@ -2650,7 +2665,7 @@
       "_origin": "ast",
       "id": "package_repository_type",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "type"
     },
     {
@@ -2661,7 +2676,7 @@
       "_origin": "ast",
       "id": "package_repository_url",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "url"
     },
     {
@@ -2672,7 +2687,7 @@
       "_origin": "ast",
       "id": "package_runtime_name",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "name"
     },
     {
@@ -2683,7 +2698,7 @@
       "_origin": "ast",
       "id": "package_runtime_onfail",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "onfail"
     },
     {
@@ -2694,7 +2709,7 @@
       "_origin": "ast",
       "id": "package_runtime_version",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "version"
     },
     {
@@ -2705,7 +2720,7 @@
       "_origin": "ast",
       "id": "package_scripts",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "scripts"
     },
     {
@@ -2716,7 +2731,7 @@
       "_origin": "ast",
       "id": "package_scripts_build",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "build"
     },
     {
@@ -2727,7 +2742,7 @@
       "_origin": "ast",
       "id": "package_scripts_coverage_summary",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "coverage:summary"
     },
     {
@@ -2738,7 +2753,7 @@
       "_origin": "ast",
       "id": "package_scripts_dev",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "dev"
     },
     {
@@ -2749,7 +2764,7 @@
       "_origin": "ast",
       "id": "package_scripts_lint",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "lint"
     },
     {
@@ -2760,7 +2775,7 @@
       "_origin": "ast",
       "id": "package_scripts_prepack",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "prepack"
     },
     {
@@ -2771,7 +2786,7 @@
       "_origin": "ast",
       "id": "package_scripts_test",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "test"
     },
     {
@@ -2782,7 +2797,7 @@
       "_origin": "ast",
       "id": "package_scripts_test_coverage",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "test:coverage"
     },
     {
@@ -2793,7 +2808,7 @@
       "_origin": "ast",
       "id": "package_scripts_test_watch",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "test:watch"
     },
     {
@@ -2804,7 +2819,7 @@
       "_origin": "ast",
       "id": "package_scripts_typecheck",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "typecheck"
     },
     {
@@ -2815,7 +2830,7 @@
       "_origin": "ast",
       "id": "package_sideeffects",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "sideeffects"
     },
     {
@@ -2826,7 +2841,7 @@
       "_origin": "ast",
       "id": "package_type",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "type"
     },
     {
@@ -2837,7 +2852,7 @@
       "_origin": "ast",
       "id": "package_version",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "version"
     },
     {
@@ -2848,7 +2863,7 @@
       "_origin": "ast",
       "id": "marked",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "marked"
     },
     {
@@ -2859,7 +2874,7 @@
       "_origin": "ast",
       "id": "ref_dist",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "dist"
     },
     {
@@ -2870,7 +2885,7 @@
       "_origin": "ast",
       "id": "ref_license",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "license"
     },
     {
@@ -2881,7 +2896,7 @@
       "_origin": "ast",
       "id": "ref_readme_md",
       "community": 2,
-      "community_name": "Package Configuration",
+      "community_name": "Package Metadata",
       "norm_label": "readme.md"
     },
     {
@@ -2925,7 +2940,7 @@
       "_origin": "ast",
       "id": "src_core_html_template",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "html-template.ts"
     },
     {
@@ -2936,7 +2951,7 @@
       "_origin": "ast",
       "id": "src_core_markdown_renderer",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "markdown-renderer.ts"
     },
     {
@@ -2947,7 +2962,7 @@
       "_origin": "ast",
       "id": "src_core_theme_control",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "theme-control.ts"
     },
     {
@@ -2958,7 +2973,7 @@
       "_origin": "ast",
       "id": "src_core_theme_control_theme_control_script",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "theme_control_script"
     },
     {
@@ -2969,7 +2984,7 @@
       "_origin": "ast",
       "id": "src_core_theme_control_theme_toggle_html",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "theme_toggle_html"
     },
     {
@@ -2980,7 +2995,7 @@
       "_origin": "ast",
       "id": "src_utils_escape",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "escape.ts"
     },
     {
@@ -2991,7 +3006,7 @@
       "_origin": "ast",
       "id": "src_utils_url",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "url.ts"
     },
     {
@@ -3002,7 +3017,7 @@
       "_origin": "ast",
       "id": "src_utils_url_image_schemes",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "image_schemes"
     },
     {
@@ -3013,7 +3028,7 @@
       "_origin": "ast",
       "id": "src_utils_url_link_schemes",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "link_schemes"
     },
     {
@@ -3024,7 +3039,7 @@
       "_origin": "ast",
       "id": "test_unit_markdown_renderer_test",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "markdown-renderer.test.ts"
     },
     {
@@ -3035,7 +3050,7 @@
       "_origin": "ast",
       "id": "test_unit_markdown_renderer_test_safeoptions",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "safeoptions"
     },
     {
@@ -3046,74 +3061,8 @@
       "_origin": "ast",
       "id": "test_unit_normalize_escape_test",
       "community": 4,
-      "community_name": "HTML Template & Theme",
+      "community_name": "HTML Template & Markdown Rendering",
       "norm_label": "normalize-escape.test.ts"
-    },
-    {
-      "label": "html-document.ts",
-      "file_type": "code",
-      "source_file": "src/core/html-document.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_core_html_document",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "html-document.ts"
-    },
-    {
-      "label": "default-css.ts",
-      "file_type": "code",
-      "source_file": "src/styles/default-css.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_styles_default_css",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "default-css.ts"
-    },
-    {
-      "label": "DEFAULT_CSS",
-      "file_type": "code",
-      "source_file": "src/styles/default-css.ts",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "src_styles_default_css_default_css",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "default_css"
-    },
-    {
-      "label": "cli-config.test.ts",
-      "file_type": "code",
-      "source_file": "test/integration/cli-config.test.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_integration_cli_config_test",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "cli-config.test.ts"
-    },
-    {
-      "label": "tempDirectories",
-      "file_type": "code",
-      "source_file": "test/integration/cli-config.test.ts",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "test_integration_cli_config_test_tempdirectories",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "tempdirectories"
-    },
-    {
-      "label": "default-css.test.ts",
-      "file_type": "code",
-      "source_file": "test/unit/default-css.test.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "test_unit_default_css_test",
-      "community": 5,
-      "community_name": "HTML Document & Default CSS",
-      "norm_label": "default-css.test.ts"
     },
     {
       "label": "tsconfig.json",
@@ -3122,8 +3071,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tsconfig",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "tsconfig.json"
     },
     {
@@ -3133,8 +3082,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "tsconfig_compileroptions",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "compileroptions"
     },
     {
@@ -3144,8 +3093,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_exactoptionalpropertytypes",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "exactoptionalpropertytypes"
     },
     {
@@ -3155,8 +3104,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_lib",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "lib"
     },
     {
@@ -3166,8 +3115,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_module",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "module"
     },
     {
@@ -3177,8 +3126,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_moduleresolution",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "moduleresolution"
     },
     {
@@ -3188,8 +3137,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_noemit",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "noemit"
     },
     {
@@ -3199,8 +3148,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_nouncheckedindexedaccess",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "nouncheckedindexedaccess"
     },
     {
@@ -3210,8 +3159,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_skiplibcheck",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "skiplibcheck"
     },
     {
@@ -3221,8 +3170,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_strict",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "strict"
     },
     {
@@ -3232,8 +3181,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_stripinternal",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "stripinternal"
     },
     {
@@ -3243,8 +3192,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_target",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "target"
     },
     {
@@ -3254,8 +3203,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_types",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "types"
     },
     {
@@ -3265,8 +3214,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_useunknownincatchvariables",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "useunknownincatchvariables"
     },
     {
@@ -3276,8 +3225,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_verbatimmodulesyntax",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "verbatimmodulesyntax"
     },
     {
@@ -3287,8 +3236,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "tsconfig_include",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "include"
     },
     {
@@ -3298,8 +3247,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "ref_dom",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "dom"
     },
     {
@@ -3309,8 +3258,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "ref_es2022",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "es2022"
     },
     {
@@ -3320,8 +3269,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "ref_node",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "node"
     },
     {
@@ -3331,8 +3280,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "ref_src_ts",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "src/**/*.ts"
     },
     {
@@ -3342,8 +3291,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "ref_test_ts",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "test/**/*.ts"
     },
     {
@@ -3353,8 +3302,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "ref_ts",
-      "community": 6,
-      "community_name": "TypeScript Configuration",
+      "community": 5,
+      "community_name": "TypeScript Config & References",
       "norm_label": "*.ts"
     },
     {
@@ -3364,8 +3313,8 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "package_devdependencies",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "devdependencies"
     },
     {
@@ -3375,8 +3324,8 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "package_devdependencies_arethetypeswrong_core",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "@arethetypeswrong/core"
     },
     {
@@ -3386,8 +3335,8 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "package_devdependencies_eslint",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "eslint"
     },
     {
@@ -3397,8 +3346,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "package_devdependencies_eslint_js",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "@eslint/js"
     },
     {
@@ -3408,8 +3357,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "package_devdependencies_publint",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "publint"
     },
     {
@@ -3419,8 +3368,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "package_devdependencies_tsdown",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "tsdown"
     },
     {
@@ -3430,8 +3379,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "package_devdependencies_types_node",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "@types/node"
     },
     {
@@ -3441,8 +3390,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "package_devdependencies_typescript",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "typescript"
     },
     {
@@ -3452,8 +3401,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "package_devdependencies_typescript_eslint",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "typescript-eslint"
     },
     {
@@ -3463,8 +3412,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "package_devdependencies_vitest",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "vitest"
     },
     {
@@ -3474,8 +3423,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "package_devdependencies_vitest_coverage_v8",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "@vitest/coverage-v8"
     },
     {
@@ -3485,8 +3434,8 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "arethetypeswrong_core",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "@arethetypeswrong/core"
     },
     {
@@ -3496,8 +3445,8 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "eslint",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "eslint"
     },
     {
@@ -3507,8 +3456,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "eslint_js",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "@eslint/js"
     },
     {
@@ -3518,8 +3467,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "publint",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "publint"
     },
     {
@@ -3529,8 +3478,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "tsdown",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "tsdown"
     },
     {
@@ -3540,8 +3489,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "types_node",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "@types/node"
     },
     {
@@ -3551,8 +3500,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "typescript",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "typescript"
     },
     {
@@ -3562,8 +3511,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "typescript_eslint",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "typescript-eslint"
     },
     {
@@ -3573,8 +3522,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "vitest",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "vitest"
     },
     {
@@ -3584,9 +3533,42 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "vitest_coverage_v8",
-      "community": 7,
-      "community_name": "Dev Dependencies",
+      "community": 6,
+      "community_name": "Dev Dependencies & Tooling",
       "norm_label": "@vitest/coverage-v8"
+    },
+    {
+      "label": "config.ts",
+      "file_type": "code",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_cli_config",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "config.ts"
+    },
+    {
+      "label": "CONFIG_FILE_NAMES",
+      "file_type": "code",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_cli_config_config_file_names",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "config_file_names"
+    },
+    {
+      "label": "CONFIG_KEYS",
+      "file_type": "code",
+      "source_file": "src/cli/config.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_cli_config_config_keys",
+      "community": 7,
+      "community_name": "CLI Config Loading",
+      "norm_label": "config_keys"
     },
     {
       "label": "coverage-summary.mjs",
@@ -3596,7 +3578,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "coverage-summary.mjs"
     },
     {
@@ -3607,7 +3589,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_header",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "header"
     },
     {
@@ -3618,7 +3600,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_ignoreddirectories",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "ignoreddirectories"
     },
     {
@@ -3629,7 +3611,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_markdown",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "markdown"
     },
     {
@@ -3640,7 +3622,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_metricnames",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "metricnames"
     },
     {
@@ -3651,7 +3633,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_overallmetrics",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "overallmetrics"
     },
     {
@@ -3662,7 +3644,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_reports",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "reports"
     },
     {
@@ -3673,7 +3655,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_rootdirectory",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "rootdirectory"
     },
     {
@@ -3684,7 +3666,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_rows",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "rows"
     },
     {
@@ -3695,7 +3677,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_summaries",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "summaries"
     },
     {
@@ -3706,7 +3688,7 @@
       "_origin": "ast",
       "id": "scripts_coverage_summary_uniquefiles",
       "community": 9,
-      "community_name": "Coverage Summary Script",
+      "community_name": "Coverage Scripts",
       "norm_label": "uniquefiles"
     },
     {
@@ -3720,7 +3702,7 @@
       "contributor": null,
       "id": "docs_review_guide_final_output",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "final review output structure"
     },
     {
@@ -3734,7 +3716,7 @@
       "contributor": null,
       "id": "docs_review_guide_finding_format",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "finding format"
     },
     {
@@ -3748,7 +3730,7 @@
       "contributor": null,
       "id": "docs_review_guide_r01_scope_diff",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "r-01 scope and diff"
     },
     {
@@ -3762,7 +3744,7 @@
       "contributor": null,
       "id": "docs_review_guide_r02_public_api",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "r-02 public api"
     },
     {
@@ -3776,7 +3758,7 @@
       "contributor": null,
       "id": "docs_review_guide_r03_html_conversion",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "r-03 html conversion and determinism"
     },
     {
@@ -3790,7 +3772,7 @@
       "contributor": null,
       "id": "docs_review_guide_r04_security",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "r-04 security"
     },
     {
@@ -3804,7 +3786,7 @@
       "contributor": null,
       "id": "docs_review_guide_r05_cli_file_protection",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "r-05 cli and file protection"
     },
     {
@@ -3818,7 +3800,7 @@
       "contributor": null,
       "id": "docs_review_guide_r06_package_type_resolution",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "r-06 package and type resolution"
     },
     {
@@ -3832,7 +3814,7 @@
       "contributor": null,
       "id": "docs_review_guide_r07a_theme_switching",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "r-07a theme switching"
     },
     {
@@ -3846,7 +3828,7 @@
       "contributor": null,
       "id": "docs_review_guide_r08_test_quality",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "r-08 test quality"
     },
     {
@@ -3860,7 +3842,7 @@
       "contributor": null,
       "id": "docs_review_guide_review_inputs",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "review required inputs"
     },
     {
@@ -3874,7 +3856,7 @@
       "contributor": null,
       "id": "docs_review_guide_review_prompt",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "review start prompt"
     },
     {
@@ -3888,7 +3870,7 @@
       "contributor": null,
       "id": "docs_review_guide_severity_levels",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "finding severity levels p0-p3"
     },
     {
@@ -3902,7 +3884,7 @@
       "contributor": null,
       "id": "docs_theme_switching_requirements_nfr",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "non-functional requirements nfr-01 to nfr-07"
     },
     {
@@ -3916,7 +3898,7 @@
       "contributor": null,
       "id": "docs_review_guide",
       "community": 10,
-      "community_name": "Review Guide & Theme Req",
+      "community_name": "Review Guide Documentation",
       "norm_label": "implementation review guide"
     },
     {
@@ -4532,7 +4514,7 @@
       "contributor": null,
       "id": "docs_review_guide_r07_css_accessibility",
       "community": 17,
-      "community_name": "CSS Accessibility & Bugs",
+      "community_name": "Theme Accessibility & Bugs",
       "norm_label": "r-07 css and accessibility"
     },
     {
@@ -4546,7 +4528,7 @@
       "contributor": null,
       "id": "docs_theme_switching_requirements_dom_hooks",
       "community": 17,
-      "community_name": "CSS Accessibility & Bugs",
+      "community_name": "Theme Accessibility & Bugs",
       "norm_label": "public dom hooks"
     },
     {
@@ -4560,7 +4542,7 @@
       "contributor": null,
       "id": "docs_theme_switching_requirements_html_contract",
       "community": 17,
-      "community_name": "CSS Accessibility & Bugs",
+      "community_name": "Theme Accessibility & Bugs",
       "norm_label": "generated html contract"
     },
     {
@@ -4574,7 +4556,7 @@
       "contributor": null,
       "id": "docs_theme_switching_requirements_ui_accessibility",
       "community": 17,
-      "community_name": "CSS Accessibility & Bugs",
+      "community_name": "Theme Accessibility & Bugs",
       "norm_label": "ui/accessibility requirements ui-01 to ui-09"
     },
     {
@@ -4588,7 +4570,7 @@
       "contributor": null,
       "id": "docs_theme_visual_verification_accessibility",
       "community": 17,
-      "community_name": "CSS Accessibility & Bugs",
+      "community_name": "Theme Accessibility & Bugs",
       "norm_label": "accessibility confirmations"
     },
     {
@@ -4602,7 +4584,7 @@
       "contributor": null,
       "id": "docs_theme_visual_verification_bug_dark_icon",
       "community": 17,
-      "community_name": "CSS Accessibility & Bugs",
+      "community_name": "Theme Accessibility & Bugs",
       "norm_label": "bug: dark icon not hidden in light mode"
     },
     {
@@ -4616,7 +4598,7 @@
       "contributor": null,
       "id": "docs_theme_visual_verification_bug_icon_sync",
       "community": 17,
-      "community_name": "CSS Accessibility & Bugs",
+      "community_name": "Theme Accessibility & Bugs",
       "norm_label": "bug: icon not syncing after manual switch"
     },
     {
@@ -4630,7 +4612,7 @@
       "contributor": null,
       "id": "docs_theme_visual_verification_bugs_fixed",
       "community": 17,
-      "community_name": "CSS Accessibility & Bugs",
+      "community_name": "Theme Accessibility & Bugs",
       "norm_label": "bugs found and fixed during verification"
     },
     {
@@ -4798,7 +4780,7 @@
       "contributor": null,
       "id": "docs_index_design_back_link",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "back link (\u76ee\u6b21\u3078\u623b\u308b) implementation"
     },
     {
@@ -4812,7 +4794,7 @@
       "contributor": null,
       "id": "docs_index_design_cli_options",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "cli options --index and --site-title"
     },
     {
@@ -4826,7 +4808,7 @@
       "contributor": null,
       "id": "docs_index_design_collection_rules",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "index collection rules"
     },
     {
@@ -4840,7 +4822,7 @@
       "contributor": null,
       "id": "docs_index_design_convertmarkdownfile_function",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "convertmarkdownfile function"
     },
     {
@@ -4854,7 +4836,7 @@
       "contributor": null,
       "id": "docs_index_design_convertmarkdownfileoptions",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "convertmarkdownfileoptions type"
     },
     {
@@ -4868,7 +4850,7 @@
       "contributor": null,
       "id": "docs_index_design_convertmarkdownfileresult",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "convertmarkdownfileresult type"
     },
     {
@@ -4882,7 +4864,7 @@
       "contributor": null,
       "id": "docs_index_design_created_at",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "createdat and createdattext handling"
     },
     {
@@ -4896,7 +4878,7 @@
       "contributor": null,
       "id": "docs_index_design_error_codes",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "md2htmlerrorcode extensions"
     },
     {
@@ -4910,7 +4892,7 @@
       "contributor": null,
       "id": "docs_index_design_generateindex_function",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "generateindex function"
     },
     {
@@ -4924,7 +4906,7 @@
       "contributor": null,
       "id": "docs_index_design_generateindexresult",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "generateindexresult type"
     },
     {
@@ -4938,7 +4920,7 @@
       "contributor": null,
       "id": "docs_index_design_html_structure",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "index page html structure"
     },
     {
@@ -4952,7 +4934,7 @@
       "contributor": null,
       "id": "docs_index_design_indexpageentry",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "indexpageentry type"
     },
     {
@@ -4966,7 +4948,7 @@
       "contributor": null,
       "id": "docs_index_design_indexpageoptions",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "indexpageoptions type"
     },
     {
@@ -4980,7 +4962,7 @@
       "contributor": null,
       "id": "docs_index_design_sorting",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "utf-16 code unit sorting"
     },
     {
@@ -4994,7 +4976,7 @@
       "contributor": null,
       "id": "docs_index_design_test_design",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "test design for index feature"
     },
     {
@@ -5008,7 +4990,7 @@
       "contributor": null,
       "id": "docs_index_design_url_encoding",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "url encoding with encodeuricomponent"
     },
     {
@@ -5022,7 +5004,7 @@
       "contributor": null,
       "id": "docs_index_requirements_acceptance_criteria",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "acceptance criteria"
     },
     {
@@ -5036,7 +5018,7 @@
       "contributor": null,
       "id": "docs_index_requirements_basic_principles",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "basic principles - html files as source"
     },
     {
@@ -5050,7 +5032,7 @@
       "contributor": null,
       "id": "docs_index_requirements_cli_spec",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "cli specification for --index"
     },
     {
@@ -5064,7 +5046,7 @@
       "contributor": null,
       "id": "docs_index_requirements_design_considerations",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "design considerations for detailed design"
     },
     {
@@ -5078,7 +5060,7 @@
       "contributor": null,
       "id": "docs_index_requirements_existing_impact",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "impact on existing specifications"
     },
     {
@@ -5092,22 +5074,8 @@
       "contributor": null,
       "id": "docs_index_requirements_functional_requirements",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "functional requirements fr-01 to fr-12"
-    },
-    {
-      "label": "public API design - convertMdToHtml, convertMarkdownFile, generateIndex",
-      "file_type": "concept",
-      "source_file": "/home/aspirprojects/02-public/md2html/docs/INDEX_REQUIREMENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_requirements_public_api",
-      "community": 3,
-      "community_name": "Index Design & Requirements",
-      "norm_label": "public api design - convertmdtohtml, convertmarkdownfile, generateindex"
     },
     {
       "label": "scope - in scope and out of scope",
@@ -5120,7 +5088,7 @@
       "contributor": null,
       "id": "docs_index_requirements_scope",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "scope - in scope and out of scope"
     },
     {
@@ -5134,7 +5102,7 @@
       "contributor": null,
       "id": "docs_index_requirements_terminology",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "terminology definitions"
     },
     {
@@ -5148,7 +5116,7 @@
       "contributor": null,
       "id": "docs_requirements_cli_usage",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "cli usage - command line arguments and config files"
     },
     {
@@ -5162,7 +5130,7 @@
       "contributor": null,
       "id": "docs_requirements_css_rules",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "css application rules - default and custom"
     },
     {
@@ -5176,7 +5144,7 @@
       "contributor": null,
       "id": "docs_requirements_index_feature",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "index page generation feature reference"
     },
     {
@@ -5190,7 +5158,7 @@
       "contributor": null,
       "id": "docs_requirements_library_usage",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "library usage - js/ts import with method chaining"
     },
     {
@@ -5204,7 +5172,7 @@
       "contributor": null,
       "id": "docs_requirements_next_steps",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "next steps - project structure and improvements"
     },
     {
@@ -5218,7 +5186,7 @@
       "contributor": null,
       "id": "docs_requirements_tech_stack",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "technology stack - typescript, marked, cac, tsup, builder pattern"
     },
     {
@@ -5232,7 +5200,7 @@
       "contributor": null,
       "id": "docs_requirements_theme_switching",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "color theme auto-selection and manual toggle"
     },
     {
@@ -5246,7 +5214,7 @@
       "contributor": null,
       "id": "docs_index_design_module_structure",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "module structure for index page feature"
     },
     {
@@ -5260,7 +5228,7 @@
       "contributor": null,
       "id": "docs_index_design_public_api",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "public api design for index page"
     },
     {
@@ -5274,7 +5242,7 @@
       "contributor": null,
       "id": "docs_index_requirements_purpose",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "purpose of index page feature"
     },
     {
@@ -5288,7 +5256,7 @@
       "contributor": null,
       "id": "docs_requirements_overview",
       "community": 3,
-      "community_name": "Index Design & Requirements",
+      "community_name": "Design Documentation",
       "norm_label": "project overview - markdown to html library and cli"
     },
     {
@@ -5302,7 +5270,7 @@
       "contributor": null,
       "id": "design_md_button_primary",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "primary button (pill cta)"
     },
     {
@@ -5316,7 +5284,7 @@
       "contributor": null,
       "id": "design_md_button_secondary",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "secondary button"
     },
     {
@@ -5330,7 +5298,7 @@
       "contributor": null,
       "id": "design_md_canvas_soft",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "warm paper canvas (#f6f5f4)"
     },
     {
@@ -5344,7 +5312,7 @@
       "contributor": null,
       "id": "design_md_colors",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "color system"
     },
     {
@@ -5358,7 +5326,7 @@
       "contributor": null,
       "id": "design_md_components",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "component library"
     },
     {
@@ -5372,7 +5340,7 @@
       "contributor": null,
       "id": "design_md_display_1",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "display 1 (64px, 700, -2.125px tracking)"
     },
     {
@@ -5386,7 +5354,7 @@
       "contributor": null,
       "id": "design_md_dos_donts",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "design do's and don'ts"
     },
     {
@@ -5400,7 +5368,7 @@
       "contributor": null,
       "id": "design_md_elevation",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "elevation system"
     },
     {
@@ -5414,7 +5382,7 @@
       "contributor": null,
       "id": "design_md_feature_card",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "feature card"
     },
     {
@@ -5428,7 +5396,7 @@
       "contributor": null,
       "id": "design_md_hero_band",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "hero band (dark night)"
     },
     {
@@ -5442,7 +5410,7 @@
       "contributor": null,
       "id": "design_md_nav_bar",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "nav bar component"
     },
     {
@@ -5456,7 +5424,7 @@
       "contributor": null,
       "id": "design_md_notion_blue",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "notion blue (#0075de)"
     },
     {
@@ -5470,7 +5438,7 @@
       "contributor": null,
       "id": "design_md_notion_design_system",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "notion design system"
     },
     {
@@ -5484,7 +5452,7 @@
       "contributor": null,
       "id": "design_md_notioninter",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "notioninter font"
     },
     {
@@ -5498,7 +5466,7 @@
       "contributor": null,
       "id": "design_md_pricing_card",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "pricing plan card"
     },
     {
@@ -5512,7 +5480,7 @@
       "contributor": null,
       "id": "design_md_rounded_scale",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "border radius scale"
     },
     {
@@ -5526,7 +5494,7 @@
       "contributor": null,
       "id": "design_md_spacing",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "spacing system (8px base)"
     },
     {
@@ -5540,7 +5508,7 @@
       "contributor": null,
       "id": "design_md_sticker_palette",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "sticker palette"
     },
     {
@@ -5554,7 +5522,7 @@
       "contributor": null,
       "id": "design_md_typography",
       "community": 8,
-      "community_name": "Notion Design System",
+      "community_name": "Design System Components",
       "norm_label": "typography system"
     }
   ],
@@ -12974,16 +12942,6 @@
       "source_file": "docs/INDEX_REQUIREMENTS.md",
       "source_location": null,
       "weight": 1.0,
-      "source": "docs_index_requirements_functional_requirements",
-      "target": "docs_index_requirements_public_api"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/INDEX_REQUIREMENTS.md",
-      "source_location": null,
-      "weight": 1.0,
       "source": "docs_index_requirements_purpose",
       "target": "docs_index_requirements_acceptance_criteria"
     },
@@ -14036,36 +13994,6 @@
       "weight": 1.0,
       "source": "docs_theme_visual_verification_matrix",
       "target": "docs_theme_switching_requirements_acceptance"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/INDEX_DESIGN.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_index_design_convertmarkdownfile_function",
-      "target": "docs_index_requirements_public_api"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/INDEX_DESIGN.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_index_design_generateindex_function",
-      "target": "docs_index_requirements_public_api"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/INDEX_DESIGN.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_index_design_public_api",
-      "target": "docs_index_requirements_public_api"
     }
   ],
   "hyperedges": [
@@ -14099,24 +14027,6 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/INDEX_DESIGN.md"
-    },
-    {
-      "id": "index_page_requirements",
-      "label": "Index Page Requirements",
-      "nodes": [
-        "docs_index_requirements_purpose",
-        "docs_index_requirements_basic_principles",
-        "docs_index_requirements_terminology",
-        "docs_index_requirements_scope",
-        "docs_index_requirements_functional_requirements",
-        "docs_index_requirements_cli_spec",
-        "docs_index_requirements_public_api",
-        "docs_index_requirements_acceptance_criteria"
-      ],
-      "relation": "form",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/INDEX_REQUIREMENTS.md"
     },
     {
       "id": "project_core_requirements",
@@ -14214,5 +14124,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "28dd1ae924bcc86c880f99cc8b16e92348132d31"
+  "built_at_commit": "c5fb70bae17a666e495b367ca06113abd7eaf438"
 }
