@@ -1,172 +1,173 @@
-# Graph Report - md2html  (2026-08-29)
+# Graph Report - md2html  (2026-09-02)
 
 ## Corpus Check
-- Corpus is ~23,327 words - fits in a single context window. You may not need a graph.
+- 21 files · ~23,891 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 438 nodes · 751 edges · 23 communities
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.83)
-- Token cost: 0 input · 0 output
+- 413 nodes · 684 edges · 28 communities (22 shown, 6 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.8)
+- Token cost: 18,240 input · 8,720 output
 
 ## Community Hubs (Navigation)
+- CLI Argument Parsing
 - Core Conversion
-- CLI Interface
 - Package Metadata
-- Design Documentation
-- HTML Template & Markdown Rendering
-- TypeScript Config & References
-- Dev Dependencies & Tooling
+- HTML Document Model
+- HTML Template & Rendering
+- Review Guide Documentation
+- PR Review Workflow
+- TypeScript Configuration
+- Dev Dependencies
 - CLI Config Loading
 - Design System Components
 - Coverage Scripts
-- Review Guide Documentation
-- CI/CD Workflows
-- README Documentation
+- Theme Switching System
 - Atomic Write Utilities
-- Theme Switching Requirements
 - Theme Control Tests
-- Theme Visual Verification
-- Theme Accessibility & Bugs
-- Test Fixtures & Verification
-- Codecov Configuration
+- Project Documentation
+- Index Navigation
+- CI Quality Jobs
+- Codecov Setup
+- Exclusion Rules
+- CI/CD Workflows
+- Graphify Commands
+- Public API
+- PR Review Skill
+- Graph Update
 
 ## God Nodes (most connected - your core abstractions)
-1. `runCli()` - 19 edges
-2. `Theme Switching Requirements` - 16 edges
-3. `Md2HtmlError` - 15 edges
-4. `Implementation Review Guide` - 15 edges
-5. `HtmlDocument` - 14 edges
-6. `compilerOptions` - 14 edges
-7. `generateIndex()` - 12 edges
-8. `normalizeConvertOptions()` - 12 edges
-9. `convertMarkdownFile()` - 11 edges
-10. `convertMarkdown()` - 11 edges
+1. `Md2HtmlError` - 15 edges
+2. `Implementation Review Guide` - 15 edges
+3. `HtmlDocument` - 14 edges
+4. `compilerOptions` - 14 edges
+5. `runCli()` - 14 edges
+6. `normalizeConvertOptions()` - 11 edges
+7. `generateIndex()` - 11 edges
+8. `scripts` - 10 edges
+9. `writeFileAtomically()` - 10 edges
+10. `convertMarkdown()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `File Selection Algorithm (git ls-tree + priority filtering)` --semantically_similar_to--> `collectIndexEntries(folderPath) (readdir withFileTypes, .html filter)`  [INFERRED] [semantically similar]
+  .agent/skills/pr-100-files/SKILL.md → docs/INDEX_DESIGN.md
+- `Cherry-pick Fixes Workflow` --semantically_similar_to--> `Version Bump (npm version --no-git-tag-version)`  [INFERRED] [semantically similar]
+  .agent/skills/pr-100-files/SKILL.md → .github/workflows/release.yml
 - `Recommended Verification Commands` --references--> `Test Fixture Article`  [INFERRED]
   docs/REVIEW_GUIDE.md → test/fixtures/article.md
-- `Target Commit and Environment` --references--> `Test Fixture Article`  [EXTRACTED]
-  docs/THEME_VISUAL_VERIFICATION.md → test/fixtures/article.md
-- `runCli()` --calls--> `runCli()`  [EXTRACTED]
-  test/integration/cli.test.ts → src/cli/run.ts
-- `Typecheck Step` --conceptually_related_to--> `Release Workflow`  [INFERRED]
-  .github/workflows/ci.yml → .github/workflows/release.yml
-- `Lint Step` --conceptually_related_to--> `Release Workflow`  [INFERRED]
-  .github/workflows/ci.yml → .github/workflows/release.yml
+- `Md2HtmlError + Error Codes (INVALID_ARGUMENT, FILE_READ_FAILED, etc.)` --conceptually_related_to--> `API generateIndex(folderPath, options) -> GenerateIndexResult`  [INFERRED]
+  README.md → docs/INDEX_DESIGN.md
+- `generateIndex(folderPath, options)` --references--> `API generateIndex(folderPath, options) -> GenerateIndexResult`  [INFERRED]
+  README.md → docs/INDEX_DESIGN.md
 
 ## Import Cycles
 - None detected.
 
 ## Hyperedges (group relationships)
-- **CI Quality Pipeline Steps** — github_workflows_ci_typecheck, github_workflows_ci_lint, github_workflows_ci_test, github_workflows_ci_build [EXTRACTED 1.00]
-- **Notion Design System Core** — design_md_notion_blue, design_md_canvas_soft, design_md_notioninter, design_md_sticker_palette [INFERRED 0.85]
-- **md2html Core API** — readme_md_convert_md_to_html, readme_md_html_document, readme_md_convert_markdown_file, readme_md_generate_index [INFERRED 0.85]
-- **Index Page Generation Feature Design** — docs_index_design_module_structure, docs_index_design_public_api, docs_index_design_collection_rules, docs_index_design_html_structure, docs_index_design_back_link, docs_index_design_cli_options, docs_index_design_test_design [EXTRACTED 1.00]
+- **Index Generation Flow (collect → build → atomic write → API)** — docs_index_design_collectindexentries, docs_index_design_buildindexpagehtml, docs_index_design_atomic_write, docs_index_design_generateindex_api, docs_index_design_indexpageentry [EXTRACTED 1.00]
+- **Theme Switching System (mode, effective theme, toggle, cascade, tokens, DOM hooks)** — docs_theme_switching_requirements_selection_mode, docs_theme_switching_requirements_effective_theme, docs_theme_switching_requirements_toggle_button, docs_theme_switching_requirements_css_cascade, docs_theme_switching_requirements_color_tokens, docs_theme_switching_requirements_data_attr [EXTRACTED 1.00]
+- **CI/CD Quality Gate (quality, coverage, codecov, release validations)** — _github_workflows_ci_quality_job, _github_workflows_ci_coverage_job, _github_workflows_ci_codecov_upload, _github_workflows_release_release_workflow, _github_workflows_release_npm_trusted_publishing [INFERRED 0.85]
 - **Project Core Requirements** — docs_requirements_overview, docs_requirements_library_usage, docs_requirements_cli_usage, docs_requirements_css_rules, docs_requirements_theme_switching, docs_requirements_tech_stack [EXTRACTED 1.00]
 - **Review Guide Review Steps R-01 through R-08** — docs_review_guide_r01_scope_diff, docs_review_guide_r02_public_api, docs_review_guide_r03_html_conversion, docs_review_guide_r04_security, docs_review_guide_r05_cli_file_protection, docs_review_guide_r06_package_type_resolution, docs_review_guide_r07_css_accessibility, docs_review_guide_r07a_theme_switching, docs_review_guide_r08_test_quality [EXTRACTED 1.00]
-- **Theme Switching Functional Requirements FR-01 to FR-15** — docs_theme_switching_requirements_fr, docs_theme_switching_requirements_html_contract, docs_theme_switching_requirements_dom_hooks, docs_theme_switching_requirements_ui_accessibility, docs_theme_switching_requirements_css_cascade, docs_theme_switching_requirements_color_tokens [EXTRACTED 1.00]
-- **Theme Visual Verification Matrix Results** — docs_theme_visual_verification_matrix, docs_theme_visual_verification_accessibility, docs_theme_visual_verification_layout, docs_theme_visual_verification_bugs_fixed, docs_theme_visual_verification_unrun, docs_theme_visual_verification_judgment [EXTRACTED 1.00]
+- **Notion Design System Core** — design_md_notion_blue, design_md_canvas_soft, design_md_notioninter, design_md_sticker_palette [INFERRED 0.85]
 
-## Communities (23 total, 0 thin omitted)
+## Communities (28 total, 6 thin omitted)
 
-### Community 0 - "Core Conversion"
+### Community 0 - "CLI Argument Parsing"
 Cohesion: 0.07
-Nodes (47): convertMarkdown(), convertMdToHtml(), convertMarkdownFile(), ValidatedFileOptions, validateFileOptions(), Md2HtmlError, HtmlDocument, HtmlDocumentInitialState (+39 more)
+Nodes (36): booleanOverride(), CliRunArguments, errorMessage(), helpText(), OPTION_CONFIG, optionalString(), optionalStringArray(), parseCliArguments() (+28 more)
 
-### Community 1 - "CLI Interface"
-Cohesion: 0.07
-Nodes (38): booleanOverride(), CliRunArguments, errorMessage(), helpText(), OPTION_CONFIG, optionalString(), optionalStringArray(), parseCliArguments() (+30 more)
+### Community 1 - "Core Conversion"
+Cohesion: 0.10
+Nodes (32): convertMarkdown(), convertMdToHtml(), convertMarkdownFile(), ValidatedFileOptions, validateFileOptions(), Md2HtmlError, buildIndexPageHtml(), collectIndexEntries() (+24 more)
 
 ### Community 2 - "Package Metadata"
 Cohesion: 0.05
 Nodes (40): marked, author, bin, md2html, dependencies, marked, description, devEngines (+32 more)
 
-### Community 3 - "Design Documentation"
-Cohesion: 0.06
-Nodes (35): back link (目次へ戻る) implementation, CLI options --index and --site-title, index collection rules, convertMarkdownFile function, ConvertMarkdownFileOptions type, ConvertMarkdownFileResult type, createdAt and createdAtText handling, Md2HtmlErrorCode extensions (+27 more)
+### Community 3 - "HTML Document Model"
+Cohesion: 0.10
+Nodes (19): HtmlDocument, HtmlDocumentInitialState, defaultOptions(), LEADING_MARKDOWN_NOISE, normalizeConvertOptions(), normalizeIndexPageOptions(), validateCustomCss(), validateDefaultCssEnabled() (+11 more)
 
-### Community 4 - "HTML Template & Markdown Rendering"
-Cohesion: 0.14
-Nodes (23): buildHtmlDocument(), HtmlTemplateInput, indexBodyHtml(), MarkdownRenderResult, plainTextFromTokens(), renderMarkdown(), THEME_CONTROL_SCRIPT, THEME_TOGGLE_HTML (+15 more)
+### Community 4 - "HTML Template & Rendering"
+Cohesion: 0.16
+Nodes (21): buildHtmlDocument(), HtmlTemplateInput, MarkdownRenderResult, plainTextFromTokens(), renderMarkdown(), THEME_CONTROL_SCRIPT, THEME_TOGGLE_HTML, escapeHtmlAttribute() (+13 more)
 
-### Community 5 - "TypeScript Config & References"
+### Community 5 - "Review Guide Documentation"
+Cohesion: 0.09
+Nodes (23): Implementation Review Guide, Final Review Output Structure, Finding Format, R-01 Scope and Diff, R-02 Public API, R-03 HTML Conversion and Determinism, R-04 Security, R-05 CLI and File Protection (+15 more)
+
+### Community 6 - "PR Review Workflow"
+Cohesion: 0.09
+Nodes (22): Branch ai-code-review (review PR branch), Branch ai-code-review-fixes (main merge fixes branch), Cherry-pick Fixes Workflow, File Selection Algorithm (git ls-tree + priority filtering), Branch review-base (empty history base), GitHub Release (gh release create --verify-tag --generate-notes), npm Trusted Publishing (npm 11.5.1+), Version Bump (npm version --no-git-tag-version) (+14 more)
+
+### Community 7 - "TypeScript Configuration"
 Cohesion: 0.09
 Nodes (21): DOM, ES2022, node, src/**/*.ts, test/**/*.ts, *.ts, compilerOptions, exactOptionalPropertyTypes (+13 more)
 
-### Community 6 - "Dev Dependencies & Tooling"
+### Community 8 - "Dev Dependencies"
 Cohesion: 0.10
 Nodes (21): @arethetypeswrong/core, eslint, @eslint/js, devDependencies, @arethetypeswrong/core, eslint, @eslint/js, publint (+13 more)
 
-### Community 7 - "CLI Config Loading"
+### Community 9 - "CLI Config Loading"
 Cohesion: 0.24
 Nodes (19): CONFIG_FILE_NAMES, CONFIG_KEYS, isNodeErrorWithCode(), isRecord(), LoadedCliConfig, loadedConfig(), loadExplicitConfig(), loadPackageConfig() (+11 more)
 
-### Community 8 - "Design System Components"
+### Community 10 - "Design System Components"
 Cohesion: 0.13
 Nodes (19): Primary Button (Pill CTA), Secondary Button, Warm Paper Canvas (#f6f5f4), Color System, Component Library, Display 1 (64px, 700, -2.125px tracking), Design Do's and Don'ts, Elevation System (+11 more)
 
-### Community 9 - "Coverage Scripts"
+### Community 11 - "Coverage Scripts"
 Cohesion: 0.13
 Nodes (11): formatMetric(), header, ignoredDirectories, markdown, metricNames, overallMetrics, reports, rootDirectory (+3 more)
 
-### Community 10 - "Review Guide Documentation"
-Cohesion: 0.14
-Nodes (15): Implementation Review Guide, Final Review Output Structure, Finding Format, R-01 Scope and Diff, R-02 Public API, R-03 HTML Conversion and Determinism, R-04 Security, R-05 CLI and File Protection (+7 more)
-
-### Community 11 - "CI/CD Workflows"
-Cohesion: 0.22
-Nodes (13): Build Step, CI Workflow, Codecov Upload, Coverage Job, Lint Step, pnpm Setup, Quality Job, Test Step (+5 more)
-
-### Community 12 - "README Documentation"
-Cohesion: 0.25
-Nodes (11): CLI Tool, CLI Config File, convertMarkdownFile Function, convertMdToHtml Function, Default CSS, generateIndex Function, GFM Support, HtmlDocument Class (+3 more)
+### Community 12 - "Theme Switching System"
+Cohesion: 0.15
+Nodes (14): Color Tokens ( --md2html-* 14 variables light/dark), CSS Cascade Order (:root light → dark attribute → auto media → print), DOM Hook data-md2html-theme (html attribute), Effective Theme (light | dark actually rendered), Selection Mode (auto | light | dark via data-md2html-theme), Self-Contained Constraint (no external CSS/JS, no storage), Theme Toggle Button (#md2html-theme-toggle, fixed top-right), Accessibility Verification (Tab, 44px, aria-pressed, focus-visible) (+6 more)
 
 ### Community 13 - "Atomic Write Utilities"
 Cohesion: 0.29
 Nodes (5): AtomicWriteOperations, AtomicWriteRequest, fileExists(), isNodeErrorWithCode(), writeFileAtomically()
 
-### Community 14 - "Theme Switching Requirements"
-Cohesion: 0.20
-Nodes (10): Theme Switching Requirements, Color Tokens (CSS Custom Properties), Default CSS Disabled Behavior, Impact on Existing Specifications, Functional Requirements FR-01 to FR-15, Out of Scope Items, Theme Switching Purpose, Scope: Default CSS Enabled HTML (+2 more)
-
-### Community 15 - "Theme Control Tests"
+### Community 14 - "Theme Control Tests"
 Cohesion: 0.27
 Nodes (5): createButton(), createSandbox(), FakeIcon, Sandbox, SandboxOptions
 
-### Community 16 - "Theme Visual Verification"
-Cohesion: 0.22
-Nodes (9): Acceptance Criteria, CSS Cascade Order, Verification Policy, Theme Visual Verification Record, Overall Judgment: Pass, Initial Display and Layout Confirmations, Required Matrix 12 Rows Results, Target Commit and Environment (+1 more)
-
-### Community 17 - "Theme Accessibility & Bugs"
+### Community 15 - "Project Documentation"
 Cohesion: 0.25
-Nodes (8): R-07 CSS and Accessibility, Public DOM Hooks, Generated HTML Contract, UI/Accessibility Requirements UI-01 to UI-09, Accessibility Confirmations, Bug: Dark Icon Not Hidden in Light Mode, Bug: Icon Not Syncing After Manual Switch, Bugs Found and Fixed During Verification
+Nodes (8): CLI usage - command line arguments and config files, CSS application rules - default and custom, index page generation feature reference, library usage - JS/TS import with method chaining, next steps - project structure and improvements, project overview - Markdown to HTML library and CLI, technology stack - TypeScript, marked, cac, tsup, Builder pattern, color theme auto-selection and manual toggle
 
-### Community 18 - "Test Fixtures & Verification"
-Cohesion: 0.25
-Nodes (8): Recommended Verification Commands, Test Fixture Article, Long Code Line in Code Block, Example Image Reference, Long Title with Unbroken Word, Exceptionally Long URL, Table with Long Cell Content, Task List with Checked/Unchecked Items
+### Community 16 - "Index Navigation"
+Cohesion: 0.50
+Nodes (4): BackLink Nav (index.html back link, html-template.ts), FR-10 Back Link (目次へ戻る on converted HTML), CLI Config Resolution (package.json > .md2htmlrc > md2html.config.json), CLI md2html (input.md | - with --output, --css, --index, --force)
 
-### Community 19 - "Codecov Configuration"
+### Community 17 - "CI Quality Jobs"
+Cohesion: 0.67
+Nodes (3): Codecov Upload (codecov-action@v5), Coverage Job, Quality Job (Node matrix 22,24)
+
+### Community 18 - "Codecov Setup"
 Cohesion: 0.67
 Nodes (3): codecov comment layout, codecov coverage configuration, unit test flags
 
 ## Knowledge Gaps
-- **168 isolated node(s):** `name`, `version`, `description`, `type`, `url` (+163 more)
+- **171 isolated node(s):** `HtmlDocumentInitialState`, `ParsedCliArguments`, `PathPlan`, `HtmlTemplateInput`, `MarkdownRenderResult` (+166 more)
   These have ≤1 connection - possible missing edges or undocumented components.
+- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Md2HtmlError` connect `Core Conversion` to `CLI Interface`, `HTML Template & Markdown Rendering`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Why does `devDependencies` connect `Dev Dependencies & Tooling` to `Package Metadata`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **What connects `name`, `version`, `description` to the rest of the system?**
-  _168 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `HtmlDocument` connect `HTML Document Model` to `Core Conversion`?**
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
+- **Why does `Md2HtmlError` connect `Core Conversion` to `CLI Argument Parsing`, `HTML Document Model`, `HTML Template & Rendering`?**
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+- **Why does `devDependencies` connect `Dev Dependencies` to `Package Metadata`?**
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **What connects `HtmlDocumentInitialState`, `ParsedCliArguments`, `PathPlan` to the rest of the system?**
+  _171 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `CLI Argument Parsing` be split into smaller, more focused modules?**
+  _Cohesion score 0.07239819004524888 - nodes in this community are weakly interconnected._
 - **Should `Core Conversion` be split into smaller, more focused modules?**
-  _Cohesion score 0.07087719298245614 - nodes in this community are weakly interconnected._
-- **Should `CLI Interface` be split into smaller, more focused modules?**
-  _Cohesion score 0.06578947368421052 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10040816326530612 - nodes in this community are weakly interconnected._
 - **Should `Package Metadata` be split into smaller, more focused modules?**
   _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
-- **Should `Design Documentation` be split into smaller, more focused modules?**
-  _Cohesion score 0.06218487394957983 - nodes in this community are weakly interconnected._
