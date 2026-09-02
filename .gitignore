@@ -1,7 +1,0 @@
-node_modules/
-dist/
-coverage/
-*.tgz
-*.html
-!docs/*.html
-.DS_Store
