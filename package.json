@@ -1,0 +1,73 @@
+{
+  "name": "@katsu996/md2html",
+  "version": "0.0.3",
+  "description": "Convert Markdown strings and files into self-contained styled HTML documents.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katsu996/md2html.git"
+  },
+  "license": "MIT",
+  "author": "katsu996",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/lib/index.d.mts",
+        "default": "./dist/lib/index.mjs"
+      },
+      "require": {
+        "types": "./dist/lib/index.d.cts",
+        "default": "./dist/lib/index.cjs"
+      }
+    }
+  },
+  "bin": {
+    "md2html": "./dist/bin/md2html.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "coverage:summary": "node scripts/coverage-summary.mjs",
+    "lint": "eslint .",
+    "prepack": "pnpm run typecheck && pnpm test && pnpm run build"
+  },
+  "dependencies": {
+    "marked": "^18.0.7"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/core": "^0.18.5",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.1.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.8.0",
+    "publint": "^0.3.22",
+    "tsdown": "^0.22.14",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
+  },
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.19.0",
+      "onFail": "download"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
