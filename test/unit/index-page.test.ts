@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
+import { access, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -79,7 +79,11 @@ describe("index entry collection", () => {
     ]);
 
     const entries = await collectIndexEntries(directory);
-    expect(entries.map((candidate) => candidate.fileName)).toEqual(["INDEX.html", "a.html"]);
+    // On case-insensitive filesystems INDEX.html is index.html and is excluded from entries.
+    const caseSensitive = await access(join(directory, "index.html"))
+      .then(() => false, () => true);
+    expect(entries.map((candidate) => candidate.fileName))
+      .toEqual(caseSensitive ? ["INDEX.html", "a.html"] : ["a.html"]);
   });
 
   it("formats creation timestamps", async () => {

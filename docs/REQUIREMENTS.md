@@ -30,7 +30,7 @@ JavaScript / TypeScript で利用できる「Markdownを装飾済みHTMLに変�
 - コマンドライン（ターミナル）から `.md` ファイルを指定して `.html` ファイルを生成できること。
 - コマンドライン引数でカスタムCSSファイルやタイトル等を指定できること。
   ```bash
-  $ npx md2html input.md -o output.html --css ./custom.css
+  npx md2html input.md -o output.html --css ./custom.css
   ```
 - カスタムCSS、タイトル、言語、既定CSS、生HTMLの扱いは、JSON設定ファイルまたは`package.json`の`md2html`プロパティへ既定値として保存できること。
 - CLIを実行したディレクトリから親へ設定を探索し、CLIで明示した値は設定ファイルより優先すること。
@@ -57,12 +57,12 @@ JavaScript / TypeScript で利用できる「Markdownを装飾済みHTMLに変�
 | **言語**              | TypeScript              | 型定義（`.d.ts`）の提供と安全な開発のため                                   |
 | **MDパーサー**        | marked                  | 軽量・高速でNode/ブラウザ両対応（`remark` や `markdown-it` 等への変更も可） |
 | **CLIフレームワーク** | cac                     | 軽量かつTSとの相性が良い（`commander` 等も可）                              |
-| **ビルドツール**      | tsup                    | esbuildベース。ESM/CJSおよびCLIバイナリの同時出力が容易                     |
+| **ビルドツール**      | tsdown                  | esbuildベース。ESM/CJSおよびCLIバイナリの同時出力が容易                     |
 | **設計パターン**      | Builder / Classパターン | `customCss()` などのメソッドチェーンを実現するため                          |
 
 ---
 
 ## 4. 次のAIへお願いしたいこと
 
-1. この要件定義を踏まえ、**全体のプロジェクト構成（ファイル構成、`package.json`、`tsup.config.ts` 等）の最適解**を作成してください。
+1. この要件定義を踏まえ、**全体のプロジェクト構成（ファイル構成、`package.json`、`tsdown.config.ts` 等）の最適解**を作成してください。
 2. 上記の提案に対する**改善案（より使いやすいAPI設計、バンドルサイズの削減、最新のモダンな技術選定など）**があれば、アドバイスとともに実装コードを提示してください。

@@ -52,10 +52,10 @@ function decodePercentEncoded(value: string): string {
 function decodeHtmlEntities(value: string): string {
   return value
     .replace(/&#x([0-9a-f]+);?/giu, (_, hexadecimal: string) =>
-      String.fromCodePoint(Number.parseInt(hexadecimal, 16))
+      fromCodePointOrReplacement(Number.parseInt(hexadecimal, 16))
     )
     .replace(/&#([0-9]+);?/gu, (_, decimal: string) =>
-      String.fromCodePoint(Number.parseInt(decimal, 10))
+      fromCodePointOrReplacement(Number.parseInt(decimal, 10))
     )
     .replace(/&(colon|tab|newline|newlin);?/giu, (_, name: string) => {
       switch (name.toLowerCase()) {
@@ -67,6 +67,11 @@ function decodeHtmlEntities(value: string): string {
           return "\n";
       }
     });
+}
+
+/** Maps invalid code points (including above U+10FFFF) to U+FFFD instead of throwing RangeError. */
+function fromCodePointOrReplacement(codePoint: number): string {
+  return codePoint >= 0 && codePoint <= 0x10ffff ? String.fromCodePoint(codePoint) : "\u{FFFD}";
 }
 
 function containsWhitespaceOrControl(value: string): boolean {

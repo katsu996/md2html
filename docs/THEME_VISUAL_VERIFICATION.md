@@ -7,7 +7,7 @@ Issue: #14（親設計 #9）
 | 項目 | 値 |
 | --- | --- |
 | 対象 commit | `58a61f0a82b9564bdb72dba1b01332b745fbd80e`（作業ブランチ作業ツリー。#10/#11/#12/#13 の変更を含む） |
-| パッケージ version | 1.0.0 |
+| パッケージ version | 0.0.3 |
 | ブラウザ | Chromium `151.0.7922.137`（headless、Puppeteer/CDP 制御） |
 | User-Agent | `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36` |
 | OS | Linux 6.18.33.2-microsoft-standard-WSL2 (x64) / Windows Terminal |
@@ -16,9 +16,10 @@ Issue: #14（親設計 #9）
 生成コマンド:
 
 ```bash
+TMP=$(mktemp -d)
 pnpm run build
-node dist/bin/md2html.js test/fixtures/article.md --output <tmp>/final.html
-node dist/bin/md2html.js test/fixtures/article.md --output <tmp>/nodcss.html --no-default-css
+node dist/bin/md2html.js test/fixtures/article.md --output "$TMP/final.html"
+node dist/bin/md2html.js test/fixtures/article.md --output "$TMP/nodcss.html" --no-default-css
 ```
 
 検証方法: Puppeteer から `page.emulateMediaFeatures`（`prefers-color-scheme` の light/dark 切替）、`page.emulateMediaType('print')`、`page.setJavaScriptEnabled(false)`、`page.setViewport` を使用し、各状態で `getComputedStyle` と DOM 属性を読み取った。数値はすべて実測値。

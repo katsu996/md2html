@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { basename, dirname, resolve } from "node:path";
 
 import { writeFileAtomically } from "../utils/atomic-write.js";
-import { defaultOutputPath, inputBasenameWithoutExtension } from "../utils/paths.js";
+import { defaultOutputPath, inputBasenameWithoutExtension, pathsReferToSameFile } from "../utils/paths.js";
 import { convertMarkdown } from "./convert.js";
 import { Md2HtmlError } from "./errors.js";
 import { generateIndex } from "./index-page.js";
@@ -33,6 +33,10 @@ export async function convertMarkdownFile(
   } catch (error) {
     throw new Md2HtmlError("FILE_READ_FAILED", `Cannot read input file: ${inputPath}`, error);
   }
+  const outputPath = fileOptions.output ?? defaultOutputPath(inputPath);
+  if (await pathsReferToSameFile(outputPath, inputPath)) {
+    throw new Md2HtmlError("INVALID_OPTION", "output must not be the same file as the input Markdown.");
+  }
 
   const document = convertMarkdown(
     markdown,
@@ -41,8 +45,7 @@ export async function convertMarkdownFile(
     fileOptions.index
   );
 
-  const outputPath = fileOptions.output ?? defaultOutputPath(inputPath);
-  if (fileOptions.index && outputPath === join(dirname(outputPath), "index.html")) {
+  if (fileOptions.index && basename(resolve(outputPath)) === "index.html") {
     throw new Md2HtmlError(
       "INVALID_OPTION",
       "output must not be index.html when index is enabled; the index page would overwrite the converted HTML."
