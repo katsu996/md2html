@@ -1,7 +1,6 @@
-import { realpath } from "node:fs/promises";
-import { basename, dirname, join, resolve } from "node:path";
+import { resolve } from "node:path";
 
-import { defaultOutputPath } from "../utils/paths.js";
+import { defaultOutputPath, pathsReferToSameFile } from "../utils/paths.js";
 import type { EffectiveCliRunArguments } from "./config.js";
 import { CliUsageError } from "./errors.js";
 
@@ -76,45 +75,4 @@ function determineOutputPath(
     return undefined;
   }
   return defaultOutputPath(inputPath);
-}
-
-async function pathsReferToSameFile(first: string, second: string): Promise<boolean> {
-  if (first === second) {
-    return true;
-  }
-  const [firstCanonical, secondCanonical] = await Promise.all([
-    canonicalPath(first),
-    canonicalPath(second)
-  ]);
-  return firstCanonical === secondCanonical;
-}
-
-async function canonicalPath(path: string): Promise<string> {
-  let current = path;
-  const missingSegments: string[] = [];
-
-  for (;;) {
-    try {
-      const resolved = await realpath(current);
-      return join(resolved, ...missingSegments);
-    } catch (error) {
-      if (!isMissingPathError(error)) {
-        return path;
-      }
-      const parent = dirname(current);
-      if (parent === current) {
-        return path;
-      }
-      missingSegments.unshift(basename(current));
-      current = parent;
-    }
-  }
-}
-
-function isMissingPathError(error: unknown): boolean {
-  return isNodeErrorWithCode(error, "ENOENT") || isNodeErrorWithCode(error, "ENOTDIR");
-}
-
-function isNodeErrorWithCode(error: unknown, code: string): error is NodeJS.ErrnoException {
-  return typeof error === "object" && error !== null && "code" in error && error.code === code;
 }
