@@ -5,7 +5,7 @@ import {
   stderr as processStderr,
   stdout as processStdout
 } from "node:process";
-import { dirname, join } from "node:path";
+import { basename, dirname, resolve } from "node:path";
 
 import { convertMarkdown } from "../core/convert.js";
 import { Md2HtmlError } from "../core/errors.js";
@@ -57,7 +57,7 @@ export async function runCli(
       throw new CliUsageError("--index cannot be used with --stdout.");
     }
     if (effective.index && plan.outputPath !== undefined
-      && plan.outputPath === join(dirname(plan.outputPath), "index.html")) {
+      && basename(resolve(plan.outputPath)) === "index.html") {
       throw new CliUsageError("--output cannot be index.html when --index is enabled; the index page would overwrite the converted HTML.");
     }
     const markdown = plan.stdin

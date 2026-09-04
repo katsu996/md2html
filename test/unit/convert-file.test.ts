@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -47,6 +47,20 @@ describe("convertMarkdownFile", () => {
     const result = await convertMarkdownFile(input, { output, force: true });
     expect(result.outputPath).toBe(output);
     expect(await readFile(output, "utf8")).toContain("<h1>Input</h1>");
+  });
+
+  it("rejects an output that refers to the same file as the input, even with force", async () => {
+    const directory = await temporaryDirectory();
+    const input = join(directory, "input.md");
+    await writeFile(input, "# Input", "utf8");
+    const alias = join(directory, "alias.md");
+    await symlink(input, alias);
+
+    await expect(convertMarkdownFile(input, { output: input, force: true }))
+      .rejects.toMatchObject({ code: "INVALID_OPTION" });
+    await expect(convertMarkdownFile(input, { output: alias, force: true }))
+      .rejects.toMatchObject({ code: "INVALID_OPTION" });
+    expect(await readFile(input, "utf8")).toBe("# Input");
   });
 
   it("rejects an output that the index generation would overwrite", async () => {
