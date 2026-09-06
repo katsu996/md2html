@@ -165,6 +165,19 @@ body {
   color: var(--md2html-muted);
 }
 
+.md2html .md2html-footnotes {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--md2html-border);
+  color: var(--md2html-muted);
+  font-size: 0.875rem;
+}
+
+.md2html .md2html-footnote-ref a,
+.md2html .md2html-footnote-backref {
+  text-decoration: none;
+}
+
 .md2html small,
 .md2html figcaption {
   color: var(--md2html-muted);
@@ -688,18 +701,31 @@ second line
   <dd>クッキー&amp;クリーム</dd>
   <dt>リッツ</dt>
   <dd>プレーンクラッカー</dd>
-</dl><h2>md2htmlで対応していない記法（参考）</h2>
+</dl><h2>注釈・脚注</h2>
+<p>本文本文本文<sup class="md2html-footnote-ref" id="fnref-1"><a href="#fn-1" aria-describedby="fn-1">[1]</a></sup>。同じ脚注への複数参照<sup class="md2html-footnote-ref" id="fnref-1-2"><a href="#fn-1" aria-describedby="fn-1">[1]</a></sup>もできます<sup class="md2html-footnote-ref" id="fnref-2"><a href="#fn-2" aria-describedby="fn-2">[2]</a></sup>。</p>
+<pre><code>続きの行（4スペースインデント）も脚注に含まれます。
+</code></pre>
+<p>脚注番号は最初の参照順に付与され、未参照の定義は出力されません。
+ラベル文字列はHTMLに出力されません（セキュリティ上の理由）。</p>
+<h2>md2htmlで対応していない記法（参考）</h2>
 <p>以下はQiita・DocBase・GitHubで使われることがある記法ですが、
 md2htmlの現在のパーサー（marked）では専用のHTMLに変換されません。
 サンプルとして記載しますが、出力HTMLでの表示崩れを確認するためのものです。</p>
-<h3>注釈・脚注（未対応）</h3>
-<p>本文本文本文<a href="注釈テキスト注釈テキスト注釈テキスト">^注釈</a>。</p>
-<p>上記は脚注として変換されず、テキストとして出力されます。</p>
 <h3>下線・ハイライト（Markdown標準外）</h3>
 <p><code>&lt;u&gt;下線&lt;/u&gt;</code> や <code>&lt;mark&gt;ハイライト&lt;/mark&gt;</code> はMarkdown標準の記法ではなく、
 生HTMLでのみ表現できます（<code>--allow-html</code> が必要です）。</p>
 <h3>数式・図（未対応）</h3>
 <p>LaTeX数式（<code>$x^2$</code>）、Mermaid、PlantUMLなどの埋め込みには対応していません。</p>
+<section class="md2html-footnotes" data-footnotes aria-label="脚注">
+<ol>
+<li id="fn-1">
+<p>注釈テキスト注釈テキスト注釈テキスト <a class="md2html-footnote-backref" href="#fnref-1" aria-label="脚注1の参照へ戻る">↩</a></p>
+</li>
+<li id="fn-2">
+<p><strong>太字</strong>や<code>コード</code>、<a href="https://qiita.com">リンク</a>を含む脚注です。 <a class="md2html-footnote-backref" href="#fnref-2" aria-label="脚注2の参照へ戻る">↩</a></p>
+</li>
+</ol>
+</section>
   </article>
   <script id="md2html-theme-script">
 (() => {
