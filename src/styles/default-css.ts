@@ -167,6 +167,19 @@ body {
   color: var(--md2html-muted);
 }
 
+.md2html .md2html-footnotes {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--md2html-border);
+  color: var(--md2html-muted);
+  font-size: 0.875rem;
+}
+
+.md2html .md2html-footnote-ref a,
+.md2html .md2html-footnote-backref {
+  text-decoration: none;
+}
+
 .md2html small,
 .md2html figcaption {
   color: var(--md2html-muted);

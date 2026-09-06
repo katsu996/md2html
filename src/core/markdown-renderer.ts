@@ -1,5 +1,6 @@
 import { Marked, type Token, type Tokens } from "marked";
 
+import { createFootnoteExtension } from "./footnote.js";
 import { escapeHtmlAttribute, escapeHtmlText } from "../utils/escape.js";
 import { isAllowedImageUrl, isAllowedLinkUrl } from "../utils/url.js";
 import type { NormalizedConvertOptions } from "./types.js";
@@ -60,13 +61,16 @@ export function renderMarkdown(
   renderer.checkbox = ({ checked }: Tokens.Checkbox): string =>
     `<input ${checked ? "checked " : ""}disabled type="checkbox">`;
 
+  const footnote = createFootnoteExtension();
   const parser = new Marked<string, string>({
     async: false,
     gfm: options.gfm,
     breaks: options.breaks,
-    renderer
+    renderer,
+    extensions: footnote.extensions
   });
   const tokens = parser.lexer(markdown);
+  footnote.finalizeTokens(tokens);
   const titleCandidate = tokens
     .filter((token): token is Tokens.Heading => token.type === "heading" && token.depth === 1)
     .map((heading) => plainTextFromTokens(heading.tokens).replace(/[*_~`]/gu, "").trim())

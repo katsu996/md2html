@@ -93,6 +93,12 @@ describe("DEFAULT_CSS", () => {
     expect(DEFAULT_CSS).toContain("box-shadow: var(--md2html-article-shadow)");
   });
 
+  it("styles footnotes with theme variables", () => {
+    expect(DEFAULT_CSS).toContain(".md2html .md2html-footnotes {");
+    expect(DEFAULT_CSS).toContain(".md2html .md2html-footnote-ref a,");
+    expect(DEFAULT_CSS).toContain(".md2html .md2html-footnote-backref {");
+  });
+
   it("styles titled code blocks with theme variables", () => {
     expect(DEFAULT_CSS).toContain(".md2html .md2html-code-block {");
     expect(DEFAULT_CSS).toContain(".md2html .md2html-code-block figcaption {");
