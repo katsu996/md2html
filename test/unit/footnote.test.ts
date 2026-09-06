@@ -55,6 +55,18 @@ describe("Footnotes", () => {
     expect(html).toContain('<li id="fn-1">');
   });
 
+  it("keeps the first definition when the same label is defined twice", () => {
+    const html = renderMarkdown("本文[^d]\n\n[^d]: 一番目\n\n[^d]: 二番目\n", safeOptions).bodyHtml;
+    expect(html).toContain("一番目");
+    expect(html).not.toContain("二番目");
+  });
+
+  it("renders a definition without body text", () => {
+    const html = renderMarkdown("本文[^e]\n\n[^e]:\n", safeOptions).bodyHtml;
+    expect(html).toContain('<li id="fn-1">');
+    expect(html).toContain('href="#fnref-1"');
+  });
+
   it("renders inline markdown inside footnote content", () => {
     const html = renderMarkdown("本文[^n]\n\n[^n]: **太字**と`コード`\n", safeOptions).bodyHtml;
     expect(html).toContain("<strong>太字</strong>");

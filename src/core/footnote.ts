@@ -34,9 +34,9 @@ export function createFootnoteExtension(): FootnoteExtension {
       if (match === null) {
         return undefined;
       }
-      const label = match[1] ?? "";
-      const continuation = (match[3] ?? "").replace(/^(?: {4}|\t)/gmu, "");
-      const body = `${match[2] ?? ""}${continuation === "" ? "" : `\n${continuation}`}`.trim();
+      const label = match[1]!;
+      const continuation = match[3]!.replace(/^(?: {4}|\t)/gmu, "");
+      const body = `${match[2]!}${continuation === "" ? "" : `\n${continuation}`}`.trim();
       let definition = state.definitions.get(label);
       if (definition === undefined) {
         definition = { content: [], label, number: undefined, refs: 0 };
@@ -58,7 +58,7 @@ export function createFootnoteExtension(): FootnoteExtension {
       if (match === null) {
         return undefined;
       }
-      const definition = state.definitions.get(match[1] ?? "");
+      const definition = state.definitions.get(match[1]!);
       if (definition === undefined) {
         return undefined;
       }
@@ -81,10 +81,10 @@ export function createFootnoteExtension(): FootnoteExtension {
   const sectionRenderer: TokenizerAndRendererExtension<string, string> = {
     name: "footnotes",
     renderer(this, token: Tokens.Generic): string {
-      const items = token.items as FootnoteDefinitionRecord[];
+      const items = token.items as (FootnoteDefinitionRecord & { number: number })[];
       const listItems = items
         .map((item) => {
-          const number = item.number ?? 0;
+          const number = item.number;
           const content = this.parser.parse(item.content).trimEnd();
           const backref =
             ` <a class="md2html-footnote-backref" href="#fnref-${number}" aria-label="脚注${number}の参照へ戻る">↩</a>`;
