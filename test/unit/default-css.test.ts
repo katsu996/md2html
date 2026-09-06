@@ -93,6 +93,12 @@ describe("DEFAULT_CSS", () => {
     expect(DEFAULT_CSS).toContain("box-shadow: var(--md2html-article-shadow)");
   });
 
+  it("styles titled code blocks with theme variables", () => {
+    expect(DEFAULT_CSS).toContain(".md2html .md2html-code-block {");
+    expect(DEFAULT_CSS).toContain(".md2html .md2html-code-block figcaption {");
+    expect(DEFAULT_CSS).toContain(".md2html .md2html-code-block pre {");
+  });
+
   it("styles the theme toggle button with a fixed 44px hit area and safe areas", () => {
     expect(DEFAULT_CSS).toContain(".md2html-theme-toggle");
     expect(DEFAULT_CSS).toContain("position: fixed");

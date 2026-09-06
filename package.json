@@ -38,6 +38,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "coverage:summary": "node scripts/coverage-summary.mjs",
+    "sample": "pnpm run build && node ./dist/bin/md2html.js examples/markdown-sample.md --force --lang ja --title \"Markdown記法サンプル\" && node ./dist/bin/md2html.js examples/markdown-sample.md -o examples/markdown-sample.allow-html.html --force --allow-html --lang ja --title \"Markdown記法サンプル（allow-html）\" && echo 'Generated: examples/markdown-sample.html / examples/markdown-sample.allow-html.html'",
+    "sample:stdout": "pnpm run build && node ./dist/bin/md2html.js examples/markdown-sample.md --stdout --lang ja --title \"Markdown記法サンプル\"",
     "lint": "eslint .",
     "prepack": "pnpm run typecheck && pnpm test && pnpm run build"
   },

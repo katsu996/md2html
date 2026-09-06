@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="ja" data-md2html-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Markdown記法サンプル</title>
+  <style id="md2html-default-css">
+:root {
+  color-scheme: light;
+  --md2html-canvas: #f6f5f4;
+  --md2html-surface: #ffffff;
+  --md2html-ink: #000000;
+  --md2html-text: #31302e;
+  --md2html-muted: #615d59;
+  --md2html-border: #e6e6e6;
+  --md2html-accent: #0075de;
+  --md2html-focus: #62aef0;
+  --md2html-code-surface: #f6f5f4;
+  --md2html-control-surface: #ffffff;
+  --md2html-control-hover: #eeecea;
+  --md2html-control-text: #31302e;
+  --md2html-article-shadow: 0 0.175px 1.041px rgba(0, 0, 0, 0.01), 0 0.8px 2.925px rgba(0, 0, 0, 0.02), 0 2.025px 7.847px rgba(0, 0, 0, 0.027), 0 4px 18px rgba(0, 0, 0, 0.04);
+  --md2html-control-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+html[data-md2html-theme="dark"] {
+  color-scheme: dark;
+  --md2html-canvas: #171717;
+  --md2html-surface: #202020;
+  --md2html-ink: #f5f5f5;
+  --md2html-text: #dedbd7;
+  --md2html-muted: #aaa6a1;
+  --md2html-border: #3b3a38;
+  --md2html-accent: #62aef0;
+  --md2html-focus: #62aef0;
+  --md2html-code-surface: #292827;
+  --md2html-control-surface: #292827;
+  --md2html-control-hover: #343331;
+  --md2html-control-text: #f5f5f5;
+  --md2html-article-shadow: 0 0.175px 1.041px rgba(0, 0, 0, 0.08), 0 0.8px 2.925px rgba(0, 0, 0, 0.12), 0 2.025px 7.847px rgba(0, 0, 0, 0.16), 0 4px 18px rgba(0, 0, 0, 0.24);
+  --md2html-control-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-md2html-theme="auto"] {
+    color-scheme: dark;
+    --md2html-canvas: #171717;
+    --md2html-surface: #202020;
+    --md2html-ink: #f5f5f5;
+    --md2html-text: #dedbd7;
+    --md2html-muted: #aaa6a1;
+    --md2html-border: #3b3a38;
+    --md2html-accent: #62aef0;
+    --md2html-focus: #62aef0;
+    --md2html-code-surface: #292827;
+    --md2html-control-surface: #292827;
+    --md2html-control-hover: #343331;
+    --md2html-control-text: #f5f5f5;
+    --md2html-article-shadow: 0 0.175px 1.041px rgba(0, 0, 0, 0.08), 0 0.8px 2.925px rgba(0, 0, 0, 0.12), 0 2.025px 7.847px rgba(0, 0, 0, 0.16), 0 4px 18px rgba(0, 0, 0, 0.24);
+    --md2html-control-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+}
+
+html {
+  background: var(--md2html-canvas);
+  color: var(--md2html-ink);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-feature-settings: "lnum", "locl";
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: calc(80px + env(safe-area-inset-top, 0px)) 24px 32px;
+  background: var(--md2html-canvas);
+  color: var(--md2html-text);
+  font-size: 16px;
+}
+
+.md2html,
+.md2html * {
+  box-sizing: border-box;
+}
+
+.md2html {
+  width: min(100%, 800px);
+  margin: 0 auto;
+  padding: 32px;
+  overflow-wrap: anywhere;
+  background: var(--md2html-surface);
+  border: 1px solid var(--md2html-border);
+  border-radius: 12px;
+  box-shadow: var(--md2html-article-shadow);
+}
+
+.md2html > :first-child {
+  margin-top: 0;
+}
+
+.md2html > :last-child {
+  margin-bottom: 0;
+}
+
+.md2html h1,
+.md2html h2,
+.md2html h3,
+.md2html h4,
+.md2html h5,
+.md2html h6 {
+  margin: 32px 0 16px;
+  color: var(--md2html-ink);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.md2html h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.md2html h2 {
+  font-size: clamp(1.5rem, 4vw, 1.625rem);
+  line-height: 1.23;
+  letter-spacing: -0.024em;
+}
+
+.md2html h3 {
+  font-size: clamp(1.25rem, 3vw, 1.375rem);
+  line-height: 1.27;
+  letter-spacing: -0.012em;
+}
+
+.md2html h4,
+.md2html h5,
+.md2html h6 {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.md2html p,
+.md2html ul,
+.md2html ol,
+.md2html blockquote,
+.md2html pre,
+.md2html figure,
+.md2html hr,
+.md2html .md2html-table-wrap {
+  margin: 16px 0;
+}
+
+.md2html strong {
+  color: var(--md2html-ink);
+  font-weight: 700;
+}
+
+.md2html em {
+  font-style: italic;
+}
+
+.md2html del {
+  color: var(--md2html-muted);
+}
+
+.md2html small,
+.md2html figcaption {
+  color: var(--md2html-muted);
+  font-size: 0.875rem;
+}
+
+.md2html a {
+  color: var(--md2html-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.md2html a:focus-visible {
+  outline: 3px solid var(--md2html-focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.md2html ul,
+.md2html ol {
+  padding-left: 1.5rem;
+}
+
+.md2html li + li {
+  margin-top: 8px;
+}
+
+.md2html input[type="checkbox"] {
+  margin: 0 0.45em 0 0;
+  accent-color: var(--md2html-accent);
+  vertical-align: middle;
+}
+
+.md2html blockquote {
+  margin-left: 0;
+  padding: 4px 0 4px 16px;
+  color: var(--md2html-muted);
+  border-left: 4px solid var(--md2html-accent);
+}
+
+.md2html code {
+  padding: 0.1em 0.35em;
+  color: var(--md2html-ink);
+  background: var(--md2html-code-surface);
+  border: 1px solid var(--md2html-border);
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}
+
+.md2html pre {
+  max-width: 100%;
+  padding: 16px;
+  overflow-x: auto;
+  color: var(--md2html-ink);
+  background: var(--md2html-code-surface);
+  border: 1px solid var(--md2html-border);
+  border-radius: 12px;
+}
+
+.md2html pre > code {
+  display: block;
+  min-width: max-content;
+  padding: 0;
+  overflow-wrap: normal;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.md2html .md2html-code-block {
+  overflow-x: auto;
+  background: var(--md2html-code-surface);
+  border: 1px solid var(--md2html-border);
+  border-radius: 12px;
+}
+
+.md2html .md2html-code-block figcaption {
+  margin-top: 0;
+  padding: 8px 16px;
+  color: var(--md2html-text);
+  font-weight: 600;
+  border-bottom: 1px solid var(--md2html-border);
+  overflow-wrap: break-word;
+}
+
+.md2html .md2html-code-block pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.md2html .md2html-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--md2html-border);
+  border-radius: 12px;
+}
+
+.md2html table {
+  width: 100%;
+  min-width: max-content;
+  border-collapse: collapse;
+}
+
+.md2html th,
+.md2html td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--md2html-border);
+}
+
+.md2html thead th,
+.md2html th {
+  color: var(--md2html-ink);
+  background: var(--md2html-code-surface);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.md2html tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.md2html img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 16px 0;
+  border: 1px solid var(--md2html-border);
+  border-radius: 12px;
+}
+
+.md2html figure {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.md2html figcaption {
+  margin-top: 8px;
+}
+
+.md2html hr {
+  height: 1px;
+  border: 0;
+  background: var(--md2html-border);
+}
+
+.md2html-theme-toggle {
+  position: fixed;
+  top: calc(16px + env(safe-area-inset-top, 0px));
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--md2html-border);
+  border-radius: 50%;
+  background: var(--md2html-control-surface);
+  color: var(--md2html-control-text);
+  box-shadow: var(--md2html-control-shadow);
+  cursor: pointer;
+}
+
+.md2html-theme-toggle:hover,
+.md2html-theme-toggle:active {
+  background: var(--md2html-control-hover);
+}
+
+.md2html-theme-toggle:focus-visible {
+  outline: 3px solid var(--md2html-focus);
+  outline-offset: 2px;
+}
+
+.md2html-theme-toggle svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.md2html-theme-toggle[hidden] {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: calc(72px + env(safe-area-inset-top, 0px)) 16px 16px;
+  }
+
+  .md2html {
+    padding: 24px 16px;
+    border-radius: 8px;
+  }
+
+  .md2html h1 {
+    font-size: 2rem;
+  }
+
+  .md2html h2 {
+    font-size: 1.5rem;
+  }
+
+  .md2html h3 {
+    font-size: 1.25rem;
+  }
+
+  .md2html th,
+  .md2html td {
+    padding: 8px 12px;
+  }
+
+  .md2html-theme-toggle {
+    top: calc(12px + env(safe-area-inset-top, 0px));
+    right: calc(12px + env(safe-area-inset-right, 0px));
+  }
+}
+
+.md2html-index-back {
+  margin: 0 0 16px;
+}
+
+.md2html-index {
+  margin: 16px 0;
+  padding-left: 28px;
+}
+
+.md2html-index time {
+  display: block;
+  color: var(--md2html-muted, #615d59);
+  font-size: 0.875em;
+}
+
+.md2html-index-empty {
+  color: var(--md2html-muted, #615d59);
+}
+
+@media print {
+  html[data-md2html-theme] {
+    color-scheme: light;
+    --md2html-canvas: #f6f5f4;
+    --md2html-surface: #ffffff;
+    --md2html-ink: #000000;
+    --md2html-text: #31302e;
+    --md2html-muted: #615d59;
+    --md2html-border: #e6e6e6;
+    --md2html-accent: #0075de;
+    --md2html-focus: #62aef0;
+    --md2html-code-surface: #f6f5f4;
+    --md2html-control-surface: #ffffff;
+    --md2html-control-hover: #eeecea;
+    --md2html-control-text: #31302e;
+    --md2html-article-shadow: 0 0.175px 1.041px rgba(0, 0, 0, 0.01), 0 0.8px 2.925px rgba(0, 0, 0, 0.02), 0 2.025px 7.847px rgba(0, 0, 0, 0.027), 0 4px 18px rgba(0, 0, 0, 0.04);
+    --md2html-control-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  html,
+  body {
+    background: #ffffff;
+  }
+
+  body {
+    padding: 0;
+  }
+
+  .md2html {
+    width: auto;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .md2html a {
+    color: #000000;
+  }
+
+  .md2html pre,
+  .md2html .md2html-table-wrap {
+    overflow: visible;
+  }
+
+  .md2html-theme-toggle {
+    display: none;
+  }
+}
+
+.md2html-theme-toggle svg[hidden] {
+  display: none;
+}
+</style>
+</head>
+<body>
+  <button id="md2html-theme-toggle" class="md2html-theme-toggle" type="button" hidden aria-label="ダークモード" aria-pressed="false">
+    <svg data-md2html-theme-icon="light" aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+    </svg>
+    <svg data-md2html-theme-icon="dark" aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" hidden>
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+  <article class="md2html">
+<h1>Markdown記法サンプル</h1>
+<p>このファイルは md2html の動作確認用サンプルです。
+<a href="https://qiita.com/oreo/items/82183bfbaac69971917f">Qiita: Markdown記法一覧</a>と
+<a href="https://help.docbase.io/posts/13697">DocBase: Markdown記法と書き方</a>を参考に、
+md2html（marked + GFM）が正しくHTMLへ変換できる記法を網羅しています。</p>
+<p>動作確認:</p>
+<pre><code class="language-bash">pnpm run sample
+# → examples/markdown-sample.html（既定: 生HTMLをエスケープ）
+# → examples/markdown-sample.allow-html.html（--allow-html: 生HTMLを許可）
+# ブラウザで開いて表示を確認してください。
+</code></pre>
+<h2>見出し</h2>
+<h1>これはH1です（このファイルのH1はHTMLのtitleにも使われます）</h1>
+<h2>これはH2です</h2>
+<h3>これはH3です</h3>
+<h4>これはH4です</h4>
+<h5>これはH5です</h5>
+<h6>これはH6です</h6>
+<h2>段落と改行</h2>
+<p>これは1つ目の段落です。</p>
+<p>これは2つ目の段落です。段落の区切りには空行を使います。</p>
+<p>行末に2つの半角スペースを付けると、
+次の行で改行（<code>br</code>）になります。</p>
+<p>行末にバックスラッシュを付けると<br>次の行で改行（<code>br</code>）になります。</p>
+<h2>強調・斜体・太字</h2>
+<p><em>斜体（アスタリスク1つ）</em></p>
+<p><em>斜体（アンダースコア1つ）</em></p>
+<p><strong>太字（アスタリスク2つ）</strong></p>
+<p><strong>太字（アンダースコア2つ）</strong></p>
+<p><em><strong>太字かつ斜体（アスタリスク3つ）</strong></em></p>
+<p><em><strong>太字かつ斜体（アンダースコア3つ）</strong></em></p>
+<p>DocBaseの新エディター（CommonMark準拠）では、日本語をアンダースコアで囲むと
+装飾にならない場合があります。日本語の太字・斜体は <code>** **</code> と <code>* *</code> の使用が推奨されます。</p>
+<h2>打ち消し線（GFM）</h2>
+<p><del>打ち消し線</del></p>
+<h2>インラインコード</h2>
+<p><code>$hoge = 1</code> や <code>.md</code> のように、バッククォート1つで囲むとインラインコードになります。</p>
+<p>コード中のHTML特殊文字はエスケープされます: <code>&lt;div class=&quot;a&quot;&gt;</code> → そのまま表示されます。</p>
+<h2>リンク</h2>
+<p><a href="https://qiita.com">Qiita</a></p>
+<p><a href="https://qiita.com" title="Qiita">タイトル付きリンク</a></p>
+<p><a href="https://qiita.com">https://qiita.com</a> のように <code>&lt; &gt;</code> で囲むと自動リンクになります。</p>
+<p><a href="https://qiita.com">https://qiita.com</a> のようにURLをそのまま書いても自動リンクになります（GFM）。</p>
+<p><a href="https://qiita.com" title="参照定義のタイトル">参照型リンク</a>も使えます。</p>
+<p><a href="#見出し">ページ内リンク</a>や<a href="./other.md">相対リンク</a>、<a href="mailto:example@example.com">メールリンク</a>も使えます。</p>
+<h2>画像</h2>
+<p><img src="https://via.placeholder.com/150" alt="ダミー画像"></p>
+<p><img src="https://via.placeholder.com/150" alt="タイトル付き画像" title="ダミー画像"></p>
+<h2>引用</h2>
+<blockquote>
+<p>引用引用引用引用
+引用引用</p>
+</blockquote>
+<p>複数段落の引用:</p>
+<blockquote>
+<p>引用の1段落目です。</p>
+<p>引用の2段落目です。</p>
+</blockquote>
+<p>入れ子の引用:</p>
+<blockquote>
+<p>引用本文引用本文</p>
+<blockquote>
+<p>入れ子の引用</p>
+</blockquote>
+</blockquote>
+<p>引用の中に他の記法も使えます:</p>
+<blockquote>
+<p><strong>太字</strong> や <code>コード</code>、<a href="https://qiita.com">リンク</a> を含む引用</p>
+</blockquote>
+<h2>リスト</h2>
+<h3>順序なしリスト</h3>
+<ul>
+<li>リスト1（ハイフン）<ul>
+<li>リスト1-1（入れ子）<ul>
+<li>リスト1-1-1（さらに深い入れ子）</li>
+</ul>
+</li>
+<li>リスト1-2</li>
+</ul>
+</li>
+<li>リスト2</li>
+</ul>
+<ul>
+<li>リスト（アスタリスク）</li>
+<li>リスト</li>
+</ul>
+<ul>
+<li>リスト（プラス）</li>
+<li>リスト</li>
+</ul>
+<p>通常のテキストとリストの間には空行を入れてください（DocBase旧エディター互換のため）。</p>
+<h3>順序付きリスト</h3>
+<ol>
+<li>リスト1<ol>
+<li>リスト1-1</li>
+<li>リスト1-2</li>
+</ol>
+</li>
+<li>リスト2</li>
+<li>リスト3</li>
+</ol>
+<p>開始番号は維持されます:</p>
+<ol start="3">
+<li>3番目から開始</li>
+<li>4番目</li>
+</ol>
+<h3>タスクリスト（GFM）</h3>
+<ul>
+<li><input disabled type="checkbox">未完了のタスク</li>
+<li><input checked disabled type="checkbox">完了したタスク</li>
+<li><input disabled type="checkbox">未完了（半角スペース1つ）<ul>
+<li><input checked disabled type="checkbox">入れ子の完了タスク</li>
+</ul>
+</li>
+</ul>
+<h2>水平線</h2>
+<p>3つ以上のハイフン、アスタリスク、アンダースコアで水平線になります。</p>
+<hr>
+<hr>
+<hr>
+<h2>テーブル（GFM）</h2>
+<div class="md2html-table-wrap"><table>
+<thead>
+<tr>
+<th align="left">Left align</th>
+<th align="right">Right align</th>
+<th align="center">Center align</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">This</td>
+<td align="right">This</td>
+<td align="center">This</td>
+</tr>
+<tr>
+<td align="left">column</td>
+<td align="right">column</td>
+<td align="center">column</td>
+</tr>
+<tr>
+<td align="left">will</td>
+<td align="right">will</td>
+<td align="center">will</td>
+</tr>
+<tr>
+<td align="left">be</td>
+<td align="right">be</td>
+<td align="center">be</td>
+</tr>
+<tr>
+<td align="left">left</td>
+<td align="right">right</td>
+<td align="center">center</td>
+</tr>
+<tr>
+<td align="left">aligned</td>
+<td align="right">aligned</td>
+<td align="center">aligned</td>
+</tr>
+</tbody></table>
+</div><p>コロンの位置で配置を指定します。<code>:---</code> が左寄せ、<code>---:</code> が右寄せ、<code>:---:</code> が中央寄せです。</p>
+<p>セル内では <code>コード</code> や <strong>太字</strong>、<a href="https://qiita.com">リンク</a> も使えます。</p>
+<div class="md2html-table-wrap"><table>
+<thead>
+<tr>
+<th align="left">記法</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>**太字**</code></td>
+<td align="left"><strong>太字</strong>になります</td>
+</tr>
+<tr>
+<td align="left"><code>*斜体*</code></td>
+<td align="left"><em>斜体</em>になります</td>
+</tr>
+<tr>
+<td align="left"><code>~~取消線~~</code></td>
+<td align="left"><del>取消線</del>になります</td>
+</tr>
+</tbody></table>
+</div><p>各行のパイプ記号の数は揃えてください（DocBase新エディターでは列数が合わないと正しく表示されません）。</p>
+<h2>コードブロック</h2>
+<pre><code class="language-js">const answer = 42;
+console.log(`answer: ${answer}`);
+</code></pre>
+<pre><code class="language-html">&lt;div class=&quot;radioWave&quot;&gt;
+  &lt;p&gt;迷いの中あてなく見上げた空彩る星たちが&lt;/p&gt;
+  &lt;p&gt;嘘みたいに晴れた朝に繋がることを教えてくれた&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-bash">pnpm run sample
+</code></pre>
+<p>タイトル付きコードブロック（Qiita式の <code>言語:タイトル</code> 形式。タイトルバー付きで描画されます）:</p>
+<figure class="md2html-code-block"><figcaption>sample.html</figcaption><pre><code class="language-html">&lt;div class="radioWave"&gt;
+  &lt;p&gt;タイトル付きコードブロック&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></figure><p>言語指定なしのコードブロック:</p>
+<pre><code>plain text code block
+second line
+</code></pre>
+<h2>バックスラッシュによるエスケープ</h2>
+<p>*アスタリスク* のようにバックスラッシュを付けると、記法として解釈されずそのまま表示されます。</p>
+<p>`バッククォート` や #見出し、~チルダ~ も同様です。</p>
+<h2>生HTML（既定ではエスケープされます）</h2>
+<p>md2htmlは既定でMarkdown中の生HTMLをエスケープします。
+次の定義リストは既定の出力ではタグがそのまま表示され、
+<code>--allow-html</code> 付きの出力でのみ定義リストとして描画されます。</p>
+&lt;dl&gt;
+  &lt;dt&gt;オレオ&lt;/dt&gt;
+  &lt;dd&gt;クッキー&amp;amp;クリーム&lt;/dd&gt;
+  &lt;dt&gt;リッツ&lt;/dt&gt;
+  &lt;dd&gt;プレーンクラッカー&lt;/dd&gt;
+&lt;/dl&gt;<h2>md2htmlで対応していない記法（参考）</h2>
+<p>以下はQiita・DocBase・GitHubで使われることがある記法ですが、
+md2htmlの現在のパーサー（marked）では専用のHTMLに変換されません。
+サンプルとして記載しますが、出力HTMLでの表示崩れを確認するためのものです。</p>
+<h3>注釈・脚注（未対応）</h3>
+<p>本文本文本文<a href="注釈テキスト注釈テキスト注釈テキスト">^注釈</a>。</p>
+<p>上記は脚注として変換されず、テキストとして出力されます。</p>
+<h3>下線・ハイライト（Markdown標準外）</h3>
+<p><code>&lt;u&gt;下線&lt;/u&gt;</code> や <code>&lt;mark&gt;ハイライト&lt;/mark&gt;</code> はMarkdown標準の記法ではなく、
+生HTMLでのみ表現できます（<code>--allow-html</code> が必要です）。</p>
+<h3>数式・図（未対応）</h3>
+<p>LaTeX数式（<code>$x^2$</code>）、Mermaid、PlantUMLなどの埋め込みには対応していません。</p>
+  </article>
+  <script id="md2html-theme-script">
+(() => {
+  const root = document.documentElement;
+  const button = document.getElementById("md2html-theme-toggle");
+  if (!root || !button) return;
+  const lightIcon = button.querySelector('[data-md2html-theme-icon="light"]');
+  const darkIcon = button.querySelector('[data-md2html-theme-icon="dark"]');
+  if (!lightIcon || !darkIcon) return;
+  let media = null;
+  if (typeof window.matchMedia === "function") {
+    media = window.matchMedia("(prefers-color-scheme: dark)");
+  }
+  const mode = () => {
+    const value = root.dataset.md2htmlTheme;
+    return value === "light" || value === "dark" ? value : "auto";
+  };
+  const systemDark = () => !!media && media.matches === true;
+  const effectiveDark = () => {
+    const current = mode();
+    if (current === "dark") return true;
+    if (current === "light") return false;
+    return systemDark();
+  };
+  const sync = () => {
+    const dark = effectiveDark();
+    button.setAttribute("aria-pressed", dark ? "true" : "false");
+    button.title = dark ? "ライトモードに切り替える" : "ダークモードに切り替える";
+    lightIcon.toggleAttribute("hidden", dark);
+    darkIcon.toggleAttribute("hidden", !dark);
+  };
+  button.addEventListener("click", () => {
+    root.dataset.md2htmlTheme = effectiveDark() ? "light" : "dark";
+    sync();
+  });
+  if (media && typeof media.addEventListener === "function") {
+    media.addEventListener("change", () => {
+      if (mode() === "auto") sync();
+    });
+  }
+  sync();
+  button.hidden = false;
+})();
+  </script>
+</body>
+</html>
