@@ -2,7 +2,7 @@ import { marked } from "marked";
 import { describe, expect, it } from "vitest";
 
 import { convertMdToHtml } from "../../src/index.js";
-import { plainTextFromTokens, renderMarkdown } from "../../src/core/markdown-renderer.js";
+import { parseCodeInfo, plainTextFromTokens, renderMarkdown } from "../../src/core/markdown-renderer.js";
 import { isAllowedImageUrl, isAllowedLinkUrl } from "../../src/utils/url.js";
 
 const safeOptions = { rawHtml: "escape" as const, gfm: true, breaks: false };
@@ -90,6 +90,55 @@ const answer = 42;
       { type: "text", raw: "Two", text: "Two" },
       { type: "custom", raw: "ignored" }
     ])).toBe("One Two");
+  });
+});
+
+describe("Code block titles", () => {
+  it("renders a lang:title fence as a titled figure", () => {
+    const html = renderMarkdown("```html:sample\n<div>a</div>\n```", safeOptions).bodyHtml;
+    expect(html).toContain(
+      '<figure class="md2html-code-block"><figcaption>sample</figcaption>' +
+      '<pre><code class="language-html">'
+    );
+    expect(html).toContain("&lt;div&gt;a&lt;/div&gt;");
+    expect(html).not.toContain("language-html:sample");
+  });
+
+  it("keeps untitled fences on the default rendering", () => {
+    const html = renderMarkdown("```js\nconst a = 1;\n```\n\n```\nplain\n```", safeOptions).bodyHtml;
+    expect(html).toContain('<pre><code class="language-js">');
+    expect(html).toContain("<pre><code>plain");
+    expect(html).not.toContain("md2html-code-block");
+  });
+
+  it("falls back to the default rendering when the title is empty", () => {
+    const html = renderMarkdown("```js:\nconst a = 1;\n```", safeOptions).bodyHtml;
+    expect(html).toContain("<pre><code");
+    expect(html).not.toContain("md2html-code-block");
+  });
+
+  it("renders a title without a language and keeps extra colons in the title", () => {
+    const titledOnly = renderMarkdown("```:sample\nx\n```", safeOptions).bodyHtml;
+    expect(titledOnly).toContain('<figcaption>sample</figcaption><pre><code>');
+    const multiColon = renderMarkdown("```js:a:b\nx\n```", safeOptions).bodyHtml;
+    expect(multiColon).toContain('<figcaption>a:b</figcaption><pre><code class="language-js">');
+  });
+
+  it("escapes HTML in titles and code content", () => {
+    const html = renderMarkdown('```js:<script>alert(1)</script>\n<b>bold</b> & "quotes"\n```', safeOptions).bodyHtml;
+    expect(html).toContain("<figcaption>&lt;script&gt;alert(1)&lt;/script&gt;</figcaption>");
+    expect(html).toContain("&lt;b&gt;bold&lt;/b&gt; &amp;");
+    expect(html).not.toContain("<script>");
+  });
+
+  it("parses code info strings", () => {
+    expect(parseCodeInfo(undefined)).toBeUndefined();
+    expect(parseCodeInfo("js")).toBeUndefined();
+    expect(parseCodeInfo("js:")).toBeUndefined();
+    expect(parseCodeInfo("js:   ")).toBeUndefined();
+    expect(parseCodeInfo("html:sample")).toEqual({ language: "html", title: "sample" });
+    expect(parseCodeInfo(":sample")).toEqual({ language: "", title: "sample" });
+    expect(parseCodeInfo("js:a:b")).toEqual({ language: "js", title: "a:b" });
   });
 });
 

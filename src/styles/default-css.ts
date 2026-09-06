@@ -239,6 +239,28 @@ body {
   border-radius: 0;
 }
 
+.md2html .md2html-code-block {
+  overflow-x: auto;
+  background: var(--md2html-code-surface);
+  border: 1px solid var(--md2html-border);
+  border-radius: 12px;
+}
+
+.md2html .md2html-code-block figcaption {
+  margin-top: 0;
+  padding: 8px 16px;
+  color: var(--md2html-text);
+  font-weight: 600;
+  border-bottom: 1px solid var(--md2html-border);
+  overflow-wrap: break-word;
+}
+
+.md2html .md2html-code-block pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
 .md2html .md2html-table-wrap {
   max-width: 100%;
   overflow-x: auto;
