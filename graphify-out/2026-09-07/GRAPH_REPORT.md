@@ -1,7 +1,7 @@
 # Graph Report - md2html  (2026-09-07)
 
 ## Corpus Check
-- 55 files · ~29,307 words
+- 55 files · ~28,965 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c7486ccd`
+- Built from commit: `e7b7e3e8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
