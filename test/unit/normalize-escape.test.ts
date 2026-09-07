@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { Md2HtmlError } from "../../src/core/errors.js";
+import { Md2HtmlError } from "../../src/core/conversion/errors.js";
 import { normalizeConvertOptions, normalizeMarkdown } from "../../src/core/normalize.js";
 import {
   escapeHtmlAttribute,

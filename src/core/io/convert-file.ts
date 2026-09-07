@@ -1,18 +1,18 @@
 import { readFile } from "node:fs/promises";
 import { basename, dirname, resolve } from "node:path";
 
-import { writeFileAtomically } from "../utils/atomic-write.js";
-import { defaultOutputPath, inputBasenameWithoutExtension, pathsReferToSameFile } from "../utils/paths.js";
-import { convertMarkdown } from "./convert.js";
-import { Md2HtmlError } from "./errors.js";
+import { writeFileAtomically } from "../../utils/atomic-write.js";
+import { defaultOutputPath, inputBasenameWithoutExtension, pathsReferToSameFile } from "../../utils/paths.js";
+import { convertMarkdown } from "../conversion/convert.js";
+import { Md2HtmlError } from "../conversion/errors.js";
 import { generateIndex } from "./index-page.js";
-import { normalizeConvertOptions, validateOptionalBoolean, validateOptionalString } from "./normalize.js";
+import { normalizeConvertOptions, validateOptionalBoolean, validateOptionalString } from "../normalize.js";
 import type {
   ConvertMarkdownFileOptions,
   ConvertMarkdownFileResult,
   GenerateIndexResult,
   IndexPageOptions
-} from "./types.js";
+} from "../types.js";
 
 /**
  * Converts a Markdown file into an output HTML file and, when requested,

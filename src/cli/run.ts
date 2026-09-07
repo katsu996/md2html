@@ -7,9 +7,9 @@ import {
 } from "node:process";
 import { basename, dirname, resolve } from "node:path";
 
-import { convertMarkdown } from "../core/convert.js";
-import { Md2HtmlError } from "../core/errors.js";
-import { generateIndex } from "../core/index-page.js";
+import { convertMarkdown } from "../core/conversion/convert.js";
+import { Md2HtmlError } from "../core/conversion/errors.js";
+import { generateIndex } from "../core/io/index-page.js";
 import { writeFileAtomically as writeFileAtomicallyCommon, type AtomicWriteOperations, atomicWriteOperations } from "../utils/atomic-write.js";
 import { inputBasenameWithoutExtension } from "../utils/paths.js";
 import type { IndexPageOptions } from "../core/types.js";

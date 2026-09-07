@@ -4,8 +4,8 @@ const mockedRenderer = vi.hoisted(() => ({ renderMarkdown: vi.fn() }));
 
 vi.mock("../../src/core/markdown-renderer.js", () => mockedRenderer);
 
-import { convertMarkdown } from "../../src/core/convert.js";
-import { Md2HtmlError } from "../../src/core/errors.js";
+import { convertMarkdown } from "../../src/core/conversion/convert.js";
+import { Md2HtmlError } from "../../src/core/conversion/errors.js";
 
 const { renderMarkdown } = mockedRenderer;
 

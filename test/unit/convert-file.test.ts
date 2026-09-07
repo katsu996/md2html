@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { convertMarkdownFile } from "../../src/core/convert-file.js";
+import { convertMarkdownFile } from "../../src/core/io/convert-file.js";
 
 const tempDirectories: string[] = [];
 

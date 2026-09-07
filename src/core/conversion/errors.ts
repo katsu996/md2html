@@ -1,4 +1,4 @@
-import type { Md2HtmlErrorCode } from "./types.js";
+import type { Md2HtmlErrorCode } from "../types.js";
 
 /** Error type exposed by library operations. */
 export class Md2HtmlError extends Error {

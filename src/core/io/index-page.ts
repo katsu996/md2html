@@ -2,17 +2,17 @@ import type { Dirent } from "node:fs";
 import { readdir, realpath, stat } from "node:fs/promises";
 import { join } from "node:path";
 
-import { writeFileAtomically } from "../utils/atomic-write.js";
-import { escapeHtmlAttribute, escapeHtmlText } from "../utils/escape.js";
-import { HtmlDocument } from "./html-document.js";
-import { Md2HtmlError } from "./errors.js";
-import { normalizeIndexPageOptions } from "./normalize.js";
+import { writeFileAtomically } from "../../utils/atomic-write.js";
+import { escapeHtmlAttribute, escapeHtmlText } from "../../utils/escape.js";
+import { HtmlDocument } from "../html-document.js";
+import { Md2HtmlError } from "../conversion/errors.js";
+import { normalizeIndexPageOptions } from "../normalize.js";
 import type {
   GenerateIndexResult,
   IndexPageEntry,
   IndexPageOptions,
   NormalizedIndexPageOptions
-} from "./types.js";
+} from "../types.js";
 
 const INDEX_FILE_NAME = "index.html";
 const HTML_EXTENSION = /\.html$/iu;

@@ -1,4 +1,4 @@
-import { Md2HtmlError } from "./errors.js";
+import { Md2HtmlError } from "./conversion/errors.js";
 import type {
   ConvertOptions,
   NormalizedConvertOptions,

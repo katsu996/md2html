@@ -3,8 +3,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { buildIndexPageHtml, collectIndexEntries, generateIndex } from "../../src/core/index-page.js";
-import { Md2HtmlError } from "../../src/core/errors.js";
+import { buildIndexPageHtml, collectIndexEntries, generateIndex } from "../../src/core/io/index-page.js";
+import { Md2HtmlError } from "../../src/core/conversion/errors.js";
 import type { IndexPageEntry, NormalizedIndexPageOptions } from "../../src/core/types.js";
 
 const tempDirectories: string[] = [];

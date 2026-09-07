@@ -1,8 +1,8 @@
-import { HtmlDocument } from "./html-document.js";
+import { HtmlDocument } from "../html-document.js";
 import { Md2HtmlError } from "./errors.js";
-import { renderMarkdown } from "./markdown-renderer.js";
-import { normalizeConvertOptions, normalizeMarkdown } from "./normalize.js";
-import type { ConvertOptions } from "./types.js";
+import { renderMarkdown } from "../markdown-renderer.js";
+import { normalizeConvertOptions, normalizeMarkdown } from "../normalize.js";
+import type { ConvertOptions } from "../types.js";
 
 /** Converts Markdown into a mutable, complete HTML document. */
 export function convertMdToHtml(markdown: string, options?: Readonly<ConvertOptions>): HtmlDocument {
