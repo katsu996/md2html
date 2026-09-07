@@ -1,6 +1,7 @@
 import { Marked, type Token, type Tokens } from "marked";
 
 import { createFootnoteExtension } from "./footnote.js";
+import { definitionListExtension } from "./definition-list.js";
 import { escapeHtmlAttribute, escapeHtmlText } from "../utils/escape.js";
 import { isAllowedImageUrl, isAllowedLinkUrl } from "../utils/url.js";
 import type { NormalizedConvertOptions } from "./types.js";
@@ -73,7 +74,7 @@ export function renderMarkdown(
     gfm: options.gfm,
     breaks: options.breaks,
     renderer,
-    extensions: footnote.extensions
+    extensions: [...footnote.extensions, definitionListExtension]
   });
   const tokens = parser.lexer(markdown);
   footnote.finalizeTokens(tokens);
