@@ -1,6 +1,12 @@
 import { escapeHtmlAttribute, escapeHtmlText, escapeStyleRawText } from "../utils/escape.js";
 import { THEME_CONTROL_SCRIPT, THEME_TOGGLE_HTML } from "./theme-control.js";
 
+/**
+ * Input for {@link buildHtmlDocument}.
+ *
+ * Assembled by `HtmlDocument.toString()` from {@link HtmlDocumentInitialState};
+ * the two types share the same document data.
+ */
 export interface HtmlTemplateInput {
   bodyHtml: string;
   title: string;

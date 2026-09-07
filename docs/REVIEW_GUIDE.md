@@ -57,6 +57,8 @@ ESM/CJSと型定義の解決を最優先してください。可能な範囲で�
 
 ### R-03 HTML変換と決定性
 
+実装: [`src/core/html-document.ts`](../src/core/html-document.ts)（文書モデル）、[`src/core/html-template.ts`](../src/core/html-template.ts)（文書組立）、[`src/core/markdown-renderer.ts`](../src/core/markdown-renderer.ts)（レンダリング）、変換核は[`src/core/conversion/convert.ts`](../src/core/conversion/convert.ts)。
+
 - Markdown token化を同一変換で重複していないか。
 - title優先順位とプレーンテキスト化が正しいか。
 - 完全HTMLのDOCTYPE、meta順、title、article、style、末尾LFが正しいか。
@@ -78,6 +80,8 @@ ESM/CJSと型定義の解決を最優先してください。可能な範囲で�
 Markedは出力HTMLをサニタイズしないため、「markedを利用しているから安全」という前提を置かない。
 
 ### R-05 CLIとファイル保護
+
+実装: [`src/cli/run.ts`](../src/cli/run.ts)（CLI実行）、[`src/cli/paths.ts`](../src/cli/paths.ts)（パス解決）、[`src/core/io/convert-file.ts`](../src/core/io/convert-file.ts)（ファイル変換）、[`src/utils/atomic-write.ts`](../src/utils/atomic-write.ts)（原子書込）。
 
 - unknown option、入力数、stdin/output/stdoutの組み合わせを正しく拒否するか。
 - `--css` の順序が保持されるか。

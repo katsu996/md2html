@@ -3,6 +3,7 @@
 - 対象: `md2html`が既定CSS付きで生成する自己完結HTML
 - ステータス: 確定（親設計 #9 に一致）
 - 親設計: [生成HTMLのライト／ダークテーマ切替を設計する](https://github.com/katsu996/md2html/issues/9)
+- 実装: [`src/core/theme-control.ts`](../src/core/theme-control.ts)（切替ボタンHTML・制御スクリプト）、組込先は[`src/core/html-template.ts`](../src/core/html-template.ts)
 
 ## 1. 目的
 

@@ -8,7 +8,14 @@ const CONFIG_FILE_NAMES = [".md2htmlrc", ".md2htmlrc.json", "md2html.config.json
 const CONFIG_KEYS = new Set(["css", "title", "lang", "defaultCss", "allowHtml"]);
 const LANGUAGE_TAG = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/;
 
-interface NormalizedCliConfig {
+/**
+ * @internal Normalized project configuration.
+ *
+ * Wrapped with its source location by {@link LoadedCliConfig} and merged with
+ * {@link CliRunArguments} into {@link EffectiveCliRunArguments} by
+ * {@link resolveCliConfiguration}.
+ */
+export interface NormalizedCliConfig {
   css: string[] | undefined;
   title: string | undefined;
   lang: string | undefined;
@@ -16,7 +23,13 @@ interface NormalizedCliConfig {
   allowHtml: boolean | undefined;
 }
 
-interface LoadedCliConfig {
+/**
+ * @internal Normalized configuration paired with its source file location.
+ *
+ * Wraps {@link NormalizedCliConfig}; consumed by {@link resolveCliConfiguration}
+ * together with {@link CliRunArguments}.
+ */
+export interface LoadedCliConfig {
   value: NormalizedCliConfig;
   path: string;
   directory: string;

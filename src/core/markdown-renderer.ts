@@ -5,6 +5,12 @@ import { escapeHtmlAttribute, escapeHtmlText } from "../utils/escape.js";
 import { isAllowedImageUrl, isAllowedLinkUrl } from "../utils/url.js";
 import type { NormalizedConvertOptions } from "./types.js";
 
+/**
+ * Rendered Markdown fragment.
+ *
+ * Consumed by `convertMarkdown()` via {@link HtmlDocument.fromRenderedMarkdown}
+ * to build the final {@link HtmlDocument}.
+ */
 export interface MarkdownRenderResult {
   bodyHtml: string;
   titleCandidate: string | undefined;

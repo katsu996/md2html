@@ -20,6 +20,13 @@ export interface CliRunArguments {
   searchConfig: boolean;
 }
 
+/**
+ * Parsed CLI invocation.
+ *
+ * A `run` value flows into `resolveCliConfiguration()` and then into
+ * `resolvePathPlan()` (see `./paths.js`), which resolves it to a `PathPlan`;
+ * the two types share the input/output/stdout routing data.
+ */
 export type ParsedCliArguments =
   | { kind: "help" }
   | { kind: "version" }

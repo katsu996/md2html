@@ -80,7 +80,13 @@ export async function convertMarkdownFile(
   return { outputPath, index };
 }
 
-interface ValidatedFileOptions {
+/**
+ * @internal Validated subset of {@link ConvertMarkdownFileOptions}.
+ *
+ * Produced by `validateFileOptions()` and consumed by {@link convertMarkdownFile},
+ * which is why this type shares data with the public file conversion options.
+ */
+export interface ValidatedFileOptions {
   output: string | undefined;
   force: boolean;
   index: boolean;

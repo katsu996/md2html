@@ -7,7 +7,13 @@ import {
   validateDocumentTitle
 } from "./normalize.js";
 
-interface HtmlDocumentInitialState {
+/**
+ * @internal Initial document state held by {@link HtmlDocument}.
+ *
+ * Flows into the HTML template input via `toString()` → {@link buildHtmlDocument},
+ * which is why this type shares data with the template input.
+ */
+export interface HtmlDocumentInitialState {
   title: string | undefined;
   lang: string;
   defaultCss: boolean;

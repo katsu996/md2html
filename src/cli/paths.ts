@@ -4,6 +4,13 @@ import { defaultOutputPath, pathsReferToSameFile } from "../utils/paths.js";
 import type { EffectiveCliRunArguments } from "./config.js";
 import { CliUsageError } from "./errors.js";
 
+/**
+ * Resolved input/output routing for one CLI run.
+ *
+ * Derived from {@link EffectiveCliRunArguments} (which merges `CliRunArguments`
+ * with the loaded config) by {@link resolvePathPlan}; the plan shares its
+ * input/output/stdout data with the parsed CLI arguments.
+ */
 export interface PathPlan {
   inputPath: string | undefined;
   inputDisplayName: string;
