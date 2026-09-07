@@ -193,6 +193,38 @@ stdinでは`--stdout`または`--output`が必須です。ファイル入力で�
 
 制御スクリプトは入力MarkdownやCSSをコードへ補間せず、外部通信、Cookie、Web Storageを使用しません。詳細は[カラーテーマ切替機能 要件定義書](docs/THEME_SWITCHING_REQUIREMENTS.md)を参照してください。
 
+## パッケージ構成（`package.json` の論理3分割）
+
+`package.json` は単一ファイルのため物理分割できません。代わりにフィールドを次の3群に分けて責務を管理します（単一ファイルの星型構造に由来する低凝集の文書化による補完）。
+
+### Group A: Runtime / Metadata
+
+公開パッケージの素性を表す群です。
+
+- `name`、`version`、`description`、`license`、`author`
+- `type`（`module`）、`sideEffects: false`
+- `exports`（`./dist/lib/index` のESM/CJS条件と型定義）、`bin`（`md2html` → `./dist/bin/md2html.js`）
+- `files`（`dist`、`README.md`、`LICENSE` のみ配布）
+
+### Group B: Scripts
+
+開発・検証・配布の操作を表す群です。`scripts` がハブになります。
+
+- `build` / `dev`（tsdown）
+- `typecheck`、`lint`、`test` / `test:watch` / `test:coverage` / `coverage:summary`
+- `sample` / `sample:stdout`（動作確認用）
+- `prepack`（`typecheck` → `test` → `build`）
+
+### Group C: Publishing / Env
+
+依存と公開・実行環境を表す群です。
+
+- `dependencies`: `marked` のみ。ランタイム依存を1本に抑えることで、browser bundleへのNode.js builtin混入を防ぎます（[レビューガイド R-06](docs/REVIEW_GUIDE.md) と整合）。
+- `devDependencies`: ビルド・検証用（`typescript`、`vitest`、`eslint`、`tsdown`、`publint`、`@arethetypeswrong/core` 等）。公開成果物には含まれません。
+- `repository`、`engines`（`node >=22`）、`devEngines`、`publishConfig`（`access: public`）、`packageManager`（pnpm固定）
+
+`devDependencies` → `package` → `dependencies` という参照の橋は設定上不可避であり、コード分割の対象外です。ランタイム依存を追加する場合は Group C の方針（browser bundleへの混入有無、R-06の確認項目）に照らして検討してください。
+
 ## 開発
 
 このリポジトリのパッケージマネージャーはpnpmです。バージョンは`mise.toml`で固定されています。mise未使用の環境ではcorepackを利用できます。
