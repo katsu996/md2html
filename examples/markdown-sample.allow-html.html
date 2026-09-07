@@ -721,13 +721,18 @@ Markdown記法の定義リスト（<code>用語</code>＋<code>: 説明</code>�
 <dd><strong>太字</strong>や<code>コード</code>を含む説明も書けます</dd>
 </dl>
 <p>単独の行に <code>: </code> を含む文（例: 注意: この文は段落のままです）は定義リストになりません。</p>
+<h2>インライン装飾（ハイライト・挿入・上付き・下付き）</h2>
+<p><code>==ハイライト==</code>、<code>++挿入++</code>、<code>^上付き^</code>、<code>~下付き~</code> は専用のタグに変換されます。
+GFMの打ち消し線（<code>~~打ち消し線~~</code>）や強調（<code>*斜体*</code>）と併用できます。</p>
+<p><mark>ハイライト</mark>、<ins>挿入</ins>、H<sub>2</sub>O、x<sup>2</sup>、<del>打ち消し線</del></p>
 <h2>md2htmlで対応していない記法（参考）</h2>
 <p>以下はQiita・DocBase・GitHubで使われることがある記法ですが、
 md2htmlの現在のパーサー（marked）では専用のHTMLに変換されません。
 サンプルとして記載しますが、出力HTMLでの表示崩れを確認するためのものです。</p>
 <h3>下線・ハイライト（Markdown標準外）</h3>
-<p><code>&lt;u&gt;下線&lt;/u&gt;</code> や <code>&lt;mark&gt;ハイライト&lt;/mark&gt;</code> はMarkdown標準の記法ではなく、
-生HTMLでのみ表現できます（<code>--allow-html</code> が必要です）。</p>
+<p><code>==ハイライト==</code>、<code>++挿入++</code>、<code>^上付き^</code>、<code>~下付き~</code> は「インライン装飾」の節のとおり
+Markdown記法で変換されます。一方 <code>&lt;u&gt;下線&lt;/u&gt;</code> や <code>&lt;mark&gt;ハイライト&lt;/mark&gt;</code> の生HTMLは
+Markdown標準の記法ではなく、<code>--allow-html</code> が必要です。</p>
 <h3>数式・図（未対応）</h3>
 <p>LaTeX数式（<code>$x^2$</code>）、Mermaid、PlantUMLなどの埋め込みには対応していません。</p>
 <section class="md2html-footnotes" data-footnotes aria-label="脚注">
